@@ -334,7 +334,7 @@
             this.rjDropdownMenu2.MenuItemTextColor = System.Drawing.Color.Empty;
             this.rjDropdownMenu2.Name = "rjDropdownMenu2";
             this.rjDropdownMenu2.PrimaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(161)))), ((int)(((byte)(224)))));
-            this.rjDropdownMenu2.Size = new System.Drawing.Size(190, 136);
+            this.rjDropdownMenu2.Size = new System.Drawing.Size(190, 158);
             this.rjDropdownMenu2.Opening += new System.ComponentModel.CancelEventHandler(this.rjDropdownMenu2_Opening);
             // 
             // tiposDeCombustibleToolStripMenuItem
@@ -349,6 +349,7 @@
             this.tiposDeAutToolStripMenuItem.Name = "tiposDeAutToolStripMenuItem";
             this.tiposDeAutToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.tiposDeAutToolStripMenuItem.Text = "Tipos de Autos";
+            this.tiposDeAutToolStripMenuItem.Click += new System.EventHandler(this.tiposDeAutToolStripMenuItem_Click);
             // 
             // marcasToolStripMenuItem
             // 

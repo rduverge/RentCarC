@@ -14,16 +14,15 @@ using System.Windows.Forms;
 
 namespace RentaCarroFinal.UI
 {
-    public partial class FrmMenuModern : Form
+    public partial class FrmEmpleados : Form
     {
 
             public FrmTiposCombustibles FrmTiposCombustibles;
             public FrmMarca FrmMarca;
             public FrmModelo FrmModelo;
-            public FrmTiposVehiculos FrmTiposVehiculos;
 
         //Constructor
-        public FrmMenuModern()
+        public FrmEmpleados()
             {
                 InitializeComponent();
                 CollapseMenu();
@@ -31,11 +30,6 @@ namespace RentaCarroFinal.UI
                 this.BackColor = Color.FromArgb(98, 102, 244);//Border color
             }
 
-        private void FrmMenuModern_Load_1(object sender, EventArgs e)
-        {
-            var l = new FrmLogin();
-            l.ShowDialog();
-        }
             //Fields
             private int borderSize = 2;
         private Size formSize;
@@ -287,28 +281,14 @@ namespace RentaCarroFinal.UI
             if (FrmModelo == null || FrmModelo.IsDisposed)
             {
                 FrmModelo = new FrmModelo();
-                FrmModelo.LoadData();
+                // FrmModelo.LoadData();
                 FrmModelo.Show();
             }
             else
             {
-                FrmModelo.LoadData();
+                //FrmModelo.LoadData();
                 FrmModelo.Show();
                 FrmModelo.Focus();
-            }
-        }
-
-        private void tiposDeAutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (FrmTiposVehiculos == null || FrmTiposVehiculos.IsDisposed)
-            {
-                FrmTiposVehiculos = new FrmTiposVehiculos();
-                FrmTiposVehiculos.Show();
-            }
-            else
-            {
-                FrmTiposVehiculos.Show();
-                FrmTiposVehiculos.Focus();
             }
         }
     }

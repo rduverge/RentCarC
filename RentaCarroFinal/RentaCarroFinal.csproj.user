@@ -16,5 +16,8 @@
     <Compile Update="UI\FrmTiposCombustibles.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="UI\FrmTiposVehiculos.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

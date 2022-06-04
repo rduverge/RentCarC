@@ -1,6 +1,6 @@
 ﻿namespace RentaCarroFinal.UI
 {
-    partial class FrmModelo
+    partial class FrmClientes
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmModelo));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmClientes));
             this.panelMenu = new System.Windows.Forms.Panel();
             this.iconButton10 = new FontAwesome.Sharp.IconButton();
             this.iconButton5 = new FontAwesome.Sharp.IconButton();
@@ -47,15 +47,20 @@
             this.btnMinimize = new FontAwesome.Sharp.IconButton();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panelDesktop = new System.Windows.Forms.Panel();
-            this.marcasCombo = new System.Windows.Forms.ComboBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.actualizarBtn = new RJCodeAdvance.RJControls.RJButton();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.borrarBtn = new RJCodeAdvance.RJControls.RJButton();
             this.estadoCheck = new System.Windows.Forms.CheckBox();
             this.guardarBtn = new RJCodeAdvance.RJControls.RJButton();
-            this.descripcionText = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.tipovehiculoGrid = new System.Windows.Forms.DataGridView();
             this.rjDropdownMenu2 = new RJCodeAdvance.RJControls.RJDropdownMenu(this.components);
             this.tiposDeCombustibleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tiposDeAutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,7 +77,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelTitleBar.SuspendLayout();
             this.panelDesktop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipovehiculoGrid)).BeginInit();
             this.rjDropdownMenu2.SuspendLayout();
             this.rjDropdownMenu1.SuspendLayout();
             this.SuspendLayout();
@@ -325,38 +330,102 @@
             // panelDesktop
             // 
             this.panelDesktop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
-            this.panelDesktop.Controls.Add(this.marcasCombo);
+            this.panelDesktop.Controls.Add(this.textBox5);
+            this.panelDesktop.Controls.Add(this.textBox4);
+            this.panelDesktop.Controls.Add(this.textBox3);
+            this.panelDesktop.Controls.Add(this.textBox2);
+            this.panelDesktop.Controls.Add(this.label6);
+            this.panelDesktop.Controls.Add(this.label5);
+            this.panelDesktop.Controls.Add(this.label4);
+            this.panelDesktop.Controls.Add(this.label3);
             this.panelDesktop.Controls.Add(this.label2);
             this.panelDesktop.Controls.Add(this.actualizarBtn);
-            this.panelDesktop.Controls.Add(this.dataGridView1);
             this.panelDesktop.Controls.Add(this.borrarBtn);
             this.panelDesktop.Controls.Add(this.estadoCheck);
             this.panelDesktop.Controls.Add(this.guardarBtn);
-            this.panelDesktop.Controls.Add(this.descripcionText);
-            this.panelDesktop.Controls.Add(this.label1);
+            this.panelDesktop.Controls.Add(this.tipovehiculoGrid);
             this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDesktop.Location = new System.Drawing.Point(0, 0);
             this.panelDesktop.Name = "panelDesktop";
             this.panelDesktop.Size = new System.Drawing.Size(831, 659);
             this.panelDesktop.TabIndex = 2;
             // 
-            // marcasCombo
+            // textBox5
             // 
-            this.marcasCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.marcasCombo.FormattingEnabled = true;
-            this.marcasCombo.Location = new System.Drawing.Point(264, 142);
-            this.marcasCombo.Name = "marcasCombo";
-            this.marcasCombo.Size = new System.Drawing.Size(460, 24);
-            this.marcasCombo.TabIndex = 26;
+            this.textBox5.Location = new System.Drawing.Point(608, 126);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.PlaceholderText = "Limite de Credito";
+            this.textBox5.Size = new System.Drawing.Size(112, 23);
+            this.textBox5.TabIndex = 33;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(490, 126);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.PlaceholderText = "No. Tarjeta CR";
+            this.textBox4.Size = new System.Drawing.Size(112, 23);
+            this.textBox4.TabIndex = 32;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(375, 126);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.PlaceholderText = "Cedula";
+            this.textBox3.Size = new System.Drawing.Size(112, 23);
+            this.textBox3.TabIndex = 31;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(257, 126);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.PlaceholderText = "Nombre";
+            this.textBox2.Size = new System.Drawing.Size(112, 23);
+            this.textBox2.TabIndex = 30;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(257, 156);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(93, 16);
+            this.label6.TabIndex = 29;
+            this.label6.Text = "Tipo de persona";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(608, 107);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(101, 16);
+            this.label5.TabIndex = 28;
+            this.label5.Text = "Limite de Credito";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(490, 107);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(82, 16);
+            this.label4.TabIndex = 27;
+            this.label4.Text = "No. Tarjeta CR";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(375, 107);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(45, 16);
+            this.label3.TabIndex = 26;
+            this.label3.Text = "Cedula";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(264, 123);
+            this.label2.Location = new System.Drawing.Point(257, 107);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 16);
+            this.label2.Size = new System.Drawing.Size(52, 16);
             this.label2.TabIndex = 25;
-            this.label2.Text = "Marca";
+            this.label2.Text = "Nombre";
             // 
             // actualizarBtn
             // 
@@ -368,26 +437,13 @@
             this.actualizarBtn.FlatAppearance.BorderSize = 0;
             this.actualizarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.actualizarBtn.ForeColor = System.Drawing.Color.White;
-            this.actualizarBtn.Location = new System.Drawing.Point(484, 172);
+            this.actualizarBtn.Location = new System.Drawing.Point(477, 230);
             this.actualizarBtn.Name = "actualizarBtn";
             this.actualizarBtn.Size = new System.Drawing.Size(104, 28);
             this.actualizarBtn.TabIndex = 23;
             this.actualizarBtn.Text = "Editar";
             this.actualizarBtn.TextColor = System.Drawing.Color.White;
             this.actualizarBtn.UseVisualStyleBackColor = false;
-            this.actualizarBtn.Click += new System.EventHandler(this.actualizarBtn_Click);
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.Location = new System.Drawing.Point(264, 220);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(539, 410);
-            this.dataGridView1.TabIndex = 24;
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // borrarBtn
             // 
@@ -399,19 +455,18 @@
             this.borrarBtn.FlatAppearance.BorderSize = 0;
             this.borrarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.borrarBtn.ForeColor = System.Drawing.Color.White;
-            this.borrarBtn.Location = new System.Drawing.Point(374, 172);
+            this.borrarBtn.Location = new System.Drawing.Point(367, 230);
             this.borrarBtn.Name = "borrarBtn";
             this.borrarBtn.Size = new System.Drawing.Size(104, 28);
             this.borrarBtn.TabIndex = 22;
             this.borrarBtn.Text = "Borrar";
             this.borrarBtn.TextColor = System.Drawing.Color.White;
             this.borrarBtn.UseVisualStyleBackColor = false;
-            this.borrarBtn.Click += new System.EventHandler(this.borrarBtn_Click);
             // 
             // estadoCheck
             // 
             this.estadoCheck.AutoSize = true;
-            this.estadoCheck.Location = new System.Drawing.Point(730, 99);
+            this.estadoCheck.Location = new System.Drawing.Point(735, 128);
             this.estadoCheck.Name = "estadoCheck";
             this.estadoCheck.Size = new System.Drawing.Size(61, 20);
             this.estadoCheck.TabIndex = 19;
@@ -428,31 +483,24 @@
             this.guardarBtn.FlatAppearance.BorderSize = 0;
             this.guardarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.guardarBtn.ForeColor = System.Drawing.Color.White;
-            this.guardarBtn.Location = new System.Drawing.Point(264, 172);
+            this.guardarBtn.Location = new System.Drawing.Point(257, 230);
             this.guardarBtn.Name = "guardarBtn";
             this.guardarBtn.Size = new System.Drawing.Size(104, 28);
             this.guardarBtn.TabIndex = 21;
             this.guardarBtn.Text = "Crear";
             this.guardarBtn.TextColor = System.Drawing.Color.White;
             this.guardarBtn.UseVisualStyleBackColor = false;
-            this.guardarBtn.Click += new System.EventHandler(this.guardarBtn_Click);
             // 
-            // descripcionText
+            // tipovehiculoGrid
             // 
-            this.descripcionText.Location = new System.Drawing.Point(264, 96);
-            this.descripcionText.Name = "descripcionText";
-            this.descripcionText.PlaceholderText = "Descripcion";
-            this.descripcionText.Size = new System.Drawing.Size(460, 23);
-            this.descripcionText.TabIndex = 18;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(264, 77);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 16);
-            this.label1.TabIndex = 20;
-            this.label1.Text = "Descripcion";
+            this.tipovehiculoGrid.AllowUserToAddRows = false;
+            this.tipovehiculoGrid.AllowUserToDeleteRows = false;
+            this.tipovehiculoGrid.Location = new System.Drawing.Point(257, 268);
+            this.tipovehiculoGrid.Name = "tipovehiculoGrid";
+            this.tipovehiculoGrid.ReadOnly = true;
+            this.tipovehiculoGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.tipovehiculoGrid.Size = new System.Drawing.Size(539, 367);
+            this.tipovehiculoGrid.TabIndex = 24;
             // 
             // rjDropdownMenu2
             // 
@@ -476,6 +524,7 @@
             this.tiposDeCombustibleToolStripMenuItem.Name = "tiposDeCombustibleToolStripMenuItem";
             this.tiposDeCombustibleToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.tiposDeCombustibleToolStripMenuItem.Text = "Tipos de combustible";
+            this.tiposDeCombustibleToolStripMenuItem.Click += new System.EventHandler(this.tiposDeCombustibleToolStripMenuItem_Click);
             // 
             // tiposDeAutToolStripMenuItem
             // 
@@ -490,12 +539,14 @@
             this.marcasToolStripMenuItem.Name = "marcasToolStripMenuItem";
             this.marcasToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.marcasToolStripMenuItem.Text = "Marcas";
+            this.marcasToolStripMenuItem.Click += new System.EventHandler(this.marcasToolStripMenuItem_Click);
             // 
             // modelosToolStripMenuItem
             // 
             this.modelosToolStripMenuItem.Name = "modelosToolStripMenuItem";
             this.modelosToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.modelosToolStripMenuItem.Text = "Modelos";
+            this.modelosToolStripMenuItem.Click += new System.EventHandler(this.modelosToolStripMenuItem_Click);
             // 
             // vehiculosToolStripMenuItem
             // 
@@ -539,7 +590,7 @@
             this.inspeccionarToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.inspeccionarToolStripMenuItem.Text = "Inspeccionar ";
             // 
-            // FrmModelo
+            // FrmClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -547,7 +598,7 @@
             this.Controls.Add(this.panelTitleBar);
             this.Controls.Add(this.panelMenu);
             this.Controls.Add(this.panelDesktop);
-            this.Name = "FrmModelo";
+            this.Name = "FrmClientes";
             this.Text = "FrmBase";
             this.panelMenu.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -556,7 +607,7 @@
             this.panelTitleBar.PerformLayout();
             this.panelDesktop.ResumeLayout(false);
             this.panelDesktop.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipovehiculoGrid)).EndInit();
             this.rjDropdownMenu2.ResumeLayout(false);
             this.rjDropdownMenu1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -591,14 +642,19 @@
         private RJCodeAdvance.RJControls.RJDropdownMenu rjDropdownMenu1;
         private ToolStripMenuItem rentarToolStripMenuItem;
         private ToolStripMenuItem inspeccionarToolStripMenuItem;
-        private ComboBox marcasCombo;
-        private Label label2;
         private RJCodeAdvance.RJControls.RJButton actualizarBtn;
-        private DataGridView dataGridView1;
         private RJCodeAdvance.RJControls.RJButton borrarBtn;
         private CheckBox estadoCheck;
         private RJCodeAdvance.RJControls.RJButton guardarBtn;
-        private TextBox descripcionText;
-        private Label label1;
+        private DataGridView tipovehiculoGrid;
+        private TextBox textBox5;
+        private TextBox textBox4;
+        private TextBox textBox3;
+        private TextBox textBox2;
+        private Label label6;
+        private Label label5;
+        private Label label4;
+        private Label label3;
+        private Label label2;
     }
 }
