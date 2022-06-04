@@ -1,5 +1,5 @@
 using RentaCarroFinal.Data;
-//using RentaCarroFinal.UI;
+using RentCar_UI;
 
 namespace RentaCarroFinal
 {
@@ -25,7 +25,7 @@ namespace RentaCarroFinal
             }
 
             ApplicationConfiguration.Initialize();
-            //Application.Run(new MainForm());
+                Application.Run(new FrmLogin());
         }
     }
 }

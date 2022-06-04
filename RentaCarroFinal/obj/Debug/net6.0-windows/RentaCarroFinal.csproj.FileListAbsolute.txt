@@ -45,3 +45,9 @@ C:\Users\Rolando\source\repos\RentaCarroFinal\RentaCarroFinal\obj\Debug\net6.0-w
 C:\Users\Rolando\source\repos\RentaCarroFinal\RentaCarroFinal\obj\Debug\net6.0-windows\RentaCarroFinal.pdb
 C:\Users\Rolando\source\repos\RentaCarroFinal\RentaCarroFinal\obj\Debug\net6.0-windows\RentaCarroFinal.genruntimeconfig.cache
 C:\Users\Rolando\source\repos\RentaCarroFinal\RentaCarroFinal\obj\Debug\net6.0-windows\ref\RentaCarroFinal.dll
+C:\Users\Rolando\source\repos\RentaCarroFinal\RentaCarroFinal\bin\Debug\net6.0-windows\FontAwesome.Sharp.dll
+C:\Users\Rolando\source\repos\RentaCarroFinal\RentaCarroFinal\bin\Debug\net6.0-windows\MaterialSkin.dll
+C:\Users\Rolando\source\repos\RentaCarroFinal\RentaCarroFinal\bin\Debug\net6.0-windows\RJCodeAdvance.RJControls.dll
+C:\Users\Rolando\source\repos\RentaCarroFinal\RentaCarroFinal\obj\Debug\net6.0-windows\RentCar_UI.FrmLogin.resources
+C:\Users\Rolando\source\repos\RentaCarroFinal\RentaCarroFinal\obj\Debug\net6.0-windows\RentCar_UI.FrmMenuModern.resources
+C:\Users\Rolando\source\repos\RentaCarroFinal\RentaCarroFinal\obj\Debug\net6.0-windows\RentaCarroFinal.csproj.GenerateResource.cache
