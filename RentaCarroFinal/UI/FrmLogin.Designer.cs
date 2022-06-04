@@ -1,4 +1,4 @@
-﻿namespace RentCar_UI
+﻿namespace RentaCarroFinal.UI
 {
     partial class FrmLogin
     {
@@ -64,6 +64,7 @@
             this.PasswordBox.Size = new System.Drawing.Size(185, 23);
             this.PasswordBox.TabIndex = 5;
             this.PasswordBox.UseSystemPasswordChar = true;
+
             // 
             // LoginBtn
             // 
@@ -77,6 +78,7 @@
             this.LoginBtn.TabIndex = 6;
             this.LoginBtn.Text = "LOGIN";
             this.LoginBtn.UseVisualStyleBackColor = true;
+            this.LoginBtn.Click += new System.EventHandler(this.LoginBtn_Click_1);
             // 
             // pictureBox1
             // 

@@ -11,22 +11,80 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace RentCar_UI
+namespace RentaCarroFinal.UI
 {
     public partial class FrmMenuModern : Form
     {
-        //Fields
-        private int borderSize = 2;
-        private Size formSize;
+
+            public FrmTiposCombustibles FrmTiposCombustibles;
+            public FrmMarca FrmMarca;
+            public FrmModelo FrmModelo;
 
         //Constructor
         public FrmMenuModern()
-        {
-            InitializeComponent();
-            CollapseMenu();
-            this.Padding = new Padding(borderSize);//Border size
-            this.BackColor = Color.FromArgb(98, 102, 244);//Border color
-        }
+            {
+                InitializeComponent();
+                CollapseMenu();
+                this.Padding = new Padding(borderSize);//Border size
+                this.BackColor = Color.FromArgb(98, 102, 244);//Border color
+            }
+
+            private void FrmMenuModern_Load(object sender, EventArgs e)
+            {
+                var l = new FrmLogin();
+                l.ShowDialog();
+            }
+            
+            private void combustibleBtn_Click(object sender, EventArgs e)
+            {
+                if (FrmTiposCombustibles == null || FrmTiposCombustibles.IsDisposed)
+                {
+                FrmTiposCombustibles = new FrmTiposCombustibles();
+                FrmTiposCombustibles.Show();
+                }
+                else
+                {
+                FrmTiposCombustibles.Show();
+                FrmTiposCombustibles.Focus();
+                }
+            }
+
+            private void button5_Click(object sender, EventArgs e)
+            {
+                if (FrmMarca == null || FrmMarca.IsDisposed)
+                {
+                FrmMarca = new FrmMarca();
+                FrmMarca.Show();
+                }
+                else
+                {
+                FrmMarca.Show();
+                FrmMarca.Focus();
+                }
+            }
+
+            private void button7_Click(object sender, EventArgs e)
+            {
+                if (FrmModelo == null || FrmModelo.IsDisposed)
+                {
+                FrmModelo = new FrmModelo();
+               // FrmModelo.LoadData();
+                FrmModelo.Show();
+                }
+                else
+                {
+                //FrmModelo.LoadData();
+                FrmModelo.Show();
+                FrmModelo.Focus();
+                }
+            }
+
+
+            //Fields
+            private int borderSize = 2;
+        private Size formSize;
+
+
         //Drag Form
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();

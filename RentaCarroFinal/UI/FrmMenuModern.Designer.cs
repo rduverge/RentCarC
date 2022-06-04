@@ -1,4 +1,4 @@
-﻿namespace RentCar_UI
+﻿namespace RentaCarroFinal.UI
 {
     partial class FrmMenuModern
     {
