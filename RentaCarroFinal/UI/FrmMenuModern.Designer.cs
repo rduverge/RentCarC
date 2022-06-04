@@ -47,7 +47,6 @@
             this.btnMinimize = new FontAwesome.Sharp.IconButton();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panelDesktop = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.rjDropdownMenu2 = new RJCodeAdvance.RJControls.RJDropdownMenu(this.components);
             this.tiposDeCombustibleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tiposDeAutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,8 +62,6 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelTitleBar.SuspendLayout();
-            this.panelDesktop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.rjDropdownMenu2.SuspendLayout();
             this.rjDropdownMenu1.SuspendLayout();
             this.SuspendLayout();
@@ -317,22 +314,11 @@
             // panelDesktop
             // 
             this.panelDesktop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
-            this.panelDesktop.Controls.Add(this.pictureBox2);
             this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDesktop.Location = new System.Drawing.Point(0, 0);
             this.panelDesktop.Name = "panelDesktop";
             this.panelDesktop.Size = new System.Drawing.Size(831, 659);
             this.panelDesktop.TabIndex = 2;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(256, 87);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(546, 542);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 3;
-            this.pictureBox2.TabStop = false;
             // 
             // rjDropdownMenu2
             // 
@@ -439,8 +425,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelTitleBar.ResumeLayout(false);
             this.panelTitleBar.PerformLayout();
-            this.panelDesktop.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.rjDropdownMenu2.ResumeLayout(false);
             this.rjDropdownMenu1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -475,6 +459,5 @@
         private RJCodeAdvance.RJControls.RJDropdownMenu rjDropdownMenu1;
         private ToolStripMenuItem rentarToolStripMenuItem;
         private ToolStripMenuItem inspeccionarToolStripMenuItem;
-        private PictureBox pictureBox2;
     }
 }
