@@ -1,6 +1,6 @@
 ﻿namespace RentaCarroFinal.UI
 {
-    partial class FrmClientes
+    partial class FrmRenta
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmClientes));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmRenta));
             this.panelMenu = new System.Windows.Forms.Panel();
             this.iconButton10 = new FontAwesome.Sharp.IconButton();
             this.iconButton5 = new FontAwesome.Sharp.IconButton();
@@ -47,18 +47,16 @@
             this.btnMinimize = new FontAwesome.Sharp.IconButton();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panelDesktop = new System.Windows.Forms.Panel();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.combustibleCombo = new System.Windows.Forms.ComboBox();
+            this.empleadoCombo = new System.Windows.Forms.ComboBox();
+            this.vehiculoCombo = new System.Windows.Forms.ComboBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.actualizarBtn = new RJCodeAdvance.RJControls.RJButton();
             this.borrarBtn = new RJCodeAdvance.RJControls.RJButton();
-            this.estadoCheck = new System.Windows.Forms.CheckBox();
             this.guardarBtn = new RJCodeAdvance.RJControls.RJButton();
             this.tipovehiculoGrid = new System.Windows.Forms.DataGridView();
             this.rjDropdownMenu2 = new RJCodeAdvance.RJControls.RJDropdownMenu(this.components);
@@ -72,7 +70,12 @@
             this.rjDropdownMenu1 = new RJCodeAdvance.RJControls.RJDropdownMenu(this.components);
             this.rentarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inspeccionarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.panelMenu.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -81,6 +84,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tipovehiculoGrid)).BeginInit();
             this.rjDropdownMenu2.SuspendLayout();
             this.rjDropdownMenu1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMenu
@@ -331,19 +335,22 @@
             // panelDesktop
             // 
             this.panelDesktop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
-            this.panelDesktop.Controls.Add(this.comboBox1);
-            this.panelDesktop.Controls.Add(this.textBox5);
-            this.panelDesktop.Controls.Add(this.textBox4);
-            this.panelDesktop.Controls.Add(this.textBox3);
+            this.panelDesktop.Controls.Add(this.numericUpDown1);
             this.panelDesktop.Controls.Add(this.textBox2);
+            this.panelDesktop.Controls.Add(this.label7);
             this.panelDesktop.Controls.Add(this.label6);
+            this.panelDesktop.Controls.Add(this.dateTimePicker2);
+            this.panelDesktop.Controls.Add(this.label1);
+            this.panelDesktop.Controls.Add(this.combustibleCombo);
+            this.panelDesktop.Controls.Add(this.empleadoCombo);
+            this.panelDesktop.Controls.Add(this.vehiculoCombo);
+            this.panelDesktop.Controls.Add(this.dateTimePicker1);
             this.panelDesktop.Controls.Add(this.label5);
             this.panelDesktop.Controls.Add(this.label4);
             this.panelDesktop.Controls.Add(this.label3);
             this.panelDesktop.Controls.Add(this.label2);
             this.panelDesktop.Controls.Add(this.actualizarBtn);
             this.panelDesktop.Controls.Add(this.borrarBtn);
-            this.panelDesktop.Controls.Add(this.estadoCheck);
             this.panelDesktop.Controls.Add(this.guardarBtn);
             this.panelDesktop.Controls.Add(this.tipovehiculoGrid);
             this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -352,87 +359,79 @@
             this.panelDesktop.Size = new System.Drawing.Size(831, 659);
             this.panelDesktop.TabIndex = 2;
             // 
-            // textBox5
+            // combustibleCombo
             // 
-            this.textBox5.Location = new System.Drawing.Point(608, 126);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.PlaceholderText = "Limite de Credito";
-            this.textBox5.Size = new System.Drawing.Size(112, 23);
-            this.textBox5.TabIndex = 33;
+            this.combustibleCombo.FormattingEnabled = true;
+            this.combustibleCombo.Location = new System.Drawing.Point(493, 100);
+            this.combustibleCombo.Name = "combustibleCombo";
+            this.combustibleCombo.Size = new System.Drawing.Size(104, 24);
+            this.combustibleCombo.TabIndex = 44;
             // 
-            // textBox4
+            // empleadoCombo
             // 
-            this.textBox4.Location = new System.Drawing.Point(490, 126);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.PlaceholderText = "No. Tarjeta CR";
-            this.textBox4.Size = new System.Drawing.Size(112, 23);
-            this.textBox4.TabIndex = 32;
+            this.empleadoCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.empleadoCombo.FormattingEnabled = true;
+            this.empleadoCombo.Location = new System.Drawing.Point(382, 100);
+            this.empleadoCombo.Name = "empleadoCombo";
+            this.empleadoCombo.Size = new System.Drawing.Size(105, 24);
+            this.empleadoCombo.TabIndex = 42;
             // 
-            // textBox3
+            // vehiculoCombo
             // 
-            this.textBox3.Location = new System.Drawing.Point(375, 126);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.PlaceholderText = "Cedula";
-            this.textBox3.Size = new System.Drawing.Size(112, 23);
-            this.textBox3.TabIndex = 31;
+            this.vehiculoCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.vehiculoCombo.FormattingEnabled = true;
+            this.vehiculoCombo.Location = new System.Drawing.Point(257, 101);
+            this.vehiculoCombo.Name = "vehiculoCombo";
+            this.vehiculoCombo.Size = new System.Drawing.Size(119, 24);
+            this.vehiculoCombo.TabIndex = 41;
             // 
-            // textBox2
+            // dateTimePicker1
             // 
-            this.textBox2.Location = new System.Drawing.Point(257, 126);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.PlaceholderText = "Nombre";
-            this.textBox2.Size = new System.Drawing.Size(112, 23);
-            this.textBox2.TabIndex = 30;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(257, 156);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(102, 16);
-            this.label6.TabIndex = 29;
-            this.label6.Text = "Tipo de persona";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(603, 101);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 23);
+            this.dateTimePicker1.TabIndex = 40;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(608, 107);
+            this.label5.Location = new System.Drawing.Point(603, 82);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(110, 16);
-            this.label5.TabIndex = 28;
-            this.label5.Text = "Limite de Credito";
+            this.label5.Size = new System.Drawing.Size(77, 16);
+            this.label5.TabIndex = 35;
+            this.label5.Text = "Fecha Renta";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(490, 107);
+            this.label4.Location = new System.Drawing.Point(493, 82);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(91, 16);
+            this.label4.Size = new System.Drawing.Size(56, 16);
             this.label4.TabIndex = 27;
-            this.label4.Text = "No. Tarjeta CR";
+            this.label4.Text = "Vehiculo";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(375, 107);
+            this.label3.Location = new System.Drawing.Point(382, 82);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 16);
+            this.label3.Size = new System.Drawing.Size(48, 16);
             this.label3.TabIndex = 26;
-            this.label3.Text = "Cedula";
+            this.label3.Text = "Cliente";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(257, 107);
+            this.label2.Location = new System.Drawing.Point(257, 82);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 16);
+            this.label2.Size = new System.Drawing.Size(65, 16);
             this.label2.TabIndex = 25;
-            this.label2.Text = "Nombre";
+            this.label2.Text = "Empleado";
             // 
             // actualizarBtn
             // 
@@ -444,7 +443,7 @@
             this.actualizarBtn.FlatAppearance.BorderSize = 0;
             this.actualizarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.actualizarBtn.ForeColor = System.Drawing.Color.White;
-            this.actualizarBtn.Location = new System.Drawing.Point(477, 230);
+            this.actualizarBtn.Location = new System.Drawing.Point(477, 208);
             this.actualizarBtn.Name = "actualizarBtn";
             this.actualizarBtn.Size = new System.Drawing.Size(104, 28);
             this.actualizarBtn.TabIndex = 23;
@@ -462,23 +461,13 @@
             this.borrarBtn.FlatAppearance.BorderSize = 0;
             this.borrarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.borrarBtn.ForeColor = System.Drawing.Color.White;
-            this.borrarBtn.Location = new System.Drawing.Point(367, 230);
+            this.borrarBtn.Location = new System.Drawing.Point(367, 208);
             this.borrarBtn.Name = "borrarBtn";
             this.borrarBtn.Size = new System.Drawing.Size(104, 28);
             this.borrarBtn.TabIndex = 22;
             this.borrarBtn.Text = "Borrar";
             this.borrarBtn.TextColor = System.Drawing.Color.White;
             this.borrarBtn.UseVisualStyleBackColor = false;
-            // 
-            // estadoCheck
-            // 
-            this.estadoCheck.AutoSize = true;
-            this.estadoCheck.Location = new System.Drawing.Point(735, 128);
-            this.estadoCheck.Name = "estadoCheck";
-            this.estadoCheck.Size = new System.Drawing.Size(61, 20);
-            this.estadoCheck.TabIndex = 19;
-            this.estadoCheck.Text = "Estado";
-            this.estadoCheck.UseVisualStyleBackColor = true;
             // 
             // guardarBtn
             // 
@@ -490,7 +479,7 @@
             this.guardarBtn.FlatAppearance.BorderSize = 0;
             this.guardarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.guardarBtn.ForeColor = System.Drawing.Color.White;
-            this.guardarBtn.Location = new System.Drawing.Point(257, 230);
+            this.guardarBtn.Location = new System.Drawing.Point(257, 208);
             this.guardarBtn.Name = "guardarBtn";
             this.guardarBtn.Size = new System.Drawing.Size(104, 28);
             this.guardarBtn.TabIndex = 21;
@@ -502,11 +491,11 @@
             // 
             this.tipovehiculoGrid.AllowUserToAddRows = false;
             this.tipovehiculoGrid.AllowUserToDeleteRows = false;
-            this.tipovehiculoGrid.Location = new System.Drawing.Point(257, 268);
+            this.tipovehiculoGrid.Location = new System.Drawing.Point(257, 242);
             this.tipovehiculoGrid.Name = "tipovehiculoGrid";
             this.tipovehiculoGrid.ReadOnly = true;
             this.tipovehiculoGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tipovehiculoGrid.Size = new System.Drawing.Size(539, 367);
+            this.tipovehiculoGrid.Size = new System.Drawing.Size(539, 393);
             this.tipovehiculoGrid.TabIndex = 24;
             // 
             // rjDropdownMenu2
@@ -597,15 +586,59 @@
             this.inspeccionarToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.inspeccionarToolStripMenuItem.Text = "Inspeccionar ";
             // 
-            // comboBox1
+            // label1
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(257, 185);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(224, 24);
-            this.comboBox1.TabIndex = 34;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(603, 139);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(109, 16);
+            this.label1.TabIndex = 45;
+            this.label1.Text = "Fecha Devolucion";
             // 
-            // FrmClientes
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker2.Location = new System.Drawing.Point(603, 162);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(200, 23);
+            this.dateTimePicker2.TabIndex = 46;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(257, 139);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(93, 16);
+            this.label6.TabIndex = 47;
+            this.label6.Text = "Monto por dia";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(382, 139);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(82, 16);
+            this.label7.TabIndex = 48;
+            this.label7.Text = "Comentarios";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(382, 164);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(215, 23);
+            this.textBox2.TabIndex = 49;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(257, 162);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(119, 23);
+            this.numericUpDown1.TabIndex = 50;
+            // 
+            // FrmRenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -613,7 +646,7 @@
             this.Controls.Add(this.panelTitleBar);
             this.Controls.Add(this.panelMenu);
             this.Controls.Add(this.panelDesktop);
-            this.Name = "FrmClientes";
+            this.Name = "FrmRenta";
             this.Text = "FrmBase";
             this.panelMenu.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -625,6 +658,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tipovehiculoGrid)).EndInit();
             this.rjDropdownMenu2.ResumeLayout(false);
             this.rjDropdownMenu1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -659,18 +693,21 @@
         private ToolStripMenuItem inspeccionarToolStripMenuItem;
         private RJCodeAdvance.RJControls.RJButton actualizarBtn;
         private RJCodeAdvance.RJControls.RJButton borrarBtn;
-        private CheckBox estadoCheck;
         private RJCodeAdvance.RJControls.RJButton guardarBtn;
         private DataGridView tipovehiculoGrid;
-        private TextBox textBox5;
-        private TextBox textBox4;
-        private TextBox textBox3;
-        private TextBox textBox2;
-        private Label label6;
-        private Label label5;
         private Label label4;
         private Label label3;
         private Label label2;
-        private ComboBox comboBox1;
+        private Label label5;
+        private DateTimePicker dateTimePicker1;
+        private ComboBox vehiculoCombo;
+        private ComboBox empleadoCombo;
+        private ComboBox combustibleCombo;
+        private Label label1;
+        private TextBox textBox2;
+        private Label label7;
+        private Label label6;
+        private DateTimePicker dateTimePicker2;
+        private NumericUpDown numericUpDown1;
     }
 }

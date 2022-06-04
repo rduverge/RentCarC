@@ -47,6 +47,13 @@
             this.btnMinimize = new FontAwesome.Sharp.IconButton();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panelDesktop = new System.Windows.Forms.Panel();
+            this.actualizarBtn = new RJCodeAdvance.RJControls.RJButton();
+            this.descripcionText = new System.Windows.Forms.TextBox();
+            this.borrarBtn = new RJCodeAdvance.RJControls.RJButton();
+            this.estadoCheck = new System.Windows.Forms.CheckBox();
+            this.guardarBtn = new RJCodeAdvance.RJControls.RJButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tipovehiculoGrid = new System.Windows.Forms.DataGridView();
             this.rjDropdownMenu2 = new RJCodeAdvance.RJControls.RJDropdownMenu(this.components);
             this.tiposDeCombustibleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tiposDeAutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,21 +65,14 @@
             this.rjDropdownMenu1 = new RJCodeAdvance.RJControls.RJDropdownMenu(this.components);
             this.rentarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inspeccionarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.actualizarBtn = new RJCodeAdvance.RJControls.RJButton();
-            this.borrarBtn = new RJCodeAdvance.RJControls.RJButton();
-            this.guardarBtn = new RJCodeAdvance.RJControls.RJButton();
-            this.tipovehiculoGrid = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.descripcionText = new System.Windows.Forms.TextBox();
-            this.estadoCheck = new System.Windows.Forms.CheckBox();
             this.panelMenu.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelTitleBar.SuspendLayout();
             this.panelDesktop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tipovehiculoGrid)).BeginInit();
             this.rjDropdownMenu2.SuspendLayout();
             this.rjDropdownMenu1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tipovehiculoGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMenu
@@ -336,6 +336,99 @@
             this.panelDesktop.Size = new System.Drawing.Size(831, 659);
             this.panelDesktop.TabIndex = 2;
             // 
+            // actualizarBtn
+            // 
+            this.actualizarBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(91)))), ((int)(((byte)(89)))));
+            this.actualizarBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(91)))), ((int)(((byte)(89)))));
+            this.actualizarBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.actualizarBtn.BorderRadius = 0;
+            this.actualizarBtn.BorderSize = 0;
+            this.actualizarBtn.FlatAppearance.BorderSize = 0;
+            this.actualizarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.actualizarBtn.ForeColor = System.Drawing.Color.White;
+            this.actualizarBtn.Location = new System.Drawing.Point(477, 150);
+            this.actualizarBtn.Name = "actualizarBtn";
+            this.actualizarBtn.Size = new System.Drawing.Size(104, 28);
+            this.actualizarBtn.TabIndex = 23;
+            this.actualizarBtn.Text = "Editar";
+            this.actualizarBtn.TextColor = System.Drawing.Color.White;
+            this.actualizarBtn.UseVisualStyleBackColor = false;
+            // 
+            // descripcionText
+            // 
+            this.descripcionText.Location = new System.Drawing.Point(257, 114);
+            this.descripcionText.Name = "descripcionText";
+            this.descripcionText.PlaceholderText = "Descripcion";
+            this.descripcionText.Size = new System.Drawing.Size(460, 23);
+            this.descripcionText.TabIndex = 18;
+            // 
+            // borrarBtn
+            // 
+            this.borrarBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(77)))), ((int)(((byte)(95)))));
+            this.borrarBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(77)))), ((int)(((byte)(95)))));
+            this.borrarBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.borrarBtn.BorderRadius = 0;
+            this.borrarBtn.BorderSize = 0;
+            this.borrarBtn.FlatAppearance.BorderSize = 0;
+            this.borrarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.borrarBtn.ForeColor = System.Drawing.Color.White;
+            this.borrarBtn.Location = new System.Drawing.Point(367, 150);
+            this.borrarBtn.Name = "borrarBtn";
+            this.borrarBtn.Size = new System.Drawing.Size(104, 28);
+            this.borrarBtn.TabIndex = 22;
+            this.borrarBtn.Text = "Borrar";
+            this.borrarBtn.TextColor = System.Drawing.Color.White;
+            this.borrarBtn.UseVisualStyleBackColor = false;
+            // 
+            // estadoCheck
+            // 
+            this.estadoCheck.AutoSize = true;
+            this.estadoCheck.Location = new System.Drawing.Point(723, 117);
+            this.estadoCheck.Name = "estadoCheck";
+            this.estadoCheck.Size = new System.Drawing.Size(61, 20);
+            this.estadoCheck.TabIndex = 19;
+            this.estadoCheck.Text = "Estado";
+            this.estadoCheck.UseVisualStyleBackColor = true;
+            // 
+            // guardarBtn
+            // 
+            this.guardarBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(188)))), ((int)(((byte)(203)))));
+            this.guardarBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(188)))), ((int)(((byte)(203)))));
+            this.guardarBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.guardarBtn.BorderRadius = 0;
+            this.guardarBtn.BorderSize = 0;
+            this.guardarBtn.FlatAppearance.BorderSize = 0;
+            this.guardarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.guardarBtn.ForeColor = System.Drawing.Color.White;
+            this.guardarBtn.Location = new System.Drawing.Point(257, 150);
+            this.guardarBtn.Name = "guardarBtn";
+            this.guardarBtn.Size = new System.Drawing.Size(104, 28);
+            this.guardarBtn.TabIndex = 21;
+            this.guardarBtn.Text = "Crear";
+            this.guardarBtn.TextColor = System.Drawing.Color.White;
+            this.guardarBtn.UseVisualStyleBackColor = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(257, 95);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 16);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "Descripcion";
+            // 
+            // tipovehiculoGrid
+            // 
+            this.tipovehiculoGrid.AllowUserToAddRows = false;
+            this.tipovehiculoGrid.AllowUserToDeleteRows = false;
+            this.tipovehiculoGrid.Location = new System.Drawing.Point(257, 199);
+            this.tipovehiculoGrid.Name = "tipovehiculoGrid";
+            this.tipovehiculoGrid.ReadOnly = true;
+            this.tipovehiculoGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.tipovehiculoGrid.Size = new System.Drawing.Size(539, 436);
+            this.tipovehiculoGrid.TabIndex = 24;
+            // 
             // rjDropdownMenu2
             // 
             this.rjDropdownMenu2.IsMainMenu = false;
@@ -424,98 +517,6 @@
             this.inspeccionarToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.inspeccionarToolStripMenuItem.Text = "Inspeccionar ";
             // 
-            // actualizarBtn
-            // 
-            this.actualizarBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(91)))), ((int)(((byte)(89)))));
-            this.actualizarBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(91)))), ((int)(((byte)(89)))));
-            this.actualizarBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.actualizarBtn.BorderRadius = 0;
-            this.actualizarBtn.BorderSize = 0;
-            this.actualizarBtn.FlatAppearance.BorderSize = 0;
-            this.actualizarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.actualizarBtn.ForeColor = System.Drawing.Color.White;
-            this.actualizarBtn.Location = new System.Drawing.Point(477, 150);
-            this.actualizarBtn.Name = "actualizarBtn";
-            this.actualizarBtn.Size = new System.Drawing.Size(104, 28);
-            this.actualizarBtn.TabIndex = 23;
-            this.actualizarBtn.Text = "Editar";
-            this.actualizarBtn.TextColor = System.Drawing.Color.White;
-            this.actualizarBtn.UseVisualStyleBackColor = false;
-            // 
-            // borrarBtn
-            // 
-            this.borrarBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(77)))), ((int)(((byte)(95)))));
-            this.borrarBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(77)))), ((int)(((byte)(95)))));
-            this.borrarBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.borrarBtn.BorderRadius = 0;
-            this.borrarBtn.BorderSize = 0;
-            this.borrarBtn.FlatAppearance.BorderSize = 0;
-            this.borrarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.borrarBtn.ForeColor = System.Drawing.Color.White;
-            this.borrarBtn.Location = new System.Drawing.Point(367, 150);
-            this.borrarBtn.Name = "borrarBtn";
-            this.borrarBtn.Size = new System.Drawing.Size(104, 28);
-            this.borrarBtn.TabIndex = 22;
-            this.borrarBtn.Text = "Borrar";
-            this.borrarBtn.TextColor = System.Drawing.Color.White;
-            this.borrarBtn.UseVisualStyleBackColor = false;
-            // 
-            // guardarBtn
-            // 
-            this.guardarBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(188)))), ((int)(((byte)(203)))));
-            this.guardarBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(188)))), ((int)(((byte)(203)))));
-            this.guardarBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.guardarBtn.BorderRadius = 0;
-            this.guardarBtn.BorderSize = 0;
-            this.guardarBtn.FlatAppearance.BorderSize = 0;
-            this.guardarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.guardarBtn.ForeColor = System.Drawing.Color.White;
-            this.guardarBtn.Location = new System.Drawing.Point(257, 150);
-            this.guardarBtn.Name = "guardarBtn";
-            this.guardarBtn.Size = new System.Drawing.Size(104, 28);
-            this.guardarBtn.TabIndex = 21;
-            this.guardarBtn.Text = "Crear";
-            this.guardarBtn.TextColor = System.Drawing.Color.White;
-            this.guardarBtn.UseVisualStyleBackColor = false;
-            // 
-            // tipovehiculoGrid
-            // 
-            this.tipovehiculoGrid.AllowUserToAddRows = false;
-            this.tipovehiculoGrid.AllowUserToDeleteRows = false;
-            this.tipovehiculoGrid.Location = new System.Drawing.Point(257, 199);
-            this.tipovehiculoGrid.Name = "tipovehiculoGrid";
-            this.tipovehiculoGrid.ReadOnly = true;
-            this.tipovehiculoGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tipovehiculoGrid.Size = new System.Drawing.Size(539, 436);
-            this.tipovehiculoGrid.TabIndex = 24;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(257, 95);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 16);
-            this.label1.TabIndex = 20;
-            this.label1.Text = "Descripcion";
-            // 
-            // descripcionText
-            // 
-            this.descripcionText.Location = new System.Drawing.Point(257, 114);
-            this.descripcionText.Name = "descripcionText";
-            this.descripcionText.PlaceholderText = "Descripcion";
-            this.descripcionText.Size = new System.Drawing.Size(460, 23);
-            this.descripcionText.TabIndex = 18;
-            // 
-            // estadoCheck
-            // 
-            this.estadoCheck.AutoSize = true;
-            this.estadoCheck.Location = new System.Drawing.Point(723, 117);
-            this.estadoCheck.Name = "estadoCheck";
-            this.estadoCheck.Size = new System.Drawing.Size(61, 20);
-            this.estadoCheck.TabIndex = 19;
-            this.estadoCheck.Text = "Estado";
-            this.estadoCheck.UseVisualStyleBackColor = true;
-            // 
             // FrmTiposVehiculos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -533,9 +534,9 @@
             this.panelTitleBar.PerformLayout();
             this.panelDesktop.ResumeLayout(false);
             this.panelDesktop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tipovehiculoGrid)).EndInit();
             this.rjDropdownMenu2.ResumeLayout(false);
             this.rjDropdownMenu1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.tipovehiculoGrid)).EndInit();
             this.ResumeLayout(false);
 
         }

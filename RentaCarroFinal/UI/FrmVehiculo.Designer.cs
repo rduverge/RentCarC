@@ -47,6 +47,23 @@
             this.btnMinimize = new FontAwesome.Sharp.IconButton();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panelDesktop = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textChasis = new System.Windows.Forms.TextBox();
+            this.actualizarBtn = new RJCodeAdvance.RJControls.RJButton();
+            this.marcasGrid = new System.Windows.Forms.DataGridView();
+            this.borrarBtn = new RJCodeAdvance.RJControls.RJButton();
+            this.estadoCheck = new System.Windows.Forms.CheckBox();
+            this.guardarBtn = new RJCodeAdvance.RJControls.RJButton();
+            this.descripcionText = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.rjDropdownMenu2 = new RJCodeAdvance.RJControls.RJDropdownMenu(this.components);
             this.tiposDeCombustibleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tiposDeAutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,31 +75,18 @@
             this.rjDropdownMenu1 = new RJCodeAdvance.RJControls.RJDropdownMenu(this.components);
             this.rentarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inspeccionarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.actualizarBtn = new RJCodeAdvance.RJControls.RJButton();
-            this.borrarBtn = new RJCodeAdvance.RJControls.RJButton();
-            this.guardarBtn = new RJCodeAdvance.RJControls.RJButton();
-            this.marcasGrid = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.descripcionText = new System.Windows.Forms.TextBox();
-            this.estadoCheck = new System.Windows.Forms.CheckBox();
-            this.textChasis = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.panelMenu.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelTitleBar.SuspendLayout();
             this.panelDesktop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.marcasGrid)).BeginInit();
             this.rjDropdownMenu2.SuspendLayout();
             this.rjDropdownMenu1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.marcasGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMenu
@@ -333,6 +337,10 @@
             // panelDesktop
             // 
             this.panelDesktop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.panelDesktop.Controls.Add(this.comboBox4);
+            this.panelDesktop.Controls.Add(this.comboBox3);
+            this.panelDesktop.Controls.Add(this.comboBox2);
+            this.panelDesktop.Controls.Add(this.comboBox1);
             this.panelDesktop.Controls.Add(this.label8);
             this.panelDesktop.Controls.Add(this.label7);
             this.panelDesktop.Controls.Add(this.label6);
@@ -355,6 +363,194 @@
             this.panelDesktop.Name = "panelDesktop";
             this.panelDesktop.Size = new System.Drawing.Size(831, 659);
             this.panelDesktop.TabIndex = 2;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label8.Location = new System.Drawing.Point(651, 177);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(129, 16);
+            this.label8.TabIndex = 34;
+            this.label8.Text = "Tipo de Combustible";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(524, 177);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(53, 16);
+            this.label7.TabIndex = 33;
+            this.label7.Text = "Modelo";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(401, 177);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(44, 16);
+            this.label6.TabIndex = 32;
+            this.label6.Text = "Marca";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label5.Location = new System.Drawing.Point(266, 177);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(86, 16);
+            this.label5.TabIndex = 31;
+            this.label5.Text = "Tipo Vehiculo";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(465, 127);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(61, 16);
+            this.label4.TabIndex = 30;
+            this.label4.Text = "No. Placa";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(465, 146);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.PlaceholderText = "Numero Placa";
+            this.textBox3.Size = new System.Drawing.Size(92, 23);
+            this.textBox3.TabIndex = 29;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(367, 127);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(69, 16);
+            this.label3.TabIndex = 28;
+            this.label3.Text = "No. Motor";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(367, 146);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.PlaceholderText = "Numero motor";
+            this.textBox2.Size = new System.Drawing.Size(92, 23);
+            this.textBox2.TabIndex = 27;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(266, 127);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(67, 16);
+            this.label2.TabIndex = 26;
+            this.label2.Text = "No. Chasis";
+            // 
+            // textChasis
+            // 
+            this.textChasis.Location = new System.Drawing.Point(266, 146);
+            this.textChasis.Name = "textChasis";
+            this.textChasis.PlaceholderText = "Numero chasis";
+            this.textChasis.Size = new System.Drawing.Size(92, 23);
+            this.textChasis.TabIndex = 25;
+            this.textChasis.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            // 
+            // actualizarBtn
+            // 
+            this.actualizarBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(91)))), ((int)(((byte)(89)))));
+            this.actualizarBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(91)))), ((int)(((byte)(89)))));
+            this.actualizarBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.actualizarBtn.BorderRadius = 0;
+            this.actualizarBtn.BorderSize = 0;
+            this.actualizarBtn.FlatAppearance.BorderSize = 0;
+            this.actualizarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.actualizarBtn.ForeColor = System.Drawing.Color.White;
+            this.actualizarBtn.Location = new System.Drawing.Point(486, 257);
+            this.actualizarBtn.Name = "actualizarBtn";
+            this.actualizarBtn.Size = new System.Drawing.Size(104, 28);
+            this.actualizarBtn.TabIndex = 23;
+            this.actualizarBtn.Text = "Editar";
+            this.actualizarBtn.TextColor = System.Drawing.Color.White;
+            this.actualizarBtn.UseVisualStyleBackColor = false;
+            // 
+            // marcasGrid
+            // 
+            this.marcasGrid.AllowUserToAddRows = false;
+            this.marcasGrid.AllowUserToDeleteRows = false;
+            this.marcasGrid.Location = new System.Drawing.Point(266, 291);
+            this.marcasGrid.Name = "marcasGrid";
+            this.marcasGrid.ReadOnly = true;
+            this.marcasGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.marcasGrid.Size = new System.Drawing.Size(539, 331);
+            this.marcasGrid.TabIndex = 24;
+            // 
+            // borrarBtn
+            // 
+            this.borrarBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(77)))), ((int)(((byte)(95)))));
+            this.borrarBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(77)))), ((int)(((byte)(95)))));
+            this.borrarBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.borrarBtn.BorderRadius = 0;
+            this.borrarBtn.BorderSize = 0;
+            this.borrarBtn.FlatAppearance.BorderSize = 0;
+            this.borrarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.borrarBtn.ForeColor = System.Drawing.Color.White;
+            this.borrarBtn.Location = new System.Drawing.Point(376, 257);
+            this.borrarBtn.Name = "borrarBtn";
+            this.borrarBtn.Size = new System.Drawing.Size(104, 28);
+            this.borrarBtn.TabIndex = 22;
+            this.borrarBtn.Text = "Borrar";
+            this.borrarBtn.TextColor = System.Drawing.Color.White;
+            this.borrarBtn.UseVisualStyleBackColor = false;
+            // 
+            // estadoCheck
+            // 
+            this.estadoCheck.AutoSize = true;
+            this.estadoCheck.Location = new System.Drawing.Point(732, 104);
+            this.estadoCheck.Name = "estadoCheck";
+            this.estadoCheck.Size = new System.Drawing.Size(61, 20);
+            this.estadoCheck.TabIndex = 19;
+            this.estadoCheck.Text = "Estado";
+            this.estadoCheck.UseVisualStyleBackColor = true;
+            // 
+            // guardarBtn
+            // 
+            this.guardarBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(188)))), ((int)(((byte)(203)))));
+            this.guardarBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(188)))), ((int)(((byte)(203)))));
+            this.guardarBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.guardarBtn.BorderRadius = 0;
+            this.guardarBtn.BorderSize = 0;
+            this.guardarBtn.FlatAppearance.BorderSize = 0;
+            this.guardarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.guardarBtn.ForeColor = System.Drawing.Color.White;
+            this.guardarBtn.Location = new System.Drawing.Point(266, 257);
+            this.guardarBtn.Name = "guardarBtn";
+            this.guardarBtn.Size = new System.Drawing.Size(104, 28);
+            this.guardarBtn.TabIndex = 21;
+            this.guardarBtn.Text = "Crear";
+            this.guardarBtn.TextColor = System.Drawing.Color.White;
+            this.guardarBtn.UseVisualStyleBackColor = false;
+            // 
+            // descripcionText
+            // 
+            this.descripcionText.Location = new System.Drawing.Point(266, 101);
+            this.descripcionText.Name = "descripcionText";
+            this.descripcionText.PlaceholderText = "Descripcion";
+            this.descripcionText.Size = new System.Drawing.Size(460, 23);
+            this.descripcionText.TabIndex = 18;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(266, 82);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 16);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "Descripcion";
             // 
             // rjDropdownMenu2
             // 
@@ -444,185 +640,37 @@
             this.inspeccionarToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.inspeccionarToolStripMenuItem.Text = "Inspeccionar ";
             // 
-            // actualizarBtn
+            // comboBox1
             // 
-            this.actualizarBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(91)))), ((int)(((byte)(89)))));
-            this.actualizarBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(91)))), ((int)(((byte)(89)))));
-            this.actualizarBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.actualizarBtn.BorderRadius = 0;
-            this.actualizarBtn.BorderSize = 0;
-            this.actualizarBtn.FlatAppearance.BorderSize = 0;
-            this.actualizarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.actualizarBtn.ForeColor = System.Drawing.Color.White;
-            this.actualizarBtn.Location = new System.Drawing.Point(486, 257);
-            this.actualizarBtn.Name = "actualizarBtn";
-            this.actualizarBtn.Size = new System.Drawing.Size(104, 28);
-            this.actualizarBtn.TabIndex = 23;
-            this.actualizarBtn.Text = "Editar";
-            this.actualizarBtn.TextColor = System.Drawing.Color.White;
-            this.actualizarBtn.UseVisualStyleBackColor = false;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(266, 194);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 24);
+            this.comboBox1.TabIndex = 35;
             // 
-            // borrarBtn
+            // comboBox2
             // 
-            this.borrarBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(77)))), ((int)(((byte)(95)))));
-            this.borrarBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(77)))), ((int)(((byte)(95)))));
-            this.borrarBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.borrarBtn.BorderRadius = 0;
-            this.borrarBtn.BorderSize = 0;
-            this.borrarBtn.FlatAppearance.BorderSize = 0;
-            this.borrarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.borrarBtn.ForeColor = System.Drawing.Color.White;
-            this.borrarBtn.Location = new System.Drawing.Point(376, 257);
-            this.borrarBtn.Name = "borrarBtn";
-            this.borrarBtn.Size = new System.Drawing.Size(104, 28);
-            this.borrarBtn.TabIndex = 22;
-            this.borrarBtn.Text = "Borrar";
-            this.borrarBtn.TextColor = System.Drawing.Color.White;
-            this.borrarBtn.UseVisualStyleBackColor = false;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(397, 195);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 24);
+            this.comboBox2.TabIndex = 36;
             // 
-            // guardarBtn
+            // comboBox3
             // 
-            this.guardarBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(188)))), ((int)(((byte)(203)))));
-            this.guardarBtn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(5)))), ((int)(((byte)(188)))), ((int)(((byte)(203)))));
-            this.guardarBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.guardarBtn.BorderRadius = 0;
-            this.guardarBtn.BorderSize = 0;
-            this.guardarBtn.FlatAppearance.BorderSize = 0;
-            this.guardarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.guardarBtn.ForeColor = System.Drawing.Color.White;
-            this.guardarBtn.Location = new System.Drawing.Point(266, 257);
-            this.guardarBtn.Name = "guardarBtn";
-            this.guardarBtn.Size = new System.Drawing.Size(104, 28);
-            this.guardarBtn.TabIndex = 21;
-            this.guardarBtn.Text = "Crear";
-            this.guardarBtn.TextColor = System.Drawing.Color.White;
-            this.guardarBtn.UseVisualStyleBackColor = false;
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(524, 196);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(121, 24);
+            this.comboBox3.TabIndex = 37;
             // 
-            // marcasGrid
+            // comboBox4
             // 
-            this.marcasGrid.AllowUserToAddRows = false;
-            this.marcasGrid.AllowUserToDeleteRows = false;
-            this.marcasGrid.Location = new System.Drawing.Point(266, 291);
-            this.marcasGrid.Name = "marcasGrid";
-            this.marcasGrid.ReadOnly = true;
-            this.marcasGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.marcasGrid.Size = new System.Drawing.Size(539, 331);
-            this.marcasGrid.TabIndex = 24;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(266, 82);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 16);
-            this.label1.TabIndex = 20;
-            this.label1.Text = "Descripcion";
-            // 
-            // descripcionText
-            // 
-            this.descripcionText.Location = new System.Drawing.Point(266, 101);
-            this.descripcionText.Name = "descripcionText";
-            this.descripcionText.PlaceholderText = "Descripcion";
-            this.descripcionText.Size = new System.Drawing.Size(460, 23);
-            this.descripcionText.TabIndex = 18;
-            // 
-            // estadoCheck
-            // 
-            this.estadoCheck.AutoSize = true;
-            this.estadoCheck.Location = new System.Drawing.Point(732, 104);
-            this.estadoCheck.Name = "estadoCheck";
-            this.estadoCheck.Size = new System.Drawing.Size(61, 20);
-            this.estadoCheck.TabIndex = 19;
-            this.estadoCheck.Text = "Estado";
-            this.estadoCheck.UseVisualStyleBackColor = true;
-            // 
-            // textChasis
-            // 
-            this.textChasis.Location = new System.Drawing.Point(266, 146);
-            this.textChasis.Name = "textChasis";
-            this.textChasis.PlaceholderText = "Numero chasis";
-            this.textChasis.Size = new System.Drawing.Size(92, 23);
-            this.textChasis.TabIndex = 25;
-            this.textChasis.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(266, 127);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 16);
-            this.label2.TabIndex = 26;
-            this.label2.Text = "No. Chasis";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(367, 127);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(62, 16);
-            this.label3.TabIndex = 28;
-            this.label3.Text = "No. Motor";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(367, 146);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.PlaceholderText = "Numero motor";
-            this.textBox2.Size = new System.Drawing.Size(92, 23);
-            this.textBox2.TabIndex = 27;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(465, 127);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(57, 16);
-            this.label4.TabIndex = 30;
-            this.label4.Text = "No. Placa";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(465, 146);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.PlaceholderText = "Numero Placa";
-            this.textBox3.Size = new System.Drawing.Size(92, 23);
-            this.textBox3.TabIndex = 29;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(266, 175);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(80, 16);
-            this.label5.TabIndex = 31;
-            this.label5.Text = "Tipo Vehiculo";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(367, 175);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(40, 16);
-            this.label6.TabIndex = 32;
-            this.label6.Text = "Marca";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(431, 175);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(49, 16);
-            this.label7.TabIndex = 33;
-            this.label7.Text = "Modelo";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(508, 175);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(119, 16);
-            this.label8.TabIndex = 34;
-            this.label8.Text = "Tipo de Combustible";
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Location = new System.Drawing.Point(651, 196);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(121, 24);
+            this.comboBox4.TabIndex = 38;
             // 
             // FrmVehiculo
             // 
@@ -641,9 +689,9 @@
             this.panelTitleBar.PerformLayout();
             this.panelDesktop.ResumeLayout(false);
             this.panelDesktop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.marcasGrid)).EndInit();
             this.rjDropdownMenu2.ResumeLayout(false);
             this.rjDropdownMenu1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.marcasGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -693,5 +741,9 @@
         private RJCodeAdvance.RJControls.RJButton guardarBtn;
         private TextBox descripcionText;
         private Label label1;
+        private ComboBox comboBox4;
+        private ComboBox comboBox3;
+        private ComboBox comboBox2;
+        private ComboBox comboBox1;
     }
 }

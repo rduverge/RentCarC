@@ -1,6 +1,6 @@
 ﻿namespace RentaCarroFinal.UI
 {
-    partial class FrmClientes
+    partial class FrmInspeccion
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmClientes));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmInspeccion));
             this.panelMenu = new System.Windows.Forms.Panel();
             this.iconButton10 = new FontAwesome.Sharp.IconButton();
             this.iconButton5 = new FontAwesome.Sharp.IconButton();
@@ -47,12 +47,20 @@
             this.btnMinimize = new FontAwesome.Sharp.IconButton();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panelDesktop = new System.Windows.Forms.Panel();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.combustibleCombo = new System.Windows.Forms.ComboBox();
+            this.empleadoCombo = new System.Windows.Forms.ComboBox();
+            this.vehiculoCombo = new System.Windows.Forms.ComboBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.checkBox8 = new System.Windows.Forms.CheckBox();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -72,7 +80,6 @@
             this.rjDropdownMenu1 = new RJCodeAdvance.RJControls.RJDropdownMenu(this.components);
             this.rentarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inspeccionarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panelMenu.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -331,13 +338,20 @@
             // panelDesktop
             // 
             this.panelDesktop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
-            this.panelDesktop.Controls.Add(this.comboBox1);
-            this.panelDesktop.Controls.Add(this.textBox5);
-            this.panelDesktop.Controls.Add(this.textBox4);
-            this.panelDesktop.Controls.Add(this.textBox3);
-            this.panelDesktop.Controls.Add(this.textBox2);
-            this.panelDesktop.Controls.Add(this.label6);
+            this.panelDesktop.Controls.Add(this.combustibleCombo);
+            this.panelDesktop.Controls.Add(this.empleadoCombo);
+            this.panelDesktop.Controls.Add(this.vehiculoCombo);
+            this.panelDesktop.Controls.Add(this.dateTimePicker1);
+            this.panelDesktop.Controls.Add(this.checkBox7);
+            this.panelDesktop.Controls.Add(this.checkBox8);
+            this.panelDesktop.Controls.Add(this.checkBox6);
+            this.panelDesktop.Controls.Add(this.checkBox5);
             this.panelDesktop.Controls.Add(this.label5);
+            this.panelDesktop.Controls.Add(this.label1);
+            this.panelDesktop.Controls.Add(this.checkBox4);
+            this.panelDesktop.Controls.Add(this.checkBox3);
+            this.panelDesktop.Controls.Add(this.checkBox2);
+            this.panelDesktop.Controls.Add(this.checkBox1);
             this.panelDesktop.Controls.Add(this.label4);
             this.panelDesktop.Controls.Add(this.label3);
             this.panelDesktop.Controls.Add(this.label2);
@@ -352,87 +366,169 @@
             this.panelDesktop.Size = new System.Drawing.Size(831, 659);
             this.panelDesktop.TabIndex = 2;
             // 
-            // textBox5
+            // combustibleCombo
             // 
-            this.textBox5.Location = new System.Drawing.Point(608, 126);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.PlaceholderText = "Limite de Credito";
-            this.textBox5.Size = new System.Drawing.Size(112, 23);
-            this.textBox5.TabIndex = 33;
+            this.combustibleCombo.FormattingEnabled = true;
+            this.combustibleCombo.Location = new System.Drawing.Point(493, 100);
+            this.combustibleCombo.Name = "combustibleCombo";
+            this.combustibleCombo.Size = new System.Drawing.Size(104, 24);
+            this.combustibleCombo.TabIndex = 44;
             // 
-            // textBox4
+            // empleadoCombo
             // 
-            this.textBox4.Location = new System.Drawing.Point(490, 126);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.PlaceholderText = "No. Tarjeta CR";
-            this.textBox4.Size = new System.Drawing.Size(112, 23);
-            this.textBox4.TabIndex = 32;
+            this.empleadoCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.empleadoCombo.FormattingEnabled = true;
+            this.empleadoCombo.Location = new System.Drawing.Point(382, 100);
+            this.empleadoCombo.Name = "empleadoCombo";
+            this.empleadoCombo.Size = new System.Drawing.Size(105, 24);
+            this.empleadoCombo.TabIndex = 42;
             // 
-            // textBox3
+            // vehiculoCombo
             // 
-            this.textBox3.Location = new System.Drawing.Point(375, 126);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.PlaceholderText = "Cedula";
-            this.textBox3.Size = new System.Drawing.Size(112, 23);
-            this.textBox3.TabIndex = 31;
+            this.vehiculoCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.vehiculoCombo.FormattingEnabled = true;
+            this.vehiculoCombo.Location = new System.Drawing.Point(257, 101);
+            this.vehiculoCombo.Name = "vehiculoCombo";
+            this.vehiculoCombo.Size = new System.Drawing.Size(119, 24);
+            this.vehiculoCombo.TabIndex = 41;
             // 
-            // textBox2
+            // dateTimePicker1
             // 
-            this.textBox2.Location = new System.Drawing.Point(257, 126);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.PlaceholderText = "Nombre";
-            this.textBox2.Size = new System.Drawing.Size(112, 23);
-            this.textBox2.TabIndex = 30;
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(603, 101);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 23);
+            this.dateTimePicker1.TabIndex = 40;
             // 
-            // label6
+            // checkBox7
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(257, 156);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(102, 16);
-            this.label6.TabIndex = 29;
-            this.label6.Text = "Tipo de persona";
+            this.checkBox7.AutoSize = true;
+            this.checkBox7.Location = new System.Drawing.Point(599, 182);
+            this.checkBox7.Name = "checkBox7";
+            this.checkBox7.Size = new System.Drawing.Size(89, 20);
+            this.checkBox7.TabIndex = 39;
+            this.checkBox7.Text = "Der. Trasera";
+            this.checkBox7.UseVisualStyleBackColor = true;
+            // 
+            // checkBox8
+            // 
+            this.checkBox8.AutoSize = true;
+            this.checkBox8.Location = new System.Drawing.Point(599, 162);
+            this.checkBox8.Name = "checkBox8";
+            this.checkBox8.Size = new System.Drawing.Size(89, 20);
+            this.checkBox8.TabIndex = 38;
+            this.checkBox8.Text = "Der. Frontal";
+            this.checkBox8.UseVisualStyleBackColor = true;
+            // 
+            // checkBox6
+            // 
+            this.checkBox6.AutoSize = true;
+            this.checkBox6.Location = new System.Drawing.Point(513, 182);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(84, 20);
+            this.checkBox6.TabIndex = 37;
+            this.checkBox6.Text = "Izq. trasera";
+            this.checkBox6.UseVisualStyleBackColor = true;
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.Location = new System.Drawing.Point(513, 162);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(83, 20);
+            this.checkBox5.TabIndex = 36;
+            this.checkBox5.Text = "Izq. frontal";
+            this.checkBox5.UseVisualStyleBackColor = true;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(608, 107);
+            this.label5.Location = new System.Drawing.Point(603, 82);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(110, 16);
-            this.label5.TabIndex = 28;
-            this.label5.Text = "Limite de Credito";
+            this.label5.Size = new System.Drawing.Size(40, 16);
+            this.label5.TabIndex = 35;
+            this.label5.Text = "Fecha";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(513, 143);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(89, 16);
+            this.label1.TabIndex = 34;
+            this.label1.Text = "Estado Gomas";
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Location = new System.Drawing.Point(345, 162);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(84, 20);
+            this.checkBox4.TabIndex = 33;
+            this.checkBox4.Text = "Cristal roto";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(257, 162);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(51, 20);
+            this.checkBox3.TabIndex = 32;
+            this.checkBox3.Text = "Gato";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(345, 139);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(126, 20);
+            this.checkBox2.TabIndex = 31;
+            this.checkBox2.Text = "Goma de repuesto";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(257, 139);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(80, 20);
+            this.checkBox1.TabIndex = 30;
+            this.checkBox1.Text = "Ralladuras";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(490, 107);
+            this.label4.Location = new System.Drawing.Point(493, 82);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(91, 16);
+            this.label4.Size = new System.Drawing.Size(81, 16);
             this.label4.TabIndex = 27;
-            this.label4.Text = "No. Tarjeta CR";
+            this.label4.Text = "Combustible";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(375, 107);
+            this.label3.Location = new System.Drawing.Point(382, 82);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 16);
+            this.label3.Size = new System.Drawing.Size(65, 16);
             this.label3.TabIndex = 26;
-            this.label3.Text = "Cedula";
+            this.label3.Text = "Empleado";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI Variable Small", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(257, 107);
+            this.label2.Location = new System.Drawing.Point(257, 82);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 16);
             this.label2.TabIndex = 25;
-            this.label2.Text = "Nombre";
+            this.label2.Text = "Vehiculo";
             // 
             // actualizarBtn
             // 
@@ -444,7 +540,7 @@
             this.actualizarBtn.FlatAppearance.BorderSize = 0;
             this.actualizarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.actualizarBtn.ForeColor = System.Drawing.Color.White;
-            this.actualizarBtn.Location = new System.Drawing.Point(477, 230);
+            this.actualizarBtn.Location = new System.Drawing.Point(477, 208);
             this.actualizarBtn.Name = "actualizarBtn";
             this.actualizarBtn.Size = new System.Drawing.Size(104, 28);
             this.actualizarBtn.TabIndex = 23;
@@ -462,7 +558,7 @@
             this.borrarBtn.FlatAppearance.BorderSize = 0;
             this.borrarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.borrarBtn.ForeColor = System.Drawing.Color.White;
-            this.borrarBtn.Location = new System.Drawing.Point(367, 230);
+            this.borrarBtn.Location = new System.Drawing.Point(367, 208);
             this.borrarBtn.Name = "borrarBtn";
             this.borrarBtn.Size = new System.Drawing.Size(104, 28);
             this.borrarBtn.TabIndex = 22;
@@ -473,7 +569,7 @@
             // estadoCheck
             // 
             this.estadoCheck.AutoSize = true;
-            this.estadoCheck.Location = new System.Drawing.Point(735, 128);
+            this.estadoCheck.Location = new System.Drawing.Point(257, 184);
             this.estadoCheck.Name = "estadoCheck";
             this.estadoCheck.Size = new System.Drawing.Size(61, 20);
             this.estadoCheck.TabIndex = 19;
@@ -490,7 +586,7 @@
             this.guardarBtn.FlatAppearance.BorderSize = 0;
             this.guardarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.guardarBtn.ForeColor = System.Drawing.Color.White;
-            this.guardarBtn.Location = new System.Drawing.Point(257, 230);
+            this.guardarBtn.Location = new System.Drawing.Point(257, 208);
             this.guardarBtn.Name = "guardarBtn";
             this.guardarBtn.Size = new System.Drawing.Size(104, 28);
             this.guardarBtn.TabIndex = 21;
@@ -502,11 +598,11 @@
             // 
             this.tipovehiculoGrid.AllowUserToAddRows = false;
             this.tipovehiculoGrid.AllowUserToDeleteRows = false;
-            this.tipovehiculoGrid.Location = new System.Drawing.Point(257, 268);
+            this.tipovehiculoGrid.Location = new System.Drawing.Point(257, 242);
             this.tipovehiculoGrid.Name = "tipovehiculoGrid";
             this.tipovehiculoGrid.ReadOnly = true;
             this.tipovehiculoGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.tipovehiculoGrid.Size = new System.Drawing.Size(539, 367);
+            this.tipovehiculoGrid.Size = new System.Drawing.Size(539, 393);
             this.tipovehiculoGrid.TabIndex = 24;
             // 
             // rjDropdownMenu2
@@ -597,15 +693,7 @@
             this.inspeccionarToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.inspeccionarToolStripMenuItem.Text = "Inspeccionar ";
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(257, 185);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(224, 24);
-            this.comboBox1.TabIndex = 34;
-            // 
-            // FrmClientes
+            // FrmInspeccion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -613,7 +701,7 @@
             this.Controls.Add(this.panelTitleBar);
             this.Controls.Add(this.panelMenu);
             this.Controls.Add(this.panelDesktop);
-            this.Name = "FrmClientes";
+            this.Name = "FrmInspeccion";
             this.Text = "FrmBase";
             this.panelMenu.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -662,15 +750,22 @@
         private CheckBox estadoCheck;
         private RJCodeAdvance.RJControls.RJButton guardarBtn;
         private DataGridView tipovehiculoGrid;
-        private TextBox textBox5;
-        private TextBox textBox4;
-        private TextBox textBox3;
-        private TextBox textBox2;
-        private Label label6;
-        private Label label5;
         private Label label4;
         private Label label3;
         private Label label2;
-        private ComboBox comboBox1;
+        private CheckBox checkBox1;
+        private CheckBox checkBox3;
+        private CheckBox checkBox2;
+        private CheckBox checkBox4;
+        private Label label1;
+        private Label label5;
+        private CheckBox checkBox7;
+        private CheckBox checkBox8;
+        private CheckBox checkBox6;
+        private CheckBox checkBox5;
+        private DateTimePicker dateTimePicker1;
+        private ComboBox vehiculoCombo;
+        private ComboBox empleadoCombo;
+        private ComboBox combustibleCombo;
     }
 }
