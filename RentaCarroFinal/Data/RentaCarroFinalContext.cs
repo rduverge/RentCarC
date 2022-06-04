@@ -21,7 +21,7 @@ namespace RentaCarroFinal.Data
         public DbSet<Usuario> Usuarios { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
         {
-            optionBuilder.UseSqlServer(@"Data Source=DESKTOP-D495LNS\SQLEXPRESS;Initial Catalog=RentaCarro;Integrated Security=True");
+            optionBuilder.UseSqlServer(@"Data Source=Rolando\SQLEXPRESS;Initial Catalog=RentaCarro;Integrated Security=True");
         }
     }
 }

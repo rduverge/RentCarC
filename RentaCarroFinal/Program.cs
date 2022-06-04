@@ -25,7 +25,7 @@ namespace RentaCarroFinal
             }
 
             ApplicationConfiguration.Initialize();
-                Application.Run(new FrmLogin());
+                Application.Run(new FrmMenuModern());
         }
     }
 }

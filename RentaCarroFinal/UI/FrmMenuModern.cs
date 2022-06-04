@@ -29,57 +29,11 @@ namespace RentaCarroFinal.UI
                 this.BackColor = Color.FromArgb(98, 102, 244);//Border color
             }
 
-            private void FrmMenuModern_Load(object sender, EventArgs e)
-            {
-                var l = new FrmLogin();
-                l.ShowDialog();
-            }
-            
-            private void combustibleBtn_Click(object sender, EventArgs e)
-            {
-                if (FrmTiposCombustibles == null || FrmTiposCombustibles.IsDisposed)
-                {
-                FrmTiposCombustibles = new FrmTiposCombustibles();
-                FrmTiposCombustibles.Show();
-                }
-                else
-                {
-                FrmTiposCombustibles.Show();
-                FrmTiposCombustibles.Focus();
-                }
-            }
-
-            private void button5_Click(object sender, EventArgs e)
-            {
-                if (FrmMarca == null || FrmMarca.IsDisposed)
-                {
-                FrmMarca = new FrmMarca();
-                FrmMarca.Show();
-                }
-                else
-                {
-                FrmMarca.Show();
-                FrmMarca.Focus();
-                }
-            }
-
-            private void button7_Click(object sender, EventArgs e)
-            {
-                if (FrmModelo == null || FrmModelo.IsDisposed)
-                {
-                FrmModelo = new FrmModelo();
-               // FrmModelo.LoadData();
-                FrmModelo.Show();
-                }
-                else
-                {
-                //FrmModelo.LoadData();
-                FrmModelo.Show();
-                FrmModelo.Focus();
-                }
-            }
-
-
+        private void FrmMenuModern_Load_1(object sender, EventArgs e)
+        {
+            var l = new FrmLogin();
+            l.ShowDialog();
+        }
             //Fields
             private int borderSize = 2;
         private Size formSize;
@@ -304,6 +258,50 @@ namespace RentaCarroFinal.UI
             Controls.Add(f);
             f.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             f.Dock = DockStyle.Fill;
+        }
+
+        private void tiposDeCombustibleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (FrmTiposCombustibles == null || FrmTiposCombustibles.IsDisposed)
+            {
+                FrmTiposCombustibles = new FrmTiposCombustibles();
+                FrmTiposCombustibles.Show();
+            }
+            else
+            {
+                FrmTiposCombustibles.Show();
+                FrmTiposCombustibles.Focus();
+            }
+        }
+
+        private void marcasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (FrmMarca == null || FrmMarca.IsDisposed)
+            {
+                FrmMarca = new FrmMarca();
+                FrmMarca.Show();
+            }
+            else
+            {
+                FrmMarca.Show();
+                FrmMarca.Focus();
+            }
+        }
+
+        private void modelosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (FrmModelo == null || FrmModelo.IsDisposed)
+            {
+                FrmModelo = new FrmModelo();
+                // FrmModelo.LoadData();
+                FrmModelo.Show();
+            }
+            else
+            {
+                //FrmModelo.LoadData();
+                FrmModelo.Show();
+                FrmModelo.Focus();
+            }
         }
     }
 }

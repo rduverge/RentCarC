@@ -35,5 +35,17 @@
         }
 
         #endregion
+        private DataGridView CombustiblesGrid;
+        private TableLayoutPanel tableLayoutPanel1;
+        private TextBox descripcionText;
+        private CheckBox estadoCheck;
+        private TableLayoutPanel tableLayoutPanel3;
+        private Button guardarBtn;
+        private Button actualizarBtn;
+        private Button otroBtn;
+        private Button borrarBtn;
+        private PictureBox pictureBox1;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private Label label1;
     }
 }
