@@ -21,6 +21,12 @@ namespace RentaCarroFinal.UI
             public FrmMarca FrmMarca;
             public FrmModelo FrmModelo;
             public FrmTiposVehiculos FrmTiposVehiculos;
+            public FrmVehiculo FrmVehiculo;
+            public FrmClientes FrmClientes;
+            public FrmEmpleados FrmEmpleados;
+            public FrmInspeccion FrmInspeccion;
+            public FrmRenta FrmRenta;
+
 
         //Constructor
         public FrmMenuModern()
@@ -309,6 +315,76 @@ namespace RentaCarroFinal.UI
             {
                 FrmTiposVehiculos.Show();
                 FrmTiposVehiculos.Focus();
+            }
+        }
+
+        private void vehiculosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (FrmVehiculo == null || FrmVehiculo.IsDisposed)
+            {
+                FrmVehiculo = new FrmVehiculo();
+                FrmVehiculo.Show();
+            }
+            else
+            {
+                FrmVehiculo.Show();
+                FrmVehiculo.Focus();
+            }
+        }
+
+        private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (FrmClientes == null || FrmClientes.IsDisposed)
+            {
+                FrmClientes = new FrmClientes();
+                FrmClientes.Show();
+            }
+            else
+            {
+                FrmClientes.Show();
+                FrmClientes.Focus();
+            }
+        }
+
+        private void empleadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (FrmEmpleados == null || FrmEmpleados.IsDisposed)
+            {
+                FrmEmpleados = new FrmEmpleados();
+                FrmEmpleados.Show();
+            }
+            else
+            {
+                FrmEmpleados.Show();
+                FrmEmpleados.Focus();
+            }
+        }
+
+        private void rentarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (FrmRenta == null || FrmRenta.IsDisposed)
+            {
+                FrmRenta = new FrmRenta();
+                FrmRenta.Show();
+            }
+            else
+            {
+                FrmRenta.Show();
+                FrmRenta.Focus();
+            }
+        }
+
+        private void inspeccionarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (FrmInspeccion == null || FrmInspeccion.IsDisposed)
+            {
+                FrmInspeccion = new FrmInspeccion();
+                FrmInspeccion.Show();
+            }
+            else
+            {
+                FrmInspeccion.Show();
+                FrmInspeccion.Focus();
             }
         }
     }

@@ -169,3 +169,8 @@ C:\Users\Rolando\source\repos\RentCarSinApi\RentaCarroFinal\obj\Debug\net6.0-win
 C:\Users\Rolando\source\repos\RentCarSinApi\RentaCarroFinal\obj\Debug\net6.0-windows\RentaCarroFinal.Properties.Resources.resources
 C:\Users\Administrator\Desktop\RentCarSinApi\RentaCarroFinal\obj\Debug\net6.0-windows\RentaCarroFinal.Properties.Resources.resources
 C:\Users\Administrator\Desktop\RentCarSinApi\RentaCarroFinal\obj\Debug\net6.0-windows\RentaCarroFinal.UI.FrmTiposVehiculos.resources
+C:\Users\Administrator\Desktop\RentCarSinApi\RentaCarroFinal\obj\Debug\net6.0-windows\RentaCarroFinal.UI.FrmClientes.resources
+C:\Users\Administrator\Desktop\RentCarSinApi\RentaCarroFinal\obj\Debug\net6.0-windows\RentaCarroFinal.UI.FrmEmpleados.resources
+C:\Users\Administrator\Desktop\RentCarSinApi\RentaCarroFinal\obj\Debug\net6.0-windows\RentaCarroFinal.UI.FrmInspeccion.resources
+C:\Users\Administrator\Desktop\RentCarSinApi\RentaCarroFinal\obj\Debug\net6.0-windows\RentaCarroFinal.UI.FrmRenta.resources
+C:\Users\Administrator\Desktop\RentCarSinApi\RentaCarroFinal\obj\Debug\net6.0-windows\RentaCarroFinal.UI.FrmVehiculo.resources

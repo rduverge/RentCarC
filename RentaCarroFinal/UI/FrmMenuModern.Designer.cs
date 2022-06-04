@@ -334,7 +334,7 @@
             this.rjDropdownMenu2.MenuItemTextColor = System.Drawing.Color.Empty;
             this.rjDropdownMenu2.Name = "rjDropdownMenu2";
             this.rjDropdownMenu2.PrimaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(161)))), ((int)(((byte)(224)))));
-            this.rjDropdownMenu2.Size = new System.Drawing.Size(190, 158);
+            this.rjDropdownMenu2.Size = new System.Drawing.Size(190, 136);
             this.rjDropdownMenu2.Opening += new System.ComponentModel.CancelEventHandler(this.rjDropdownMenu2_Opening);
             // 
             // tiposDeCombustibleToolStripMenuItem
@@ -372,18 +372,21 @@
             this.vehiculosToolStripMenuItem.Name = "vehiculosToolStripMenuItem";
             this.vehiculosToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.vehiculosToolStripMenuItem.Text = "Vehiculos";
+            this.vehiculosToolStripMenuItem.Click += new System.EventHandler(this.vehiculosToolStripMenuItem_Click);
             // 
             // clientesToolStripMenuItem
             // 
             this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
             this.clientesToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.clientesToolStripMenuItem.Text = "Clientes";
+            this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
             // 
             // empleadosToolStripMenuItem
             // 
             this.empleadosToolStripMenuItem.Name = "empleadosToolStripMenuItem";
             this.empleadosToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.empleadosToolStripMenuItem.Text = "Empleados";
+            this.empleadosToolStripMenuItem.Click += new System.EventHandler(this.empleadosToolStripMenuItem_Click);
             // 
             // rjDropdownMenu1
             // 
@@ -395,19 +398,21 @@
             this.rjDropdownMenu1.MenuItemTextColor = System.Drawing.Color.Empty;
             this.rjDropdownMenu1.Name = "rjDropdownMenu1";
             this.rjDropdownMenu1.PrimaryColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(161)))), ((int)(((byte)(224)))));
-            this.rjDropdownMenu1.Size = new System.Drawing.Size(146, 48);
+            this.rjDropdownMenu1.Size = new System.Drawing.Size(181, 70);
             // 
             // rentarToolStripMenuItem
             // 
             this.rentarToolStripMenuItem.Name = "rentarToolStripMenuItem";
-            this.rentarToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.rentarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.rentarToolStripMenuItem.Text = "Rentar";
+            this.rentarToolStripMenuItem.Click += new System.EventHandler(this.rentarToolStripMenuItem_Click);
             // 
             // inspeccionarToolStripMenuItem
             // 
             this.inspeccionarToolStripMenuItem.Name = "inspeccionarToolStripMenuItem";
-            this.inspeccionarToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.inspeccionarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.inspeccionarToolStripMenuItem.Text = "Inspeccionar ";
+            this.inspeccionarToolStripMenuItem.Click += new System.EventHandler(this.inspeccionarToolStripMenuItem_Click);
             // 
             // FrmMenuModern
             // 
