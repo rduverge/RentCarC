@@ -252,14 +252,6 @@ namespace RentaCarroFinal.UI
             Application.Exit();
         }
 
-        private void MakeInlineForm(Form f)
-        {
-            f.TopLevel = false;
-            Controls.Add(f);
-            f.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            f.Dock = DockStyle.Fill;
-        }
-
         private void tiposDeCombustibleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (FrmTiposCombustibles == null || FrmTiposCombustibles.IsDisposed)

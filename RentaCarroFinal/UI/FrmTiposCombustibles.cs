@@ -1,5 +1,6 @@
 ﻿using System;
 using RentaCarroFinal.Models;
+using RentaCarroFinal.Data;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,18 +16,53 @@ namespace RentaCarroFinal.UI
 {
     public partial class FrmTiposCombustibles : Form
     {
-
-            public FrmMarca FrmMarca;
-            public FrmModelo FrmModelo;
-
-        //Constructor
+        readonly TipoCombustible tipoCombustible = new TipoCombustible();
+        readonly TipoCombustibleRepo tipoCombustibleRepo = new TipoCombustibleRepo();
         public FrmTiposCombustibles()
-            {
-                InitializeComponent();
-                CollapseMenu();
-                this.Padding = new Padding(borderSize);//Border size
-                this.BackColor = Color.FromArgb(98, 102, 244);//Border color
-            }
+        {
+            InitializeComponent();
+            CollapseMenu();
+            this.Padding = new Padding(borderSize);//Border size
+            this.BackColor = Color.FromArgb(98, 102, 244);//Border color
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+
+        private void LoadData()
+        {
+            CombustiblesGrid.DataSource = tipoCombustibleRepo.View();
+            CombustiblesGrid.ClearSelection();
+        }
+
+        private TipoCombustible GetTipoCombustible()
+        {
+            tipoCombustible.Descripcion = descripcionText.Text.Trim();
+            tipoCombustible.Estado = estadoCheck.Checked;
+            return tipoCombustible;
+        }
+
+        private void Clear()
+        {
+            descripcionText.Text = "";
+            estadoCheck.Checked = false;
+        }
+        private void CombustiblesGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            tipoCombustible.Id = Convert.ToInt32(CombustiblesGrid.SelectedRows[0].Cells[0].Value.ToString());
+            tipoCombustible.Descripcion = CombustiblesGrid.SelectedRows[0].Cells[1].Value.ToString();
+            tipoCombustible.Estado = Convert.ToBoolean(CombustiblesGrid.SelectedRows[0].Cells[2].Value.ToString());
+            descripcionText.Text = tipoCombustible.Descripcion;
+            estadoCheck.Checked = tipoCombustible.Estado;
+        }
+        private void CombustiblesGrid_SelectionChanged(object sender, EventArgs e)
+        {
+
+        }
+
         //Fields
         private int borderSize = 2;
         private Size formSize;
@@ -199,15 +235,6 @@ namespace RentaCarroFinal.UI
             CollapseMenu();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void rjDropdownMenu2_Opening(object sender, CancelEventArgs e)
-        {
-
-        }
 
         private void Open_DropdownMenu (RJDropdownMenu dropdownMenu, object sender)
         {
@@ -244,42 +271,44 @@ namespace RentaCarroFinal.UI
             Application.Exit();
         }
 
-        private void MakeInlineForm(Form f)
+        private void CombustiblesGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            f.TopLevel = false;
-            Controls.Add(f);
-            f.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            f.Dock = DockStyle.Fill;
+
         }
 
-        private void marcasToolStripMenuItem_Click(object sender, EventArgs e)
+        private void guardarBtn_Click_1(object sender, EventArgs e)
         {
-            if (FrmMarca == null || FrmMarca.IsDisposed)
+            tipoCombustibleRepo.Create(GetTipoCombustible());
+            LoadData();
+            Clear();
+        }
+
+        private void borrarBtn_Click(object sender, EventArgs e)
+        {
+            try
             {
-                FrmMarca = new FrmMarca();
-                FrmMarca.Show();
+                var t = GetTipoCombustible();
+                if (t != null)
+                {
+                    tipoCombustibleRepo.Delete(t);
+                    LoadData();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                FrmMarca.Show();
-                FrmMarca.Focus();
+                MessageBox.Show(ex.Message + ex.StackTrace);
+
             }
         }
 
-        private void modelosToolStripMenuItem_Click(object sender, EventArgs e)
+        private void actualizarBtn_Click(object sender, EventArgs e)
         {
-            if (FrmModelo == null || FrmModelo.IsDisposed)
-            {
-                FrmModelo = new FrmModelo();
-                // FrmModelo.LoadData();
-                FrmModelo.Show();
-            }
-            else
-            {
-                //FrmModelo.LoadData();
-                FrmModelo.Show();
-                FrmModelo.Focus();
-            }
+            tipoCombustibleRepo.Update(GetTipoCombustible());
+            LoadData();
+            Clear();
         }
     }
-}
+    }
+
+
+
