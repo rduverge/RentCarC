@@ -14,23 +14,26 @@ using System.Windows.Forms;
 
 namespace RentaCarroFinal.UI
 {
-    public partial class FrmTiposCombustibles : Form
+    public partial class FrmTiposCombustibles : Form    
     {
-        readonly TipoCombustible tipoCombustible = new TipoCombustible();
-        readonly TipoCombustibleRepo tipoCombustibleRepo = new TipoCombustibleRepo();
+            public FrmMarca FrmMarca;
+            public FrmModelo FrmModelo;
+            readonly TipoCombustible tipoCombustible = new TipoCombustible();
+            readonly TipoCombustibleRepo tipoCombustibleRepo = new TipoCombustibleRepo();
+
+        //Constructor
         public FrmTiposCombustibles()
-        {
-            InitializeComponent();
-            CollapseMenu();
-            this.Padding = new Padding(borderSize);//Border size
-            this.BackColor = Color.FromArgb(98, 102, 244);//Border color
-        }
+            {
+                InitializeComponent();
+                CollapseMenu();
+                this.Padding = new Padding(borderSize);//Border size
+                this.BackColor = Color.FromArgb(98, 102, 244);//Border color
+            }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             LoadData();
         }
-
 
         private void LoadData()
         {
@@ -38,34 +41,10 @@ namespace RentaCarroFinal.UI
             CombustiblesGrid.ClearSelection();
         }
 
-        private TipoCombustible GetTipoCombustible()
-        {
-            tipoCombustible.Descripcion = descripcionText.Text.Trim();
-            tipoCombustible.Estado = estadoCheck.Checked;
-            return tipoCombustible;
-        }
-
-        private void Clear()
-        {
-            descripcionText.Text = "";
-            estadoCheck.Checked = false;
-        }
-        private void CombustiblesGrid_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            tipoCombustible.Id = Convert.ToInt32(CombustiblesGrid.SelectedRows[0].Cells[0].Value.ToString());
-            tipoCombustible.Descripcion = CombustiblesGrid.SelectedRows[0].Cells[1].Value.ToString();
-            tipoCombustible.Estado = Convert.ToBoolean(CombustiblesGrid.SelectedRows[0].Cells[2].Value.ToString());
-            descripcionText.Text = tipoCombustible.Descripcion;
-            estadoCheck.Checked = tipoCombustible.Estado;
-        }
-        private void CombustiblesGrid_SelectionChanged(object sender, EventArgs e)
-        {
-
-        }
-
         //Fields
         private int borderSize = 2;
         private Size formSize;
+
 
         //Drag Form
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -202,7 +181,7 @@ namespace RentaCarroFinal.UI
             }
         }
         //Event methods
-        private void FrmTiposCombustibles_Resize(object sender, EventArgs e)
+        private void FrmMenuModern_Resize(object sender, EventArgs e)
         {
             AdjustForm();
         }
@@ -235,6 +214,15 @@ namespace RentaCarroFinal.UI
             CollapseMenu();
         }
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rjDropdownMenu2_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
 
         private void Open_DropdownMenu (RJDropdownMenu dropdownMenu, object sender)
         {
@@ -270,20 +258,62 @@ namespace RentaCarroFinal.UI
         {
             Application.Exit();
         }
-
-        private void CombustiblesGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void marcasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            if (FrmMarca == null || FrmMarca.IsDisposed)
+            {
+                FrmMarca = new FrmMarca();
+                FrmMarca.Show();
+            }
+            else
+            {
+                FrmMarca.Show();
+                FrmMarca.Focus();
+            }
         }
 
-        private void guardarBtn_Click_1(object sender, EventArgs e)
+        private void modelosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (FrmModelo == null || FrmModelo.IsDisposed)
+            {
+                FrmModelo = new FrmModelo();
+                //FrmModelo.LoadData();
+                FrmModelo.Show();
+            }
+            else
+            {
+                //FrmModelo.LoadData();
+                FrmModelo.Show();
+                FrmModelo.Focus();
+            }
+        }
+
+        private TipoCombustible GetTipoCombustible()
+        {
+            tipoCombustible.Descripcion = descripcionText.Text.Trim();
+            tipoCombustible.Estado = estadoCheck.Checked;
+            return tipoCombustible;
+        }
+
+        private void  Clear()
+        {
+            descripcionText.Text = "";
+            estadoCheck.Checked = false;
+        }
+
+        private void CombustiblesGrid_SelectionChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void guardarBtn_Click(object sender, EventArgs e)
         {
             tipoCombustibleRepo.Create(GetTipoCombustible());
             LoadData();
             Clear();
         }
 
-        private void borrarBtn_Click(object sender, EventArgs e)
+        private void borrarBtn_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -301,14 +331,20 @@ namespace RentaCarroFinal.UI
             }
         }
 
-        private void actualizarBtn_Click(object sender, EventArgs e)
+        private void actualizarBtn_Click_1(object sender, EventArgs e)
         {
             tipoCombustibleRepo.Update(GetTipoCombustible());
             LoadData();
             Clear();
         }
+
+        private void CombustiblesGrid_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            tipoCombustible.Id = Convert.ToInt32(CombustiblesGrid.SelectedRows[0].Cells[0].Value.ToString());
+            tipoCombustible.Descripcion = CombustiblesGrid.SelectedRows[0].Cells[1].Value.ToString();
+            tipoCombustible.Estado = Convert.ToBoolean(CombustiblesGrid.SelectedRows[0].Cells[2].Value.ToString());
+            descripcionText.Text = tipoCombustible.Descripcion;
+            estadoCheck.Checked = tipoCombustible.Estado;
+        }
     }
-    }
-
-
-
+}

@@ -26,6 +26,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Update="UI\FrmTiposCombustibles.cs" />
   </ItemGroup>
 
   <ItemGroup>
