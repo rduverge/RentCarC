@@ -12,7 +12,7 @@ using RentaCarroFinal.Data;
 namespace RentaCarroFinal.Migrations
 {
     [DbContext(typeof(RentaCarroFinalContext))]
-    [Migration("20220605135702_InitialCreate")]
+    [Migration("20220605182716_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

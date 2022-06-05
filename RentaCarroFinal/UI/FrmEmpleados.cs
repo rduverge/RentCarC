@@ -316,8 +316,6 @@ namespace RentaCarroFinal.UI
         public void LoadData()
         {
             dataGridView1.DataSource = empleadoRepo.View();
-
-
             dataGridView1.ClearSelection();
         }
         private void guardarBtn_Click(object sender, EventArgs e)
@@ -478,9 +476,19 @@ namespace RentaCarroFinal.UI
                 return false;
         }
 
-        private void FrmEmpleados_Load(object sender, EventArgs e)
+
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            LoadData();
+            empleado.Id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+            empleado.Nombre = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
+            empleado.Cedula = dataGridView1.SelectedRows[0].Cells[2].Value.ToString();
+
+            empleado.Tanda = dataGridView1.SelectedRows[0].Cells[3].Value.ToString();
+            empleado.Comision = (int)Convert.ToDouble(dataGridView1.SelectedRows[0].Cells[4].Value.ToString());
+            empleado.FechaIngreso = Convert.ToDateTime(dataGridView1.SelectedRows[0].Cells[5].Value.ToString());
+
+            empleado.Estado = Convert.ToBoolean(dataGridView1.SelectedRows[0].Cells[6].Value.ToString());
         }
     }
 }
