@@ -26,7 +26,7 @@ namespace RentaCarroFinal.UI
             public FrmEmpleados FrmEmpleados;
             public FrmInspeccion FrmInspeccion;
             public FrmRenta FrmRenta;
-            public FrmExportar FrmExportar;
+            public FrmExport FrmExport;
             public FrmBuscar FrmBuscar;
 
 
@@ -397,15 +397,17 @@ namespace RentaCarroFinal.UI
 
         private void reportesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (FrmExportar == null || FrmExportar.IsDisposed)
+            if (FrmExport == null || FrmExport.IsDisposed)
             {
-                FrmExportar = new FrmExportar();
-                FrmExportar.Show();
+                FrmExport = new FrmExport();
+                FrmExport.Show();
+                FrmExport.LoadData();
             }
             else
             {
-                FrmExportar.Show();
-                FrmExportar.Focus();
+                FrmExport.Show();
+                FrmExport.LoadData();
+                FrmExport.Focus();
             }
         }
 

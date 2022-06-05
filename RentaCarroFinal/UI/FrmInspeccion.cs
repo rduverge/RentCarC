@@ -286,12 +286,12 @@ namespace RentaCarroFinal.UI
             if (FrmModelo == null || FrmModelo.IsDisposed)
             {
                 FrmModelo = new FrmModelo();
-                // FrmModelo.LoadData();
+                FrmModelo.LoadData();
                 FrmModelo.Show();
             }
             else
             {
-                //FrmModelo.LoadData();
+                FrmModelo.LoadData();
                 FrmModelo.Show();
                 FrmModelo.Focus();
             }
