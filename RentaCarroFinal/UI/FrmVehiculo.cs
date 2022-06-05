@@ -520,9 +520,15 @@ namespace RentaCarroFinal.UI
         private void guardarBtn_Click(object sender, EventArgs e)
         {
             vehiculo.Id = null;
-            vehiculoRepository.Create(GetVehiculo());
-            LoadData();
-            Clear();
+
+            if (Validar())
+            {
+
+
+                vehiculoRepository.Create(GetVehiculo());
+                LoadData();
+                Clear();
+            }
         }
 
         private void borrarBtn_Click(object sender, EventArgs e)
@@ -537,6 +543,12 @@ namespace RentaCarroFinal.UI
                     Clear();
                 }
             }
+            catch (Microsoft.EntityFrameworkCore.DbUpdateException ex)
+            {
+                MessageBox.Show("Este vehiculo no puede ser borrado...");
+
+            }
+
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + ex.StackTrace);
@@ -545,9 +557,12 @@ namespace RentaCarroFinal.UI
 
         private void actualizarBtn_Click(object sender, EventArgs e)
         {
-            vehiculoRepository.Update(GetVehiculo());
-            LoadData();
-            Clear();
+            if (Validar())
+            {
+                vehiculoRepository.Update(GetVehiculo());
+                LoadData();
+                Clear();
+            }
         }
 
 
@@ -559,6 +574,76 @@ namespace RentaCarroFinal.UI
         private void FrmVehiculo_Load(object sender, EventArgs e)
         {
             LoadData();
+        }
+
+        public bool Validar()
+        {
+            errores.Clear();
+            if (string.IsNullOrWhiteSpace(descripcionText.Text.Trim()))
+            {
+                errores.Add("Descripcion no puede estar en blanco");
+            }
+            if (string.IsNullOrWhiteSpace(textBox2.Text.Trim()))
+            {
+                errores.Add("No. de motor no puede estar en blanco");
+            }
+            if (string.IsNullOrWhiteSpace(textChasis.Text.Trim()))
+            {
+                errores.Add("No. de chasis no puede estar en blanco");
+            }
+            if (string.IsNullOrWhiteSpace(textBox3.Text.Trim()))
+            {
+                errores.Add("No. de placa no puede estar en blanco");
+            }
+            if (string.IsNullOrWhiteSpace(comboBox1.Text.Trim()))
+            {
+                errores.Add("Tipo de vehiculo no puede estar en blanco");
+            }
+            if (string.IsNullOrWhiteSpace(comboBox2.Text.Trim()))
+            {
+                errores.Add("Marca no puede estar en blanco");
+            }
+            if (string.IsNullOrWhiteSpace(comboBox3.Text.Trim()))
+            {
+                errores.Add("Modelo no puede estar en blanco");
+            }
+            if (string.IsNullOrWhiteSpace(comboBox4.Text.Trim()))
+            {
+                errores.Add("Tipo de combustible no puede estar en blanco");
+            }
+
+            using RentaCarroFinalContext db = new RentaCarroFinalContext();
+            if (db.Vehiculos.Where(x => x.Descripcion == descripcionText.Text.Trim() && x.Id != vehiculo.Id).Any())
+            {
+                errores.Add("Ya existe un vehiculo con esa descripcion.");
+            }
+            if (db.Vehiculos.Where(x => x.NoChasis == textChasis.Text.Trim() && x.Id != vehiculo.Id).Any())
+            {
+                errores.Add("Ya existe un vehiculo con ese numero de chasis.");
+            }
+            if (db.Vehiculos.Where(x => x.NoPlaca == textBox3.Text.Trim() && x.Id != vehiculo.Id).Any())
+            {
+                errores.Add("Ya existe un vehiculo con ese numero de placa.");
+            }
+            if (errores.Count > 0)
+            {
+                var message = "";
+                foreach (var e in errores)
+                {
+                    message += e + "\n";
+                }
+                MessageBox.Show(message);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private void textBox2_TextChanged_1(object sender, EventArgs e)
+        {
+
         }
     }
 

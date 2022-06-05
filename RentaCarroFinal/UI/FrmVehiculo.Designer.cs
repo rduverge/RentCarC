@@ -471,6 +471,7 @@
             this.textBox2.PlaceholderText = "Numero motor";
             this.textBox2.Size = new System.Drawing.Size(92, 23);
             this.textBox2.TabIndex = 27;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged_1);
             // 
             // label2
             // 
