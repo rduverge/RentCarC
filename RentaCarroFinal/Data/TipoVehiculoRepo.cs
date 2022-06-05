@@ -32,10 +32,19 @@ namespace RentaCarroFinal.Data
             return data.Entity;
         }
 
-        public List<TipoVehiculo> View()
+        public List<TipoVehiculo> View(bool all = true)
         {
             using RentaCarroFinalContext db = new RentaCarroFinalContext();
-            return db.TiposVehiculo.ToList();
+            if (all)
+            {
+                return db.TiposVehiculo.ToList();
+
+            }
+            else
+            {
+                return db.TiposVehiculo.Where(x => x.Estado == true).ToList();
+
+            }
         }
     }
 }

@@ -23,6 +23,7 @@ namespace RentaCarroFinal.UI
         internal TipoCombustibleRepo tipoCombustibleRepo = new TipoCombustibleRepo();
         internal TipoVehiculoRepo tipoVehiculoRepo = new TipoVehiculoRepo();
         readonly Vehiculo vehiculo = new Vehiculo();
+        private int vehiculoId;
         readonly VehiculoRepo vehiculoRepository = new VehiculoRepo();
         List<string> errores = new List<string>();
         public FrmTiposCombustibles FrmTiposCombustibles;
@@ -289,12 +290,12 @@ namespace RentaCarroFinal.UI
             if (FrmModelo == null || FrmModelo.IsDisposed)
             {
                 FrmModelo = new FrmModelo();
-                // FrmModelo.LoadData();
+                FrmModelo.LoadData();
                 FrmModelo.Show();
             }
             else
             {
-                //FrmModelo.LoadData();
+                FrmModelo.LoadData();
                 FrmModelo.Show();
                 FrmModelo.Focus();
             }
@@ -305,17 +306,262 @@ namespace RentaCarroFinal.UI
 
         }
 
-        private Cliente GetVehiculo()
+        private Vehiculo GetVehiculo()
         {
-
-            vehiculo.Nombre = nombreText.Text.Trim();
-            vehiculo.Cedula = cedulaText.Text.Replace("-", "").Trim();
-            vehiculo.NumeroTarjetaCredito = tarjetaText.Text.Trim();
-            vehiculo.LimiteCredito = Convert.ToDouble(limiteCreditoText.Value);
-
-            vehiculo.TipoPersona = tipoPersonaCombo.Text;
+            vehiculo.Descripcion = descripcionText.Text.Trim();
+            vehiculo.NoChasis = textChasis.Text.Trim();
+            vehiculo.NoMotor = textBox2.Text.Trim();
+            vehiculo.NoPlaca = textBox3.Text.Trim();
             vehiculo.Estado = estadoCheck.Checked;
+            using RentaCarroFinalContext db = new RentaCarroFinalContext();
+            var marca = db.Marcas.Where(y => y.Descripcion == comboBox2.Text).FirstOrDefault();
+            if (marca != null)
+            {
+                vehiculo.MarcaId = marca.Id;
+                vehiculo.Marca = marca;
+            }
+            else
+            {
+                vehiculo.MarcaId = null;
+                vehiculo.Marca = null;
+            }
+            var modelo = db.Modelos.Where(y => y.Descripcion == comboBox3.Text).FirstOrDefault();
+            if (modelo != null)
+            {
+                vehiculo.ModeloId = modelo.Id;
+                vehiculo.Modelo = modelo;
+            }
+            else
+            {
+                vehiculo.ModeloId = null;
+                vehiculo.Modelo = null;
+            }
+            var tipoVehic = db.TiposVehiculo.Where(y => y.Descripcion == comboBox1.Text).FirstOrDefault();
+            if (tipoVehic != null)
+            {
+                vehiculo.TipoVehiculoId = tipoVehic.Id;
+                vehiculo.TipoVehiculo = tipoVehic;
+            }
+            else
+            {
+                vehiculo.TipoVehiculoId = null;
+                vehiculo.TipoVehiculo = null;
+
+
+
+            }
+            var tipoComb = db.TiposCombustible.Where(y => y.Descripcion == comboBox4.Text).FirstOrDefault();
+            if (tipoComb != null)
+            {
+                vehiculo.TipoCombustibleId = tipoComb.Id;
+                vehiculo.TipoCombustible = tipoComb;
+            }
+            else
+            {
+                vehiculo.TipoCombustibleId = null;
+                vehiculo.TipoCombustible = null;
+
+
+
+            }
             return vehiculo;
         }
+        private void Clear()
+        {
+            descripcionText.Text = "";
+            textChasis.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
+            estadoCheck.Checked = false;
+        }
+
+        public void LoadData()
+        {
+            dataGridView1.DataSource = vehiculoRepository.View();
+            comboBox2.DataSource = marcaRepo.View();
+            comboBox3.DataSource = modeloRepo.View();
+            comboBox1.DataSource = tipoVehiculoRepo.View();
+            comboBox4.DataSource = tipoCombustibleRepo.View();
+
+            dataGridView1.ClearSelection();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            vehiculo.Id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+            vehiculo.Descripcion = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
+
+            vehiculo.NoChasis = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
+            vehiculo.NoPlaca = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
+            vehiculo.NoMotor = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
+
+            using RentaCarroFinalContext db = new RentaCarroFinalContext();
+            var marca = db.Marcas.Where(y => y.Id == Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[2].Value.ToString())).FirstOrDefault();
+
+
+            if (marca != null)
+            {
+                vehiculo.MarcaId = marca.Id;
+                vehiculo.Marca = marca;
+            }
+            else
+            {
+                vehiculo.MarcaId = null;
+                vehiculo.Marca = null;
+            }
+
+            var modelo = db.Modelos.Where(y => y.Id == Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[2].Value.ToString())).FirstOrDefault();
+            if (modelo != null)
+            {
+                vehiculo.ModeloId = modelo.Id;
+                vehiculo.Modelo = modelo;
+            }
+            else
+            {
+                vehiculo.ModeloId = null;
+                vehiculo.Modelo = null;
+            }
+
+            var tipoComb = db.TiposCombustible.Where(y => y.Id == Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[2].Value.ToString())).FirstOrDefault();
+            if (tipoComb != null)
+            {
+                vehiculo.TipoCombustibleId = tipoComb.Id;
+                vehiculo.TipoCombustible = tipoComb;
+            }
+            else
+            {
+                vehiculo.TipoCombustibleId = null;
+                vehiculo.TipoCombustible = null;
+
+            }
+            var tipoVehic = db.TiposVehiculo.Where(y => y.Id == Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[2].Value.ToString())).FirstOrDefault();
+            if (tipoVehic != null)
+            {
+                vehiculo.TipoVehiculoId = tipoVehic.Id;
+                vehiculo.TipoVehiculo = tipoVehic;
+            }
+            else
+            {
+                vehiculo.TipoVehiculoId = null;
+                vehiculo.TipoVehiculo = null;
+
+
+
+            }
+        }
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            vehiculo.Id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+            vehiculo.Descripcion = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
+
+            vehiculo.NoChasis = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
+            vehiculo.NoPlaca = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
+            vehiculo.NoMotor = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
+
+            using RentaCarroFinalContext db = new RentaCarroFinalContext();
+            var marca = db.Marcas.Where(y => y.Id == Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[2].Value.ToString())).FirstOrDefault();
+
+
+            if (marca != null)
+            {
+                vehiculo.MarcaId = marca.Id;
+                vehiculo.Marca = marca;
+            }
+            else
+            {
+                vehiculo.MarcaId = null;
+                vehiculo.Marca = null;
+            }
+
+            var modelo = db.Modelos.Where(y => y.Id == Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[2].Value.ToString())).FirstOrDefault();
+            if (modelo != null)
+            {
+                vehiculo.ModeloId = modelo.Id;
+                vehiculo.Modelo = modelo;
+            }
+            else
+            {
+                vehiculo.ModeloId = null;
+                vehiculo.Modelo = null;
+            }
+
+            var tipoComb = db.TiposCombustible.Where(y => y.Id == Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[2].Value.ToString())).FirstOrDefault();
+            if (tipoComb != null)
+            {
+                vehiculo.TipoCombustibleId = tipoComb.Id;
+                vehiculo.TipoCombustible = tipoComb;
+            }
+            else
+            {
+                vehiculo.TipoCombustibleId = null;
+                vehiculo.TipoCombustible = null;
+
+            }
+            var tipoVehi = db.TiposVehiculo.Where(y => y.Id == Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[2].Value.ToString())).FirstOrDefault();
+            if (tipoVehi != null)
+            {
+                vehiculo.TipoVehiculoId = tipoVehi.Id;
+                vehiculo.TipoVehiculo = tipoVehi;
+            }
+            else
+            {
+                vehiculo.TipoVehiculoId = null;
+                vehiculo.TipoVehiculo = null;
+
+
+
+            }
+
+            vehiculo.Estado = Convert.ToBoolean(dataGridView1.SelectedRows[0].Cells[4].Value.ToString());
+            descripcionText.Text = vehiculo.Descripcion;
+            textChasis.Text = vehiculo.NoChasis;
+            textBox2.Text = vehiculo.NoMotor;
+            textBox3.Text = vehiculo.NoPlaca;
+
+            estadoCheck.Checked = vehiculo.Estado;
+        }
+
+        private void guardarBtn_Click(object sender, EventArgs e)
+        {
+            vehiculo.Id = null;
+            vehiculoRepository.Create(GetVehiculo());
+            LoadData();
+            Clear();
+        }
+
+        private void borrarBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var m = GetVehiculo();
+                if (m != null)
+                {
+                    vehiculoRepository.Delete(m);
+                    LoadData();
+                    Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ex.StackTrace);
+            }
+        }
+
+        private void actualizarBtn_Click(object sender, EventArgs e)
+        {
+            vehiculoRepository.Update(GetVehiculo());
+            LoadData();
+            Clear();
+        }
+
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            borrarBtn.Enabled = dataGridView1.SelectedRows.Count > 0;
+        }
+
+
     }
+
+
 }

@@ -32,7 +32,7 @@ namespace RentaCarroFinal.Data
             return data.Entity;
         }
 
-        public List<Usuario> View()
+        public List<Usuario> View(bool all = true)
         {
             using RentaCarroFinalContext db = new RentaCarroFinalContext();
             return db.Usuarios.ToList();

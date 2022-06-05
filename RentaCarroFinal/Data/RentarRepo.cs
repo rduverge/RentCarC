@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using RentaCarroFinal.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace RentaCarroFinal.Data
 {
@@ -32,10 +33,19 @@ namespace RentaCarroFinal.Data
             return data.Entity;
         }
 
-        public List<Renta> View()
+        public List<Renta> View(bool all = true)
         {
             using RentaCarroFinalContext db = new RentaCarroFinalContext();
-            return db.Rentas.ToList();
+            if (all)
+            {
+                return db.Rentas.Include(x => x.Empleado).Include(x => x.Vehiculo).Include(x => x.Cliente).ToList();
+
+            }
+            else
+            {
+                return db.Rentas.Include(x => x.Empleado).Include(x => x.Vehiculo).Include(x => x.Cliente).Where(x => x.Estado == true).ToList();
+
+            }
         }
     }
 }

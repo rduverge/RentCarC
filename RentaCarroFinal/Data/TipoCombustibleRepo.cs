@@ -33,10 +33,19 @@ namespace RentaCarroFinal.Data
             return data.Entity;
         }
 
-        public List<TipoCombustible> View()
+        public List<TipoCombustible> View(bool all = true)
         {
             using RentaCarroFinalContext db = new RentaCarroFinalContext();
-            return db.TiposCombustible.ToList();
+            if (all)
+            {
+                return db.TiposCombustible.ToList();
+
+            }
+            else
+            {
+                return db.TiposCombustible.Where(x => x.Estado == true).ToList();
+
+            }
         }
     }
 }

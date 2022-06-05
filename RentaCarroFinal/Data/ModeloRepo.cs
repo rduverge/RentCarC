@@ -35,10 +35,31 @@ namespace RentaCarroFinal.Data
             return data.Entity;
         }
 
-        public List<Modelo> View()
+        public List<Modelo> View(bool all = true)
         {
             using RentaCarroFinalContext db = new RentaCarroFinalContext();
-            return db.Modelos.Include(m => m.Marca).ToList();
+            if (all)
+            {
+                return db.Modelos.Include(m => m.Marca).ToList();
+            }
+            else
+            {
+                return db.Modelos.Include(m => m.Marca).Where(x => x.Estado == true).ToList();
+            }
+        }
+        public List<Modelo> View(Marca marca, bool all = true)
+        {
+            using RentaCarroFinalContext db = new RentaCarroFinalContext();
+            if (all)
+            {
+
+                return db.Modelos.Include(m => m.Marca).ToList();
+            }
+            else
+            {
+
+                return db.Modelos.Where(x => x.MarcaId == marca.Id).Include(m => m.Marca).ToList();
+            }
         }
     }
 }

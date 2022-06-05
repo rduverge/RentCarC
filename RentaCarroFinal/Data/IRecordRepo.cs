@@ -14,6 +14,6 @@ namespace RentaCarroFinal.Data
 
         void Delete(T record);
 
-        List<T> View();
+        List<T> View(bool all);
     }
 }
