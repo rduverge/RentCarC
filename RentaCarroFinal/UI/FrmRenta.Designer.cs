@@ -47,15 +47,16 @@
             this.btnMinimize = new FontAwesome.Sharp.IconButton();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panelDesktop = new System.Windows.Forms.Panel();
+            this.backBtn = new RJCodeAdvance.RJControls.RJButton();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
-            this.combustibleCombo = new System.Windows.Forms.ComboBox();
+            this.vechiculoCombo = new System.Windows.Forms.ComboBox();
             this.clienteCombo = new System.Windows.Forms.ComboBox();
-            this.vehiculoCombo = new System.Windows.Forms.ComboBox();
+            this.empleadoCombo = new System.Windows.Forms.ComboBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -335,15 +336,16 @@
             // panelDesktop
             // 
             this.panelDesktop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.panelDesktop.Controls.Add(this.backBtn);
             this.panelDesktop.Controls.Add(this.numericUpDown1);
             this.panelDesktop.Controls.Add(this.textBox2);
             this.panelDesktop.Controls.Add(this.label7);
             this.panelDesktop.Controls.Add(this.label6);
             this.panelDesktop.Controls.Add(this.dateTimePicker2);
             this.panelDesktop.Controls.Add(this.label1);
-            this.panelDesktop.Controls.Add(this.combustibleCombo);
+            this.panelDesktop.Controls.Add(this.vechiculoCombo);
             this.panelDesktop.Controls.Add(this.clienteCombo);
-            this.panelDesktop.Controls.Add(this.vehiculoCombo);
+            this.panelDesktop.Controls.Add(this.empleadoCombo);
             this.panelDesktop.Controls.Add(this.dateTimePicker1);
             this.panelDesktop.Controls.Add(this.label5);
             this.panelDesktop.Controls.Add(this.label4);
@@ -358,6 +360,26 @@
             this.panelDesktop.Name = "panelDesktop";
             this.panelDesktop.Size = new System.Drawing.Size(831, 618);
             this.panelDesktop.TabIndex = 2;
+            // 
+            // backBtn
+            // 
+            this.backBtn.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.backBtn.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.backBtn.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.backBtn.BorderRadius = 0;
+            this.backBtn.BorderSize = 0;
+            this.backBtn.FlatAppearance.BorderSize = 0;
+            this.backBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.backBtn.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.backBtn.ForeColor = System.Drawing.Color.Black;
+            this.backBtn.Location = new System.Drawing.Point(587, 195);
+            this.backBtn.Name = "backBtn";
+            this.backBtn.Size = new System.Drawing.Size(104, 26);
+            this.backBtn.TabIndex = 51;
+            this.backBtn.Text = "Devolver auto";
+            this.backBtn.TextColor = System.Drawing.Color.Black;
+            this.backBtn.UseVisualStyleBackColor = false;
+            this.backBtn.Click += new System.EventHandler(this.rjButton1_Click);
             // 
             // numericUpDown1
             // 
@@ -411,13 +433,13 @@
             this.label1.TabIndex = 45;
             this.label1.Text = "Fecha Devolucion";
             // 
-            // combustibleCombo
+            // vechiculoCombo
             // 
-            this.combustibleCombo.FormattingEnabled = true;
-            this.combustibleCombo.Location = new System.Drawing.Point(493, 94);
-            this.combustibleCombo.Name = "combustibleCombo";
-            this.combustibleCombo.Size = new System.Drawing.Size(104, 23);
-            this.combustibleCombo.TabIndex = 44;
+            this.vechiculoCombo.FormattingEnabled = true;
+            this.vechiculoCombo.Location = new System.Drawing.Point(493, 94);
+            this.vechiculoCombo.Name = "vechiculoCombo";
+            this.vechiculoCombo.Size = new System.Drawing.Size(104, 23);
+            this.vechiculoCombo.TabIndex = 44;
             // 
             // clienteCombo
             // 
@@ -428,14 +450,14 @@
             this.clienteCombo.Size = new System.Drawing.Size(105, 23);
             this.clienteCombo.TabIndex = 42;
             // 
-            // vehiculoCombo
+            // empleadoCombo
             // 
-            this.vehiculoCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.vehiculoCombo.FormattingEnabled = true;
-            this.vehiculoCombo.Location = new System.Drawing.Point(257, 95);
-            this.vehiculoCombo.Name = "vehiculoCombo";
-            this.vehiculoCombo.Size = new System.Drawing.Size(119, 23);
-            this.vehiculoCombo.TabIndex = 41;
+            this.empleadoCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.empleadoCombo.FormattingEnabled = true;
+            this.empleadoCombo.Location = new System.Drawing.Point(257, 95);
+            this.empleadoCombo.Name = "empleadoCombo";
+            this.empleadoCombo.Size = new System.Drawing.Size(119, 23);
+            this.empleadoCombo.TabIndex = 41;
             // 
             // dateTimePicker1
             // 
@@ -502,6 +524,7 @@
             this.actualizarBtn.Text = "Editar";
             this.actualizarBtn.TextColor = System.Drawing.Color.White;
             this.actualizarBtn.UseVisualStyleBackColor = false;
+            this.actualizarBtn.Click += new System.EventHandler(this.actualizarBtn_Click);
             // 
             // borrarBtn
             // 
@@ -520,6 +543,7 @@
             this.borrarBtn.Text = "Borrar";
             this.borrarBtn.TextColor = System.Drawing.Color.White;
             this.borrarBtn.UseVisualStyleBackColor = false;
+            this.borrarBtn.Click += new System.EventHandler(this.borrarBtn_Click);
             // 
             // guardarBtn
             // 
@@ -538,6 +562,7 @@
             this.guardarBtn.Text = "Crear";
             this.guardarBtn.TextColor = System.Drawing.Color.White;
             this.guardarBtn.UseVisualStyleBackColor = false;
+            this.guardarBtn.Click += new System.EventHandler(this.guardarBtn_Click);
             // 
             // dataGridView1
             // 
@@ -549,6 +574,8 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(539, 368);
             this.dataGridView1.TabIndex = 24;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // rjDropdownMenu2
             // 
@@ -700,14 +727,15 @@
         private Label label2;
         private Label label5;
         private DateTimePicker dateTimePicker1;
-        private ComboBox vehiculoCombo;
+        private ComboBox empleadoCombo;
         private ComboBox clienteCombo;
-        private ComboBox combustibleCombo;
+        private ComboBox vechiculoCombo;
         private Label label1;
         private TextBox textBox2;
         private Label label7;
         private Label label6;
         private DateTimePicker dateTimePicker2;
         private NumericUpDown numericUpDown1;
+        private RJCodeAdvance.RJControls.RJButton backBtn;
     }
 }

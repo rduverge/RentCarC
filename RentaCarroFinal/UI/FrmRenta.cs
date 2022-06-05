@@ -16,26 +16,27 @@ namespace RentaCarroFinal.UI
 {
     public partial class FrmRenta : Form
     {
-            Renta renta = new Renta();
-            VehiculoRepo vehiculoRepo = new VehiculoRepo();
-            ClienteRepo clienteRepo = new ClienteRepo();
-            EmpleadoRepo empleadoRepo = new EmpleadoRepo();
-            RentaRepo rentaRepo = new RentaRepo();
-            public FrmTiposCombustibles FrmTiposCombustibles;
-            public FrmMarca FrmMarca;
-            public FrmModelo FrmModelo;
+        Renta renta = new Renta();
+        VehiculoRepo vehiculoRepo = new VehiculoRepo();
+        ClienteRepo clienteRepo = new ClienteRepo();
+        EmpleadoRepo empleadoRepo = new EmpleadoRepo();
+        RentaRepo rentaRepo = new RentaRepo();
+        public FrmTiposCombustibles FrmTiposCombustibles;
+        public List<string> errores = new List<string>();
+        public FrmMarca FrmMarca;
+        public FrmModelo FrmModelo;
 
         //Constructor
         public FrmRenta()
-            {
-                InitializeComponent();
-                CollapseMenu();
-                this.Padding = new Padding(borderSize);//Border size
-                this.BackColor = Color.FromArgb(98, 102, 244);//Border color
-            }
+        {
+            InitializeComponent();
+            CollapseMenu();
+            this.Padding = new Padding(borderSize);//Border size
+            this.BackColor = Color.FromArgb(98, 102, 244);//Border color
+        }
 
-            //Fields
-            private int borderSize = 2;
+        //Fields
+        private int borderSize = 2;
         private Size formSize;
 
 
@@ -217,14 +218,14 @@ namespace RentaCarroFinal.UI
 
         }
 
-        private void Open_DropdownMenu (RJDropdownMenu dropdownMenu, object sender)
+        private void Open_DropdownMenu(RJDropdownMenu dropdownMenu, object sender)
         {
             Control control = (Control)sender;
             dropdownMenu.VisibleChanged += new EventHandler((sender2, ev)
               => DropdownMenu_VisibleChanged(sender2, ev, control));
             dropdownMenu.Show(control, control.Width, 0);
         }
-        
+
         private void DropdownMenu_VisibleChanged(object sender, EventArgs e, Control ctrl)
         {
             RJDropdownMenu dropdownMenu2 = (RJDropdownMenu)sender;
@@ -235,7 +236,7 @@ namespace RentaCarroFinal.UI
                 else ctrl.BackColor = Color.FromArgb(98, 102, 244);
             }
         }
-            
+
 
         private void iconButton2_Click(object sender, EventArgs e)
         {
@@ -297,11 +298,154 @@ namespace RentaCarroFinal.UI
         }
         public void LoadData()
         {
-            clienteCombo.DataSource = clienteRepo.View();
-            vehiculoCombo.DataSource = vehiculoRepo.View();
-            clienteCombo.DataSource = empleadoRepo.View();
+            clienteCombo.DataSource = clienteRepo.View(false);
+            vechiculoCombo.DataSource = vehiculoRepo.View(false);
+            empleadoCombo.DataSource = empleadoRepo.View(false);
             dataGridView1.DataSource = rentaRepo.View();
             dataGridView1.ClearSelection();
+        }
+        public Renta GetRenta()
+        {
+            using RentaCarroFinalContext db = new RentaCarroFinalContext();
+            renta.EmpleadoId = ((Empleado)empleadoCombo.SelectedItem).Id;
+            renta.ClienteId = ((Cliente)clienteCombo.SelectedItem).Id;
+            renta.VehiculoId = ((Vehiculo)vechiculoCombo.SelectedItem).Id;
+            renta.FechaRenta = dateTimePicker1.Value;
+            renta.FechaDevolucion = dateTimePicker2.Value;
+            renta.MontoDia = Convert.ToDouble(numericUpDown1.Value);
+            renta.Comentario = textBox2.Text.Trim();
+
+            return renta;
+        }
+        private void Clear()
+        {
+            numericUpDown1.Value = 0;
+            textBox2.Text = "";
+        }
+
+        private void guardarBtn_Click(object sender, EventArgs e)
+        {
+            renta.Devuelto = false;
+            if (Validar())
+            {
+                rentaRepo.Create(GetRenta());
+                LoadData();
+                Clear();
+            }
+        }
+
+        private void actualizarBtn_Click(object sender, EventArgs e)
+        {
+            if (Validar())
+            {
+                rentaRepo.Update(GetRenta());
+                LoadData();
+                Clear();
+            }
+        }
+
+        private void borrarBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var t = GetRenta();
+                if (t != null)
+                {
+                    rentaRepo.Delete(t);
+                    LoadData();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ex.StackTrace);
+
+            }
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            actualizarBtn.Enabled = dataGridView1.SelectedRows.Count > 0;
+            borrarBtn.Enabled = dataGridView1.SelectedRows.Count > 0;
+            backBtn.Enabled = dataGridView1.SelectedRows.Count > 0;
+        }
+
+
+
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                renta.Id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+                renta.EmpleadoId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[1].Value.ToString());
+                renta.ClienteId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[3].Value.ToString());
+                renta.VehiculoId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[5].Value.ToString());
+                renta.FechaRenta = Convert.ToDateTime(dataGridView1.SelectedRows[0].Cells[7].Value.ToString());
+                renta.FechaDevolucion = Convert.ToDateTime(dataGridView1.SelectedRows[0].Cells[8].Value.ToString());
+                renta.MontoDia = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells[9].Value.ToString());
+                renta.Comentario = dataGridView1.SelectedRows[0].Cells[10].Value.ToString();
+                renta.Estado = Convert.ToBoolean(dataGridView1.SelectedRows[0].Cells[11].Value.ToString());
+                renta.Devuelto = Convert.ToBoolean(dataGridView1.SelectedRows[0].Cells[12].Value.ToString());
+                using RentaCarroFinalContext db = new RentaCarroFinalContext();
+                empleadoCombo.SelectedItem = db.Empleados.Where(x => x.Id == renta.EmpleadoId).FirstOrDefault();
+                clienteCombo.SelectedItem = db.Clientes.Where(x => x.Id == renta.ClienteId).FirstOrDefault();
+                vechiculoCombo.SelectedItem = db.Vehiculos.Where(x => x.Id == renta.VehiculoId).FirstOrDefault();
+                dateTimePicker1.Value = renta.FechaRenta;
+                dateTimePicker2.Value = renta.FechaDevolucion;
+                numericUpDown1.Value = Convert.ToDecimal(renta.MontoDia);
+                textBox2.Text = renta.Comentario;
+            }
+        }
+        public bool Validar()
+        {
+            errores.Clear();
+            GetRenta();
+            if (dateTimePicker1.Value > dateTimePicker2.Value)
+            {
+                errores.Add("La fecha de renta no es correcta");
+            }
+            if (numericUpDown1.Value < 0)
+            {
+                errores.Add("Monto por dia debe ser mayor a 0");
+            }
+            if (renta.Devuelto == true)
+            {
+                errores.Add("No se pueden modificar vehiculos ya devueltos.");
+            }
+            using RentaCarroFinalContext db = new RentaCarroFinalContext();
+            if (db.Rentas.Where(x => x.VehiculoId == renta.VehiculoId && x.Devuelto == false).Any())
+            {
+                errores.Add("Este vehiculo ya esta rentado.");
+            }
+            if (!db.Inspecciones.Where(x => x.Fecha.Date == renta.FechaRenta.Date && x.VehiculoId == renta.VehiculoId).Any())
+            {
+                errores.Add("Vehiculo debe ser inspeccionado.");
+            }
+            if (errores.Count > 0)
+            {
+                var message = "";
+                foreach (var e in errores)
+                {
+                    message += e + "\n";
+                }
+                MessageBox.Show(message);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private void rjButton1_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Devolver este auto?", "Confirmar Devolver", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                var r = GetRenta();
+                r.Devuelto = true;
+                rentaRepo.Update(r);
+                LoadData();
+            }
         }
     }
 }
