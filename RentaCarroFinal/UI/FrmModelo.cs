@@ -176,7 +176,7 @@ namespace RentaCarroFinal.UI
 
         private void btnClose_Click_1(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
         private void btnMaximize_Click(object sender, EventArgs e)
         {
@@ -244,7 +244,7 @@ namespace RentaCarroFinal.UI
 
         private void iconButton10_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
         public void LoadData()
         {

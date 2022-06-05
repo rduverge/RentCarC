@@ -6,19 +6,18 @@ using System.Threading.Tasks;
 
 namespace RentaCarroFinal.Models
 {
-    public enum TandaLabor
+    public class Empleado
     {
-        Mañana,
-        Noche
-    }
-    internal class Empleado
-    {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string Nombre { get; set; }
         public string Cedula { get; set; }
         public string Tanda { get; set; }
         public int Comision { get; set; }
         public DateTime FechaIngreso { get; set; }
         public bool Estado { get; set; }
+        public override string ToString()
+        {
+            return Nombre;
+        }
     }
 }

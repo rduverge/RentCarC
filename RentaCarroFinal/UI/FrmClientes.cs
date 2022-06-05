@@ -16,7 +16,11 @@ namespace RentaCarroFinal.UI
 {
     public partial class FrmClientes : Form
     {
-
+            public bool Editando;
+            public Cliente cliente = new Cliente();
+            readonly ClienteRepo clienteRepo = new ClienteRepo();
+            List<string> errores = new List<string>();
+             private int clienteId;
             public FrmTiposCombustibles FrmTiposCombustibles;
             public FrmMarca FrmMarca;
             public FrmModelo FrmModelo;
@@ -177,7 +181,7 @@ namespace RentaCarroFinal.UI
 
         private void btnClose_Click_1(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
         private void btnMaximize_Click(object sender, EventArgs e)
         {
@@ -245,7 +249,7 @@ namespace RentaCarroFinal.UI
 
         private void iconButton10_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
         private void tiposDeCombustibleToolStripMenuItem_Click(object sender, EventArgs e)
@@ -281,15 +285,251 @@ namespace RentaCarroFinal.UI
             if (FrmModelo == null || FrmModelo.IsDisposed)
             {
                 FrmModelo = new FrmModelo();
-                // FrmModelo.LoadData();
+                FrmModelo.LoadData();
                 FrmModelo.Show();
             }
             else
             {
-                //FrmModelo.LoadData();
+                FrmModelo.LoadData();
                 FrmModelo.Show();
                 FrmModelo.Focus();
             }
+        }
+        public void LoadData()
+        {
+            dataGridView1.DataSource = clienteRepo.View();
+            dataGridView1.ClearSelection();
+        }
+
+        private Cliente GetCliente()
+        {
+            using RentaCarroFinalContext db = new RentaCarroFinalContext();
+            return db.Clientes.Where(x => x.Id == clienteId).FirstOrDefault();
+        }
+
+        private void guardarBtn_Click(object sender, EventArgs e)
+        {
+            if (Editando)
+            {
+                if (Validar())
+                {
+                    clienteRepo.Update(FillCliente());
+                    Close();
+                }
+            }
+            else
+            {
+                if (Validar())
+                {
+                    clienteRepo.Create(FillCliente());
+                    Close();
+                }
+            }
+
+            LoadData();
+            Editando = false;
+            Text = "Crear Cliente";
+            ShowDialog();
+            LoadData();
+        }
+
+        private void actualizarBtn_Click(object sender, EventArgs e)
+        {
+            var c = GetCliente();
+            if (c == null)
+            {
+                return;
+            }
+            LoadData();
+            Editando = true;
+            cliente = c;
+            FillForm();
+            Text = "Editar Cliente";
+            ShowDialog();
+            LoadData();
+        }
+
+        private void borrarBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var t = GetCliente();
+                if (t != null)
+                {
+                    clienteRepo.Delete(t);
+                    LoadData();
+                }
+            }
+
+            catch (Microsoft.EntityFrameworkCore.DbUpdateException ex)
+            {
+                MessageBox.Show("No es posible borrar este cliente");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ex.StackTrace);
+
+            }
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            clienteId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            borrarBtn.Enabled = dataGridView1.SelectedRows.Count > 0;
+            actualizarBtn.Enabled = dataGridView1.SelectedRows.Count > 0;
+        }
+        public Cliente FillCliente()
+        {
+            cliente.Nombre = nombreText.Text.Trim();
+            cliente.Cedula = cedulaText.Text.Replace("-", "").Trim();
+            cliente.TarjetaCredito = tarjetaText.Text.Trim();
+            cliente.LimiteCredito = Convert.ToDouble(limiteCreditoText.Value);
+            cliente.TipoPersona = tipoPersonaCombo.Text;
+            cliente.Estado = estadoCheck.Checked;
+            return cliente;
+        }
+
+        public void FillForm()
+        {
+            nombreText.Text = cliente.Nombre;
+            cedulaText.Text = cliente.Cedula;
+            tarjetaText.Text = cliente.TarjetaCredito;
+            limiteCreditoText.Value = Convert.ToDecimal(cliente.LimiteCredito);
+            tipoPersonaCombo.Text = cliente.TipoPersona;
+            estadoCheck.Checked = cliente.Estado;
+        }
+
+
+        public bool Validar()
+        {
+            errores.Clear();
+            if (string.IsNullOrWhiteSpace(nombreText.Text))
+            {
+                errores.Add("Nombre no puede estar en blanco");
+            }
+            if (string.IsNullOrWhiteSpace(cedulaText.Text))
+            {
+                errores.Add("Cedula no puede estar en blanco");
+            }
+            if (string.IsNullOrWhiteSpace(tarjetaText.Text))
+            {
+                errores.Add("Tarjet de credito no puede estar en blanco");
+            }
+            if (limiteCreditoText.Value < 0)
+            {
+                errores.Add("Limite de credito no puede ser menor a 0");
+            }
+            if (string.IsNullOrWhiteSpace(tipoPersonaCombo.Text))
+            {
+                errores.Add("Tipo de persona no puede estar en blanco");
+            }
+            if (tipoPersonaCombo.Text == "Fisica")
+            {
+                if (!validaCedula(cedulaText.Text.Replace("-", "").Trim()))
+                {
+                    errores.Add("Cedula no valida");
+                }
+
+            }
+            else if (tipoPersonaCombo.Text == "Juridica")
+            {
+                if (!esUnRNCValido(cedulaText.Text.Trim()))
+                {
+                    errores.Add("RNC no valido");
+                }
+            }
+            using RentaCarroFinalContext db = new RentaCarroFinalContext();
+            if (db.Empleados.Where(x => x.Nombre == nombreText.Text.Trim()).Any())
+            {
+                errores.Add("Ya existe un cliente con este nombre");
+            }
+            if (db.Empleados.Where(x => x.Cedula == cedulaText.Text.Replace("-", "").Trim()).Any())
+            {
+                errores.Add("Ya existe un cliente con esta cedula.");
+            }
+            if (errores.Count > 0)
+            {
+                var message = "";
+                foreach (var e in errores)
+                {
+                    message += e + "\n";
+                }
+                MessageBox.Show(message);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public static bool validaCedula(string pCedula)
+
+        {
+            int vnTotal = 0;
+            string vcCedula = pCedula.Replace("-", "");
+            int pLongCed = vcCedula.Trim().Length;
+            int[] digitoMult = new int[11] { 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1 };
+
+            if (pLongCed < 11 || pLongCed > 11)
+                return false;
+
+            for (int vDig = 1; vDig <= pLongCed; vDig++)
+            {
+                int vCalculo = Int32.Parse(vcCedula.Substring(vDig - 1, 1)) * digitoMult[vDig - 1];
+                if (vCalculo < 10)
+                    vnTotal += vCalculo;
+                else
+                    vnTotal += Int32.Parse(vCalculo.ToString().Substring(0, 1)) + Int32.Parse(vCalculo.ToString().Substring(1, 1));
+            }
+
+            if (vnTotal % 10 == 0)
+                return true;
+            else
+                return false;
+        }
+        private bool esUnRNCValido(string pRNC)
+
+        {
+
+            int vnTotal = 0;
+
+            int[] digitoMult = new int[8] { 7, 9, 8, 6, 5, 4, 3, 2 };
+
+            string vcRNC = pRNC.Replace("-", "").Replace(" ", "");
+
+            string vDigito = vcRNC.Substring(8, 1);
+
+            if (vcRNC.Length.Equals(9))
+
+                if (!"145".Contains(vcRNC.Substring(0, 1)))
+
+                    return false;
+
+            for (int vDig = 1; vDig <= 8; vDig++)
+
+            {
+
+                int vCalculo = Int32.Parse(vcRNC.Substring(vDig - 1, 1)) * digitoMult[vDig - 1];
+
+                vnTotal += vCalculo;
+
+            }
+
+            if (vnTotal % 11 == 0 && vDigito == "1" || vnTotal % 11 == 1 && vDigito == "1" ||
+
+                (11 - (vnTotal % 11)).Equals(vDigito))
+
+                return true;
+
+            else
+
+                return false;
+
         }
     }
 }

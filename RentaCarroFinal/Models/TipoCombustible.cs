@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RentaCarroFinal.Models
 {
-    internal class TipoCombustible
+    public class TipoCombustible
     {
             public int? Id { get; set; }
             [Required]
@@ -15,5 +15,9 @@ namespace RentaCarroFinal.Models
             public string Descripcion { get; set; }
             [Required]
             public bool Estado { get; set; }
+        public override string ToString()
+        {
+            return Descripcion;
         }
+    }
 }

@@ -16,7 +16,11 @@ namespace RentaCarroFinal.UI
 {
     public partial class FrmRenta : Form
     {
-
+            Renta renta = new Renta();
+            VehiculoRepo vehiculoRepo = new VehiculoRepo();
+            ClienteRepo clienteRepo = new ClienteRepo();
+            EmpleadoRepo empleadoRepo = new EmpleadoRepo();
+            RentaRepo rentaRepo = new RentaRepo();
             public FrmTiposCombustibles FrmTiposCombustibles;
             public FrmMarca FrmMarca;
             public FrmModelo FrmModelo;
@@ -177,7 +181,7 @@ namespace RentaCarroFinal.UI
 
         private void btnClose_Click_1(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
         private void btnMaximize_Click(object sender, EventArgs e)
         {
@@ -245,7 +249,7 @@ namespace RentaCarroFinal.UI
 
         private void iconButton10_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
         private void tiposDeCombustibleToolStripMenuItem_Click(object sender, EventArgs e)
@@ -281,15 +285,23 @@ namespace RentaCarroFinal.UI
             if (FrmModelo == null || FrmModelo.IsDisposed)
             {
                 FrmModelo = new FrmModelo();
-                // FrmModelo.LoadData();
+                FrmModelo.LoadData();
                 FrmModelo.Show();
             }
             else
             {
-                //FrmModelo.LoadData();
+                FrmModelo.LoadData();
                 FrmModelo.Show();
                 FrmModelo.Focus();
             }
+        }
+        public void LoadData()
+        {
+            clienteCombo.DataSource = clienteRepo.View();
+            vehiculoCombo.DataSource = vehiculoRepo.View();
+            clienteCombo.DataSource = empleadoRepo.View();
+            dataGridView1.DataSource = rentaRepo.View();
+            dataGridView1.ClearSelection();
         }
     }
 }

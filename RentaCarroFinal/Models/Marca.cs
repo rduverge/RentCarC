@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RentaCarroFinal.Models
 {
-    internal class Marca
+    public class Marca
     {
         public int? Id { get; set; }
         [Required]

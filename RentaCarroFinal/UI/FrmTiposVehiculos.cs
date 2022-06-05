@@ -16,7 +16,9 @@ namespace RentaCarroFinal.UI
 {
     public partial class FrmTiposVehiculos : Form
     {
-
+            readonly TipoVehiculo tiposVehiculo = new TipoVehiculo();
+            readonly TipoVehiculoRepo tiposVehiculoRepo = new TipoVehiculoRepo();
+            List<string> errores = new List<string>();
             public FrmTiposCombustibles FrmTiposCombustibles;
             public FrmMarca FrmMarca;
             public FrmModelo FrmModelo;
@@ -177,7 +179,7 @@ namespace RentaCarroFinal.UI
 
         private void btnClose_Click_1(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
         private void btnMaximize_Click(object sender, EventArgs e)
         {
@@ -245,7 +247,7 @@ namespace RentaCarroFinal.UI
 
         private void iconButton10_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
         private void tiposDeCombustibleToolStripMenuItem_Click(object sender, EventArgs e)
@@ -281,15 +283,119 @@ namespace RentaCarroFinal.UI
             if (FrmModelo == null || FrmModelo.IsDisposed)
             {
                 FrmModelo = new FrmModelo();
-                // FrmModelo.LoadData();
+                FrmModelo.LoadData();
                 FrmModelo.Show();
             }
             else
             {
-                //FrmModelo.LoadData();
+                FrmModelo.LoadData();
                 FrmModelo.Show();
                 FrmModelo.Focus();
             }
+        }
+        public void LoadData()
+        {
+            dataGridView1.DataSource = tiposVehiculoRepo.View();
+            dataGridView1.ClearSelection();
+        }
+        private TipoVehiculo GetTipoVehiculo()
+        {
+            tiposVehiculo.Descripcion = descripcionText.Text.Trim();
+            tiposVehiculo.Estado = estadoCheck.Checked;
+            return tiposVehiculo;
+        }
+
+        private void Clear()
+        {
+            descripcionText.Text = "";
+            estadoCheck.Checked = false;
+        }
+
+        private void guardarBtn_Click(object sender, EventArgs e)
+        {
+            tiposVehiculo.Id = null;
+            if (Validar())
+            {
+                tiposVehiculoRepo.Create(GetTipoVehiculo());
+                LoadData();
+                Clear();
+            }
+        }
+
+        private void borrarBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var t = GetTipoVehiculo();
+                if (t != null)
+                {
+                    tiposVehiculoRepo.Delete(t);
+                    LoadData();
+                    Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ex.StackTrace);
+
+            }
+        }
+
+        private void actualizarBtn_Click(object sender, EventArgs e)
+        {
+            if (tiposVehiculo == null)
+            {
+                return;
+            }
+            if (Validar())
+            {
+                tiposVehiculoRepo.Update(GetTipoVehiculo());
+                LoadData();
+                Clear();
+            }
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            tiposVehiculo.Id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+            tiposVehiculo.Descripcion = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
+            tiposVehiculo.Estado = Convert.ToBoolean(dataGridView1.SelectedRows[0].Cells[2].Value.ToString());
+            descripcionText.Text = tiposVehiculo.Descripcion;
+            estadoCheck.Checked = tiposVehiculo.Estado;
+        }
+
+        public bool Validar()
+        {
+            errores.Clear();
+            if (string.IsNullOrWhiteSpace(descripcionText.Text))
+            {
+                errores.Add("El campo Descripción no puede estar en blanco");
+            }
+            using RentaCarroFinalContext db = new RentaCarroFinalContext();
+            if (db.TiposVehiculo.Where(x => x.Descripcion == descripcionText.Text.Trim() && x.Id != tiposVehiculo.Id).Any())
+            {
+                errores.Add("Ya existe esa descripción");
+            }
+            if (errores.Count > 0)
+            {
+                var message = "";
+                foreach (var e in errores)
+                {
+                    message += e + "\n";
+                }
+                MessageBox.Show(message);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            borrarBtn.Enabled = dataGridView1.SelectedRows.Count > 0;
+
         }
     }
 }

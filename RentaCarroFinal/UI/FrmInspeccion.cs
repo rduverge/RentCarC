@@ -16,22 +16,27 @@ namespace RentaCarroFinal.UI
 {
     public partial class FrmInspeccion : Form
     {
-
-            public FrmTiposCombustibles FrmTiposCombustibles;
-            public FrmMarca FrmMarca;
-            public FrmModelo FrmModelo;
+        VehiculoRepo vehiculoRepo = new VehiculoRepo();
+        ClienteRepo clienteRepo = new ClienteRepo();
+        EmpleadoRepo empleadoRepo = new EmpleadoRepo();
+        InspeccionRepo inspeccionRepo = new InspeccionRepo();
+        readonly Inspeccion inspeccion = new Inspeccion();
+        public List<string> errores = new List<string>();
+        public FrmTiposCombustibles FrmTiposCombustibles;
+        public FrmMarca FrmMarca;
+        public FrmModelo FrmModelo;
 
         //Constructor
         public FrmInspeccion()
-            {
-                InitializeComponent();
-                CollapseMenu();
-                this.Padding = new Padding(borderSize);//Border size
-                this.BackColor = Color.FromArgb(98, 102, 244);//Border color
-            }
+        {
+            InitializeComponent();
+            CollapseMenu();
+            this.Padding = new Padding(borderSize);//Border size
+            this.BackColor = Color.FromArgb(98, 102, 244);//Border color
+        }
 
-            //Fields
-            private int borderSize = 2;
+        //Fields
+        private int borderSize = 2;
         private Size formSize;
 
 
@@ -177,7 +182,7 @@ namespace RentaCarroFinal.UI
 
         private void btnClose_Click_1(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
         private void btnMaximize_Click(object sender, EventArgs e)
         {
@@ -213,14 +218,14 @@ namespace RentaCarroFinal.UI
 
         }
 
-        private void Open_DropdownMenu (RJDropdownMenu dropdownMenu, object sender)
+        private void Open_DropdownMenu(RJDropdownMenu dropdownMenu, object sender)
         {
             Control control = (Control)sender;
             dropdownMenu.VisibleChanged += new EventHandler((sender2, ev)
               => DropdownMenu_VisibleChanged(sender2, ev, control));
             dropdownMenu.Show(control, control.Width, 0);
         }
-        
+
         private void DropdownMenu_VisibleChanged(object sender, EventArgs e, Control ctrl)
         {
             RJDropdownMenu dropdownMenu2 = (RJDropdownMenu)sender;
@@ -231,7 +236,7 @@ namespace RentaCarroFinal.UI
                 else ctrl.BackColor = Color.FromArgb(98, 102, 244);
             }
         }
-            
+
 
         private void iconButton2_Click(object sender, EventArgs e)
         {
@@ -245,7 +250,7 @@ namespace RentaCarroFinal.UI
 
         private void iconButton10_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
         private void tiposDeCombustibleToolStripMenuItem_Click(object sender, EventArgs e)
@@ -289,6 +294,151 @@ namespace RentaCarroFinal.UI
                 //FrmModelo.LoadData();
                 FrmModelo.Show();
                 FrmModelo.Focus();
+            }
+        }
+
+        public void LoadData()
+        {
+            vehiculoCombo.DataSource = vehiculoRepo.View();
+            clienteCombo.DataSource = clienteRepo.View();
+            empleadoCombo.DataSource = empleadoRepo.View();
+            dataGridView1.DataSource = inspeccionRepo.View();
+            dataGridView1.ClearSelection();
+        }
+
+        public Inspeccion GetInspeccion()
+        {
+            inspeccion.tieneRalladuras = ralladurasCheck.Checked;
+            inspeccion.Combustible = Convert.ToDouble(combustibleCombo.Text);
+            inspeccion.TieneGomaRespuesta = repuestaCheck.Checked;
+            inspeccion.TieneGato = gatoCheck.Checked;
+            inspeccion.TieneRoturaCristal = cristalCheck.Checked;
+            inspeccion.CheckGomaIzqD = GomaIzqFcheck.Checked;
+            inspeccion.CheckGomaIzqT = gomaIzqTCheck.Checked;
+            inspeccion.CheckGomaDerD = GomaDerFCheck.Checked;
+            inspeccion.CheckGomaDerT = GomaDerTCheck.Checked;
+            inspeccion.Fecha = fechaCheck.Value;
+            var vehiculo = (Vehiculo)vehiculoCombo.SelectedItem;
+            inspeccion.VehiculoId = vehiculo.Id;
+            var cliente = (Cliente)clienteCombo.SelectedItem;
+            inspeccion.ClienteId = cliente.Id;
+            var empleado = (Empleado)empleadoCombo.SelectedItem;
+            inspeccion.EmpleadoId = (int)empleado.Id;
+
+            return inspeccion;
+        }
+        private void Clear()
+        {
+
+            ralladurasCheck.Checked = false;
+            gatoCheck.Checked = false;
+            cristalCheck.Checked = false;
+            GomaIzqFcheck.Checked = false;
+            gomaIzqTCheck.Checked = false;
+            GomaDerFCheck.Checked = false;
+            GomaDerTCheck.Checked = false;
+        }
+
+        private void guardarBtn_Click(object sender, EventArgs e)
+        {
+            if (Validar())
+            {
+                inspeccionRepo.Create(GetInspeccion());
+                LoadData();
+                Clear();
+            }
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            inspeccion.Id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+            using RentaCarroFinalContext db = new RentaCarroFinalContext();
+            inspeccion.VehiculoId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[1].Value.ToString());
+            var vehiculo = db.Vehiculos.Where(x => x.Id == inspeccion.VehiculoId).FirstOrDefault();
+            if (vehiculo != null)
+            {
+                inspeccion.Vehiculo = vehiculo;
+            }
+            else
+            {
+            }
+            inspeccion.ClienteId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[3].Value.ToString());
+            inspeccion.Combustible = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells[5].Value.ToString());
+            inspeccion.tieneRalladuras = Convert.ToBoolean(dataGridView1.SelectedRows[0].Cells[6].Value.ToString());
+            inspeccion.TieneGomaRespuesta = Convert.ToBoolean(dataGridView1.SelectedRows[0].Cells[7].Value.ToString());
+            inspeccion.TieneGato = Convert.ToBoolean(dataGridView1.SelectedRows[0].Cells[8].Value.ToString());
+            inspeccion.TieneRoturaCristal = Convert.ToBoolean(dataGridView1.SelectedRows[0].Cells[9].Value.ToString());
+            inspeccion.CheckGomaIzqD = Convert.ToBoolean(dataGridView1.SelectedRows[0].Cells[10].Value.ToString());
+            inspeccion.CheckGomaIzqT = Convert.ToBoolean(dataGridView1.SelectedRows[0].Cells[11].Value.ToString());
+            inspeccion.CheckGomaDerD = Convert.ToBoolean(dataGridView1.SelectedRows[0].Cells[12].Value.ToString());
+            inspeccion.CheckGomaDerT = Convert.ToBoolean(dataGridView1.SelectedRows[0].Cells[13].Value.ToString());
+            inspeccion.Fecha = Convert.ToDateTime(dataGridView1.SelectedRows[0].Cells[14].Value.ToString());
+            inspeccion.EmpleadoId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[15].Value.ToString());
+            var empleado = db.Empleados.Where(x => x.Id == inspeccion.EmpleadoId).FirstOrDefault();
+            inspeccion.Empleado = empleado;
+            combustibleCombo.Text = inspeccion.Combustible.ToString();
+            ralladurasCheck.Checked = inspeccion.tieneRalladuras;
+            gatoCheck.Checked = inspeccion.TieneGato;
+            cristalCheck.Checked = inspeccion.TieneRoturaCristal;
+            GomaIzqFcheck.Checked = inspeccion.CheckGomaIzqD;
+            gomaIzqTCheck.Checked = inspeccion.CheckGomaIzqT;
+            GomaDerFCheck.Checked = inspeccion.CheckGomaDerD;
+            GomaDerTCheck.Checked = inspeccion.CheckGomaDerT;
+
+        }
+
+        private void borrarBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var t = GetInspeccion();
+                if (t != null)
+                {
+                    inspeccionRepo.Delete(t);
+                    LoadData();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ex.StackTrace);
+
+            }
+        }
+
+        private void actualizarBtn_Click(object sender, EventArgs e)
+        {
+            if (Validar())
+            {
+                inspeccionRepo.Update(GetInspeccion());
+                LoadData();
+                Clear();
+            }
+        }
+        public bool Validar()
+        {
+            errores.Clear();
+            using RentaCarroFinalContext db = new RentaCarroFinalContext();
+            if (string.IsNullOrWhiteSpace(combustibleCombo.Text.Trim()))
+            {
+                errores.Add("El campo Combustible no puede estar en blanco.");
+            }
+            if (fechaCheck.Value.Date > DateTime.Today.Date)
+            {
+                errores.Add("La Fecha no es correcta");
+            }
+            if (errores.Count > 0)
+            {
+                var message = "";
+                foreach (var e in errores)
+                {
+                    message += e + "\n";
+                }
+                MessageBox.Show(message);
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
     }

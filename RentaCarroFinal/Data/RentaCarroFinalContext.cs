@@ -19,9 +19,11 @@ namespace RentaCarroFinal.Data
         public DbSet<TipoCombustible> TiposCombustible { get; set; }
         public DbSet<Marca> Marcas { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Renta> Rentas { get; set; }
+        public DbSet<Inspeccion> Inspecciones { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
         {
-            optionBuilder.UseSqlServer(@"Data Source=Rolando\SQLEXPRESS;Initial Catalog=RentaCarro;Integrated Security=True");
+            optionBuilder.UseSqlServer(@"Data Source=DESKTOP-D495LNS\SQLEXPRESS;Initial Catalog=RentaCarro;Integrated Security=True");
         }
     }
 }
