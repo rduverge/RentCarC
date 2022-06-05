@@ -26,6 +26,8 @@ namespace RentaCarroFinal.UI
             public FrmEmpleados FrmEmpleados;
             public FrmInspeccion FrmInspeccion;
             public FrmRenta FrmRenta;
+            public FrmExportar FrmExportar;
+            public FrmBuscar FrmBuscar;
 
 
         //Constructor
@@ -385,6 +387,39 @@ namespace RentaCarroFinal.UI
             {
                 FrmInspeccion.Show();
                 FrmInspeccion.Focus();
+            }
+        }
+
+        private void iconButton5_Click(object sender, EventArgs e)
+        {
+            Open_DropdownMenu(rjDropdownMenu3, sender);
+        }
+
+        private void reportesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (FrmExportar == null || FrmExportar.IsDisposed)
+            {
+                FrmExportar = new FrmExportar();
+                FrmExportar.Show();
+            }
+            else
+            {
+                FrmExportar.Show();
+                FrmExportar.Focus();
+            }
+        }
+
+        private void busquedaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (FrmBuscar == null || FrmBuscar.IsDisposed)
+            {
+                FrmBuscar = new FrmBuscar();
+                FrmBuscar.Show();
+            }
+            else
+            {
+                FrmBuscar.Show();
+                FrmBuscar.Focus();
             }
         }
     }
