@@ -378,8 +378,12 @@ namespace RentaCarroFinal.UI
             // cbbTipoPersona.Text=cliente.TipoPersona;
 
             empleado.Estado = Convert.ToBoolean(dataGridView1.SelectedRows[0].Cells[6].Value.ToString());
-        
-    }
+
+            textBox2.Text = empleado.Nombre;
+            textBox3.Text = empleado.Cedula;
+            textBox4.Text = empleado.Tanda;
+            estadoCheck.Checked = empleado.Estado;
+        }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {

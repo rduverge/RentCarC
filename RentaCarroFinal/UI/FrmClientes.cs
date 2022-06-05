@@ -333,8 +333,6 @@ namespace RentaCarroFinal.UI
 
             if (Validar())
             {
-
-
                 clienteRepository.Create(GetCliente());
                 LoadData();
                 Clear();
@@ -383,37 +381,17 @@ namespace RentaCarroFinal.UI
             cliente.Cedula = dataGridView1.SelectedRows[0].Cells[2].Value.ToString();
             cliente.NumeroTarjetaCredito = dataGridView1.SelectedRows[0].Cells[3].Value.ToString();
             cliente.LimiteCredito = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells[4].Value.ToString());
-
-
-
-            // cbbTipoPersona.Text=cliente.TipoPersona;
-
             cliente.Estado = Convert.ToBoolean(dataGridView1.SelectedRows[0].Cells[6].Value.ToString());
+
+            nombreText.Text = cliente.Nombre;
+            cedulaText.Text = cliente.Cedula;
+            tarjetaText.Text = cliente.NumeroTarjetaCredito;
+            estadoCheck.Checked = cliente.Estado;
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             borrarBtn.Enabled = dataGridView1.SelectedRows.Count > 0;
-        }
-        public Cliente FillCliente()
-        {
-            cliente.Nombre = nombreText.Text.Trim();
-            cliente.Cedula = cedulaText.Text.Replace("-", "").Trim();
-            cliente.NumeroTarjetaCredito = tarjetaText.Text.Trim();
-            cliente.LimiteCredito = Convert.ToDouble(limiteCreditoText.Value);
-            cliente.TipoPersona = tipoPersonaCombo.Text;
-            cliente.Estado = estadoCheck.Checked;
-            return cliente;
-        }
-
-        public void FillForm()
-        {
-            nombreText.Text = cliente.Nombre;
-            cedulaText.Text = cliente.Cedula;
-            tarjetaText.Text = cliente.NumeroTarjetaCredito;
-            limiteCreditoText.Value = Convert.ToDecimal(cliente.LimiteCredito);
-            tipoPersonaCombo.Text = cliente.TipoPersona;
-            estadoCheck.Checked = cliente.Estado;
         }
 
 

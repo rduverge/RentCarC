@@ -515,6 +515,7 @@ namespace RentaCarroFinal.UI
             textBox3.Text = vehiculo.NoPlaca;
 
             estadoCheck.Checked = vehiculo.Estado;
+
         }
 
         private void guardarBtn_Click(object sender, EventArgs e)
