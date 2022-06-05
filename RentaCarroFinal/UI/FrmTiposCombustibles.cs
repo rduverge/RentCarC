@@ -387,5 +387,10 @@ namespace RentaCarroFinal.UI
                 return true;
             }
         }
+
+        private void FrmTiposCombustibles_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
     }
 }

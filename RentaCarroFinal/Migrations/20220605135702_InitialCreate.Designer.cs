@@ -12,7 +12,7 @@ using RentaCarroFinal.Data;
 namespace RentaCarroFinal.Migrations
 {
     [DbContext(typeof(RentaCarroFinalContext))]
-    [Migration("20220605012203_InitialCreate")]
+    [Migration("20220605135702_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -215,6 +215,9 @@ namespace RentaCarroFinal.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("Devuelto")
+                        .HasColumnType("bit");
+
                     b.Property<int?>("EmpleadoId")
                         .HasColumnType("int");
 
@@ -230,11 +233,16 @@ namespace RentaCarroFinal.Migrations
                     b.Property<double>("MontoDia")
                         .HasColumnType("float");
 
+                    b.Property<int?>("VehiculoId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ClienteId");
 
                     b.HasIndex("EmpleadoId");
+
+                    b.HasIndex("VehiculoId");
 
                     b.ToTable("Rentas");
                 });
@@ -336,7 +344,7 @@ namespace RentaCarroFinal.Migrations
                     b.Property<int?>("TipoCombustibleId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TipoVehiculoId")
+                    b.Property<int?>("TipoVehiculoId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -396,9 +404,15 @@ namespace RentaCarroFinal.Migrations
                         .WithMany()
                         .HasForeignKey("EmpleadoId");
 
+                    b.HasOne("RentaCarroFinal.Models.Vehiculo", "Vehiculo")
+                        .WithMany()
+                        .HasForeignKey("VehiculoId");
+
                     b.Navigation("Cliente");
 
                     b.Navigation("Empleado");
+
+                    b.Navigation("Vehiculo");
                 });
 
             modelBuilder.Entity("RentaCarroFinal.Models.Vehiculo", b =>
@@ -417,9 +431,7 @@ namespace RentaCarroFinal.Migrations
 
                     b.HasOne("RentaCarroFinal.Models.TipoVehiculo", "TipoVehiculo")
                         .WithMany()
-                        .HasForeignKey("TipoVehiculoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TipoVehiculoId");
 
                     b.Navigation("Marca");
 

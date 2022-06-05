@@ -90,6 +90,11 @@ namespace RentaCarroFinal.UI
                 modeloCombo.Enabled = true;
             }
         }
+
+        private void FrmBuscar_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
     }
 
 }

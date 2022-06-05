@@ -447,5 +447,10 @@ namespace RentaCarroFinal.UI
                 LoadData();
             }
         }
+
+        private void FrmRenta_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
     }
 }

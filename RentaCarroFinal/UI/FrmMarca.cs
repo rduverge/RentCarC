@@ -393,5 +393,10 @@ namespace RentaCarroFinal.UI
             borrarBtn.Enabled = marcasGrid.SelectedRows.Count > 0;
 
         }
+
+        private void FrmMarca_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
     }
 }

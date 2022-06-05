@@ -13,7 +13,7 @@ namespace RentaCarroFinal.Models
         public string NoChasis { get; set; }
         public string NoMotor { get; set; }
         public string NoPlaca { get; set; }
-        public int TipoVehiculoId { get; set; }
+        public int? TipoVehiculoId { get; set; }
         public TipoVehiculo TipoVehiculo { get; set; }
         public int? MarcaId { get; set; }
         public Marca Marca { get; set; }

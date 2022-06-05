@@ -103,7 +103,7 @@ namespace RentaCarroFinal.UI
                 {
                     using Process fileopener = new Process();
 
-                    fileopener.StartInfo.FileName = @"C:\Program Files (x86)\Microsoft Office\root\Office16\excel.exe";
+                    fileopener.StartInfo.FileName = @"C:\Program Files\Microsoft Office\root\Office16\excel.exe";
                     fileopener.StartInfo.Arguments = "\"" + "Result.xlsx" + "\"";
                     fileopener.Start();
 

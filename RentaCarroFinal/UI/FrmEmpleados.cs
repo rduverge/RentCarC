@@ -323,16 +323,22 @@ namespace RentaCarroFinal.UI
         private void guardarBtn_Click(object sender, EventArgs e)
         {
             empleado.Id = null;
-            empleadoRepo.Create(GetEmpleado());
-            LoadData();
-            Clear();
+            if (Validar())
+            {
+                empleadoRepo.Create(GetEmpleado());
+                LoadData();
+                Clear();
+            }
         }
 
         private void actualizarBtn_Click(object sender, EventArgs e)
         {
-            empleadoRepo.Update(GetEmpleado());
-            LoadData();
-            Clear();
+            if (Validar())
+            {
+                empleadoRepo.Update(GetEmpleado());
+                LoadData();
+                Clear();
+            }
         }
 
         private void borrarBtn_Click(object sender, EventArgs e)
@@ -347,12 +353,17 @@ namespace RentaCarroFinal.UI
                     Clear();
                 }
             }
+            catch (Microsoft.EntityFrameworkCore.DbUpdateException ex)
+            {
+                MessageBox.Show("Este cliente  no puede ser borrado...");
+
+            }
+
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + ex.StackTrace);
-
-
             }
+
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -465,6 +476,11 @@ namespace RentaCarroFinal.UI
                 return true;
             else
                 return false;
+        }
+
+        private void FrmEmpleados_Load(object sender, EventArgs e)
+        {
+            LoadData();
         }
     }
 }

@@ -23,7 +23,7 @@ namespace RentaCarroFinal.Data
         public DbSet<Inspeccion> Inspecciones { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
         {
-            optionBuilder.UseSqlServer(@"Data Source=DESKTOP-D495LNS\SQLEXPRESS;Initial Catalog=RentCarro;Integrated Security=True");
+            optionBuilder.UseSqlServer(@"Data Source=Rolando\SQLEXPRESS;Initial Catalog=RentCarroDB;Integrated Security=True");
         }
     }
 }

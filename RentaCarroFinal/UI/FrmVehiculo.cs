@@ -318,7 +318,6 @@ namespace RentaCarroFinal.UI
             if (marca != null)
             {
                 vehiculo.MarcaId = marca.Id;
-                vehiculo.Marca = marca;
             }
             else
             {
@@ -329,7 +328,6 @@ namespace RentaCarroFinal.UI
             if (modelo != null)
             {
                 vehiculo.ModeloId = modelo.Id;
-                vehiculo.Modelo = modelo;
             }
             else
             {
@@ -340,7 +338,6 @@ namespace RentaCarroFinal.UI
             if (tipoVehic != null)
             {
                 vehiculo.TipoVehiculoId = tipoVehic.Id;
-                vehiculo.TipoVehiculo = tipoVehic;
             }
             else
             {
@@ -354,7 +351,6 @@ namespace RentaCarroFinal.UI
             if (tipoComb != null)
             {
                 vehiculo.TipoCombustibleId = tipoComb.Id;
-                vehiculo.TipoCombustible = tipoComb;
             }
             else
             {
@@ -459,7 +455,7 @@ namespace RentaCarroFinal.UI
             vehiculo.NoMotor = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
 
             using RentaCarroFinalContext db = new RentaCarroFinalContext();
-            var marca = db.Marcas.Where(y => y.Id == Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[2].Value.ToString())).FirstOrDefault();
+            var marca = db.Marcas.Where(y => y.Id == Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[7].Value.ToString())).FirstOrDefault();
 
 
             if (marca != null)
@@ -512,7 +508,7 @@ namespace RentaCarroFinal.UI
 
             }
 
-            vehiculo.Estado = Convert.ToBoolean(dataGridView1.SelectedRows[0].Cells[4].Value.ToString());
+            vehiculo.Estado = Convert.ToBoolean(dataGridView1.SelectedRows[0].Cells[13].Value.ToString());
             descripcionText.Text = vehiculo.Descripcion;
             textChasis.Text = vehiculo.NoChasis;
             textBox2.Text = vehiculo.NoMotor;
@@ -560,7 +556,10 @@ namespace RentaCarroFinal.UI
             borrarBtn.Enabled = dataGridView1.SelectedRows.Count > 0;
         }
 
-
+        private void FrmVehiculo_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
     }
 
 

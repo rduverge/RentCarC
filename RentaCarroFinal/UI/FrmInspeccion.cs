@@ -19,6 +19,7 @@ namespace RentaCarroFinal.UI
         VehiculoRepo vehiculoRepo = new VehiculoRepo();
         ClienteRepo clienteRepo = new ClienteRepo();
         EmpleadoRepo empleadoRepo = new EmpleadoRepo();
+        TipoCombustibleRepo tipoCombustibleRepo = new TipoCombustibleRepo();
         InspeccionRepo inspeccionRepo = new InspeccionRepo();
         readonly Inspeccion inspeccion = new Inspeccion();
         public List<string> errores = new List<string>();
@@ -440,6 +441,11 @@ namespace RentaCarroFinal.UI
             {
                 return true;
             }
+        }
+
+        private void FrmInspeccion_Load(object sender, EventArgs e)
+        {
+            LoadData();
         }
     }
 }

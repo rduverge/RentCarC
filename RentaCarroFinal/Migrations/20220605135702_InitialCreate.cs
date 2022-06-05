@@ -102,35 +102,6 @@ namespace RentaCarroFinal.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Rentas",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    EmpleadoId = table.Column<int>(type: "int", nullable: true),
-                    ClienteId = table.Column<int>(type: "int", nullable: true),
-                    FechaRenta = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    FechaDevolucion = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    MontoDia = table.Column<double>(type: "float", nullable: false),
-                    Comentario = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Estado = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Rentas", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Rentas_Clientes_ClienteId",
-                        column: x => x.ClienteId,
-                        principalTable: "Clientes",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Rentas_Empleados_EmpleadoId",
-                        column: x => x.EmpleadoId,
-                        principalTable: "Empleados",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Modelos",
                 columns: table => new
                 {
@@ -161,7 +132,7 @@ namespace RentaCarroFinal.Migrations
                     NoChasis = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     NoMotor = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     NoPlaca = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TipoVehiculoId = table.Column<int>(type: "int", nullable: false),
+                    TipoVehiculoId = table.Column<int>(type: "int", nullable: true),
                     MarcaId = table.Column<int>(type: "int", nullable: true),
                     ModeloId = table.Column<int>(type: "int", nullable: true),
                     TipoCombustibleId = table.Column<int>(type: "int", nullable: true),
@@ -189,8 +160,7 @@ namespace RentaCarroFinal.Migrations
                         name: "FK_Vehiculos_TiposVehiculo_TipoVehiculoId",
                         column: x => x.TipoVehiculoId,
                         principalTable: "TiposVehiculo",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -235,6 +205,42 @@ namespace RentaCarroFinal.Migrations
                         principalColumn: "Id");
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Rentas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EmpleadoId = table.Column<int>(type: "int", nullable: true),
+                    ClienteId = table.Column<int>(type: "int", nullable: true),
+                    VehiculoId = table.Column<int>(type: "int", nullable: true),
+                    FechaRenta = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FechaDevolucion = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    MontoDia = table.Column<double>(type: "float", nullable: false),
+                    Comentario = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Estado = table.Column<bool>(type: "bit", nullable: false),
+                    Devuelto = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rentas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Rentas_Clientes_ClienteId",
+                        column: x => x.ClienteId,
+                        principalTable: "Clientes",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Rentas_Empleados_EmpleadoId",
+                        column: x => x.EmpleadoId,
+                        principalTable: "Empleados",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Rentas_Vehiculos_VehiculoId",
+                        column: x => x.VehiculoId,
+                        principalTable: "Vehiculos",
+                        principalColumn: "Id");
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Inspecciones_ClienteId",
                 table: "Inspecciones",
@@ -264,6 +270,11 @@ namespace RentaCarroFinal.Migrations
                 name: "IX_Rentas_EmpleadoId",
                 table: "Rentas",
                 column: "EmpleadoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Rentas_VehiculoId",
+                table: "Rentas",
+                column: "VehiculoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Vehiculos_MarcaId",
@@ -298,13 +309,13 @@ namespace RentaCarroFinal.Migrations
                 name: "Usuarios");
 
             migrationBuilder.DropTable(
-                name: "Vehiculos");
-
-            migrationBuilder.DropTable(
                 name: "Clientes");
 
             migrationBuilder.DropTable(
                 name: "Empleados");
+
+            migrationBuilder.DropTable(
+                name: "Vehiculos");
 
             migrationBuilder.DropTable(
                 name: "Modelos");

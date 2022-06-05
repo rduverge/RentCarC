@@ -15,6 +15,7 @@ namespace RentaCarroFinal.Data
             t.Id = null;
             using RentaCarroFinalContext db = new RentaCarroFinalContext();
             var data = db.Add(t);
+
             db.SaveChanges();
             return data.Entity;
         }

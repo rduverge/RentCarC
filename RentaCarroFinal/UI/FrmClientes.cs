@@ -18,6 +18,7 @@ namespace RentaCarroFinal.UI
     {
         readonly Cliente cliente = new Cliente();
         readonly ClienteRepo clienteRepository = new ClienteRepo();
+        private int clienteId;
         List<string> errores = new List<string>();
 
         public FrmTiposCombustibles FrmTiposCombustibles;
@@ -329,16 +330,26 @@ namespace RentaCarroFinal.UI
         private void guardarBtn_Click(object sender, EventArgs e)
         {
             cliente.Id = null;
-            clienteRepository.Create(GetCliente());
-            LoadData();
-            Clear();
+
+            if (Validar())
+            {
+
+
+                clienteRepository.Create(GetCliente());
+                LoadData();
+                Clear();
+            }
+
         }
 
-            private void actualizarBtn_Click(object sender, EventArgs e)
+        private void actualizarBtn_Click(object sender, EventArgs e)
         {
-            clienteRepository.Update(GetCliente());
-            LoadData();
-            Clear();
+            if (Validar())
+            {
+                clienteRepository.Update(GetCliente());
+                LoadData();
+                Clear();
+            }
         }
 
         private void borrarBtn_Click(object sender, EventArgs e)
@@ -353,12 +364,16 @@ namespace RentaCarroFinal.UI
                     Clear();
                 }
             }
+            catch (Microsoft.EntityFrameworkCore.DbUpdateException ex)
+            {
+                MessageBox.Show("Este cliente no puede ser borrado...");
+
+            }
+
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + ex.StackTrace);
-            
-
-        }
+            }
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -541,6 +556,11 @@ namespace RentaCarroFinal.UI
 
             cliente.Estado = Convert.ToBoolean(dataGridView1.SelectedRows[0].Cells[6].Value.ToString());
 
+        }
+
+        private void FrmClientes_Load(object sender, EventArgs e)
+        {
+            LoadData();
         }
     }
 }

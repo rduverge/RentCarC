@@ -376,6 +376,11 @@ namespace RentaCarroFinal.UI
             borrarBtn.Enabled = dataGridView1.SelectedRows.Count > 0;
 
         }
+
+        private void FrmModelo_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
     }
 }
 
