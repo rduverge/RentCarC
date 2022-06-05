@@ -237,3 +237,10 @@ C:\Users\Rolando\source\repos\RentCarSinApi\RentaCarroFinal\RentaCarroFinal\obj\
 C:\Users\Rolando\source\repos\RentCarSinApi\RentaCarroFinal\RentaCarroFinal\obj\Debug\net6.0-windows\RentaCarroFinal.pdb
 C:\Users\Rolando\source\repos\RentCarSinApi\RentaCarroFinal\RentaCarroFinal\obj\Debug\net6.0-windows\RentaCarroFinal.genruntimeconfig.cache
 C:\Users\Rolando\source\repos\RentCarSinApi\RentaCarroFinal\RentaCarroFinal\obj\Debug\net6.0-windows\ref\RentaCarroFinal.dll
+C:\Users\Rolando\source\repos\RentCarSinApi\RentaCarroFinal\RentaCarroFinal\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
+C:\Users\Rolando\source\repos\RentCarSinApi\RentaCarroFinal\RentaCarroFinal\bin\Debug\net6.0-windows\NPOI.OOXML.dll
+C:\Users\Rolando\source\repos\RentCarSinApi\RentaCarroFinal\RentaCarroFinal\bin\Debug\net6.0-windows\NPOI.OpenXml4Net.dll
+C:\Users\Rolando\source\repos\RentCarSinApi\RentaCarroFinal\RentaCarroFinal\bin\Debug\net6.0-windows\NPOI.OpenXmlFormats.dll
+C:\Users\Rolando\source\repos\RentCarSinApi\RentaCarroFinal\RentaCarroFinal\bin\Debug\net6.0-windows\NPOI.dll
+C:\Users\Rolando\source\repos\RentCarSinApi\RentaCarroFinal\RentaCarroFinal\bin\Debug\net6.0-windows\BouncyCastle.Crypto.dll
+C:\Users\Rolando\source\repos\RentCarSinApi\RentaCarroFinal\RentaCarroFinal\bin\Debug\net6.0-windows\ICSharpCode.SharpZipLib.dll

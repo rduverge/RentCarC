@@ -16,8 +16,10 @@ namespace RentaCarroFinal.UI
 {
     public partial class FrmEmpleados : Form
     {
-
-            public FrmTiposCombustibles FrmTiposCombustibles;
+        readonly Empleado empleado = new Empleado();
+        readonly EmpleadoRepo empleadoRepo = new EmpleadoRepo();
+        List<string> errores = new List<string>();
+        public FrmTiposCombustibles FrmTiposCombustibles;
             public FrmMarca FrmMarca;
             public FrmModelo FrmModelo;
 
@@ -281,15 +283,188 @@ namespace RentaCarroFinal.UI
             if (FrmModelo == null || FrmModelo.IsDisposed)
             {
                 FrmModelo = new FrmModelo();
-                // FrmModelo.LoadData();
+                FrmModelo.LoadData();
                 FrmModelo.Show();
             }
             else
             {
-                //FrmModelo.LoadData();
+                FrmModelo.LoadData();
                 FrmModelo.Show();
                 FrmModelo.Focus();
             }
+        }
+        private Empleado GetEmpleado()
+        {
+
+            empleado.Nombre = textBox2.Text.Trim();
+            empleado.Cedula = textBox3.Text.Replace("-", "").Trim();
+            empleado.Tanda = textBox4.Text.Trim();
+            empleado.Comision = (int)Convert.ToDouble(textBox5.Value);
+            empleado.FechaIngreso = dateTimePicker1.Value.Date;
+            empleado.Estado = estadoCheck.Checked;
+            return empleado;
+        }
+        private void Clear()
+        {
+            textBox2.Text = "";
+            textBox3.Text = "";
+            textBox4.Text = "";
+            textBox5.Value = 0;
+            dateTimePicker1.Value = DateTime.Now;
+            estadoCheck.Checked = false;
+        }
+        public void LoadData()
+        {
+            dataGridView1.DataSource = empleadoRepo.View();
+
+
+            dataGridView1.ClearSelection();
+        }
+        private void guardarBtn_Click(object sender, EventArgs e)
+        {
+            empleado.Id = null;
+            empleadoRepo.Create(GetEmpleado());
+            LoadData();
+            Clear();
+        }
+
+        private void actualizarBtn_Click(object sender, EventArgs e)
+        {
+            empleadoRepo.Update(GetEmpleado());
+            LoadData();
+            Clear();
+        }
+
+        private void borrarBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var m = GetEmpleado();
+                if (m != null)
+                {
+                    empleadoRepo.Delete(m);
+                    LoadData();
+                    Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ex.StackTrace);
+
+
+            }
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            empleado.Id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+            empleado.Nombre = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
+            empleado.Cedula = dataGridView1.SelectedRows[0].Cells[2].Value.ToString();
+            empleado.Tanda = dataGridView1.SelectedRows[0].Cells[3].Value.ToString();
+            empleado.Comision = (int)Convert.ToDouble(dataGridView1.SelectedRows[0].Cells[4].Value.ToString());
+            empleado.FechaIngreso = (DateTime)dataGridView1.SelectedRows[0].Cells[5].Value;
+            empleado.Estado = estadoCheck.Checked;
+
+
+            // cbbTipoPersona.Text=cliente.TipoPersona;
+
+            empleado.Estado = Convert.ToBoolean(dataGridView1.SelectedRows[0].Cells[6].Value.ToString());
+        
+    }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            borrarBtn.Enabled = dataGridView1.SelectedRows.Count > 0;
+        }
+
+        public Empleado FillEmpleado()
+        {
+            empleado.Nombre = textBox2.Text.Trim();
+            empleado.Cedula = textBox3.Text.Replace("-", "").Trim();
+            empleado.Tanda = textBox4.Text.Trim();
+            empleado.Comision = (int)Convert.ToDouble(textBox5.Value);
+            empleado.FechaIngreso = dateTimePicker1.Value.Date;
+            empleado.Estado = estadoCheck.Checked;
+            return empleado;
+        }
+
+        public void FillForm()
+        {
+            textBox2.Text = empleado.Nombre;
+            textBox3.Text = empleado.Cedula;
+            textBox4.Text = empleado.Tanda;
+            textBox5.Value = Convert.ToDecimal(empleado.Comision);
+            dateTimePicker1.Value = empleado.FechaIngreso;
+            estadoCheck.Checked = empleado.Estado;
+        }
+        public bool Validar()
+        {
+            errores.Clear();
+            if (string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                errores.Add("Nombre no puede estar en blanco");
+            }
+            if (string.IsNullOrWhiteSpace(textBox3.Text))
+            {
+                errores.Add("Cedula no puede estar en blanco");
+            }
+            // TODO: validar cedula
+            using RentaCarroFinalContext db = new RentaCarroFinalContext();
+            if (db.Empleados.Where(x => x.Nombre == textBox2.Text.Trim()).Any())
+            {
+                errores.Add("Ya existe un empleado con este nombre");
+            }
+            if (db.Empleados.Where(x => x.Cedula == textBox3.Text.Trim()).Any())
+            {
+                errores.Add("Ya existe un empleado con esta cedula.");
+            }
+            if (textBox5.Value < 0)
+            {
+                errores.Add("Comision no puede ser menor a 0");
+            }
+            if (!validaCedula(textBox3.Text.Replace("-", "").Trim()))
+            {
+                errores.Add("Cedula no valida");
+            }
+            if (errores.Count > 0)
+            {
+                var message = "";
+                foreach (var e in errores)
+                {
+                    message += e + "\n";
+                }
+                MessageBox.Show(message);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        public static bool validaCedula(string pCedula)
+
+        {
+            int vnTotal = 0;
+            string vcCedula = pCedula.Replace("-", "");
+            int pLongCed = vcCedula.Trim().Length;
+            int[] digitoMult = new int[11] { 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1 };
+
+            if (pLongCed < 11 || pLongCed > 11)
+                return false;
+
+            for (int vDig = 1; vDig <= pLongCed; vDig++)
+            {
+                int vCalculo = Int32.Parse(vcCedula.Substring(vDig - 1, 1)) * digitoMult[vDig - 1];
+                if (vCalculo < 10)
+                    vnTotal += vCalculo;
+                else
+                    vnTotal += Int32.Parse(vCalculo.ToString().Substring(0, 1)) + Int32.Parse(vCalculo.ToString().Substring(1, 1));
+            }
+
+            if (vnTotal % 10 == 0)
+                return true;
+            else
+                return false;
         }
     }
 }

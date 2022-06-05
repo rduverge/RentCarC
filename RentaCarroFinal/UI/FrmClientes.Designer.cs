@@ -47,8 +47,8 @@
             this.btnMinimize = new FontAwesome.Sharp.IconButton();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panelDesktop = new System.Windows.Forms.Panel();
+            this.limiteCreditoText = new System.Windows.Forms.NumericUpDown();
             this.tipoPersonaCombo = new System.Windows.Forms.ComboBox();
-            this.limiteCreditoText = new System.Windows.Forms.TextBox();
             this.tarjetaText = new System.Windows.Forms.TextBox();
             this.cedulaText = new System.Windows.Forms.TextBox();
             this.nombreText = new System.Windows.Forms.TextBox();
@@ -78,6 +78,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelTitleBar.SuspendLayout();
             this.panelDesktop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.limiteCreditoText)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.rjDropdownMenu2.SuspendLayout();
             this.rjDropdownMenu1.SuspendLayout();
@@ -331,8 +332,8 @@
             // panelDesktop
             // 
             this.panelDesktop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
-            this.panelDesktop.Controls.Add(this.tipoPersonaCombo);
             this.panelDesktop.Controls.Add(this.limiteCreditoText);
+            this.panelDesktop.Controls.Add(this.tipoPersonaCombo);
             this.panelDesktop.Controls.Add(this.tarjetaText);
             this.panelDesktop.Controls.Add(this.cedulaText);
             this.panelDesktop.Controls.Add(this.nombreText);
@@ -352,21 +353,24 @@
             this.panelDesktop.Size = new System.Drawing.Size(831, 618);
             this.panelDesktop.TabIndex = 2;
             // 
+            // limiteCreditoText
+            // 
+            this.limiteCreditoText.Location = new System.Drawing.Point(605, 119);
+            this.limiteCreditoText.Name = "limiteCreditoText";
+            this.limiteCreditoText.Size = new System.Drawing.Size(120, 23);
+            this.limiteCreditoText.TabIndex = 35;
+            // 
             // tipoPersonaCombo
             // 
+            this.tipoPersonaCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.tipoPersonaCombo.FormattingEnabled = true;
+            this.tipoPersonaCombo.Items.AddRange(new object[] {
+            "Fisica",
+            "Juridica"});
             this.tipoPersonaCombo.Location = new System.Drawing.Point(257, 173);
             this.tipoPersonaCombo.Name = "tipoPersonaCombo";
             this.tipoPersonaCombo.Size = new System.Drawing.Size(224, 23);
             this.tipoPersonaCombo.TabIndex = 34;
-            // 
-            // limiteCreditoText
-            // 
-            this.limiteCreditoText.Location = new System.Drawing.Point(608, 118);
-            this.limiteCreditoText.Name = "limiteCreditoText";
-            this.limiteCreditoText.PlaceholderText = "Limite de Credito";
-            this.limiteCreditoText.Size = new System.Drawing.Size(112, 23);
-            this.limiteCreditoText.TabIndex = 33;
             // 
             // tarjetaText
             // 
@@ -520,6 +524,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(539, 344);
             this.dataGridView1.TabIndex = 24;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // rjDropdownMenu2
@@ -627,6 +632,7 @@
             this.panelTitleBar.PerformLayout();
             this.panelDesktop.ResumeLayout(false);
             this.panelDesktop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.limiteCreditoText)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.rjDropdownMenu2.ResumeLayout(false);
             this.rjDropdownMenu1.ResumeLayout(false);
@@ -667,7 +673,6 @@
         private CheckBox estadoCheck;
         private RJCodeAdvance.RJControls.RJButton guardarBtn;
         private DataGridView dataGridView1;
-        private TextBox limiteCreditoText;
         private TextBox tarjetaText;
         private TextBox cedulaText;
         private TextBox nombreText;
@@ -677,5 +682,6 @@
         private Label label3;
         private Label label2;
         private ComboBox tipoPersonaCombo;
+        private NumericUpDown limiteCreditoText;
     }
 }

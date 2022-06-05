@@ -19,7 +19,7 @@ namespace RentaCarroFinal.UI
         readonly Modelo modelo = new Modelo();
         readonly ModeloRepo modeloRepo = new ModeloRepo();
         readonly MarcaRepo marcaRepo = new MarcaRepo();
-
+        List<string> errores = new List<string>();
         //Constructor
         public FrmModelo()
             {
@@ -280,16 +280,23 @@ namespace RentaCarroFinal.UI
 
         private void guardarBtn_Click(object sender, EventArgs e)
         {
-            modeloRepo.Create(GetModelo());
-            LoadData();
-            Clear();
+            modelo.Id = null;
+            if (Validar())
+            {
+                modeloRepo.Create(GetModelo());
+                LoadData();
+                Clear();
+            }
         }
 
         private void actualizarBtn_Click(object sender, EventArgs e)
         {
-            modeloRepo.Update(GetModelo());
-            LoadData();
-            Clear();
+            if (Validar())
+            {
+                modeloRepo.Update(GetModelo());
+                LoadData();
+                Clear();
+            }
         }
 
         private void borrarBtn_Click(object sender, EventArgs e)
@@ -301,6 +308,7 @@ namespace RentaCarroFinal.UI
                 {
                     modeloRepo.Delete(t);
                     LoadData();
+                    Clear();
                 }
             }
             catch (Exception ex)
@@ -329,6 +337,44 @@ namespace RentaCarroFinal.UI
             }
             descripcionText.Text = modelo.Descripcion;
             estadoCheck.Checked = modelo.Estado;
+        }
+        public bool Validar()
+        {
+            errores.Clear();
+            if (string.IsNullOrWhiteSpace(descripcionText.Text))
+            {
+                errores.Add("Descripción no puede estar en blanco");
+            }
+            if (string.IsNullOrWhiteSpace(marcasCombo.Text))
+            {
+                errores.Add("Debe ser parte de una Marca.");
+            }
+            using RentaCarroFinalContext db = new RentaCarroFinalContext();
+            var marca = (Marca)marcasCombo.SelectedItem;
+            if (db.Modelos.Where(x => x.Descripcion == descripcionText.Text.Trim() && x.MarcaId == marca.Id && x.Id != modelo.Id).Any())
+            {
+                errores.Add("Ya existe un modelo con este nombre para esta marca.");
+            }
+            if (errores.Count > 0)
+            {
+                var message = "";
+                foreach (var e in errores)
+                {
+                    message += e + "\n";
+                }
+                MessageBox.Show(message);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            borrarBtn.Enabled = dataGridView1.SelectedRows.Count > 0;
+
         }
     }
 }

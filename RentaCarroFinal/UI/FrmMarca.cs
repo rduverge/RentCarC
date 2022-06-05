@@ -18,6 +18,7 @@ namespace RentaCarroFinal.UI
     {
             readonly Marca marca = new Marca();
             readonly MarcaRepo marcaRepo = new MarcaRepo();
+            List<string> errors = new List<string>();
             public FrmTiposCombustibles FrmTiposCombustibles;
             public FrmModelo FrmModelo;
 
@@ -299,9 +300,12 @@ namespace RentaCarroFinal.UI
 
         private void guardarBtn_Click(object sender, EventArgs e)
         {
-            marcaRepo.Create(GetMarca());
-            LoadData();
-            Clear();
+            if (Validar())
+            {
+                marcaRepo.Create(GetMarca());
+                LoadData();
+                Clear();
+            }
         }
         private void MarcasForm_Load(object sender, EventArgs e)
         {
@@ -317,6 +321,7 @@ namespace RentaCarroFinal.UI
                 {
                     marcaRepo.Delete(t);
                     LoadData();
+                    Clear();
                 }
             }
             catch (Exception ex)
@@ -329,9 +334,12 @@ namespace RentaCarroFinal.UI
 
         private void actualizarBtn_Click(object sender, EventArgs e)
         {
-            marcaRepo.Update(GetMarca());
-            LoadData();
-            Clear();
+            if (Validar())
+            {
+                marcaRepo.Update(GetMarca());
+                LoadData();
+                Clear();
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -356,6 +364,34 @@ namespace RentaCarroFinal.UI
             marca.Estado = Convert.ToBoolean(marcasGrid.SelectedRows[0].Cells[2].Value.ToString());
             descripcionText.Text = marca.Descripcion;
             estadoCheck.Checked = marca.Estado;
+        }
+        public bool Validar()
+        {
+            errors.Clear();
+            if (string.IsNullOrWhiteSpace(descripcionText.Text.Trim()))
+            {
+                errors.Add("Descripcion no puede estar vacio.");
+            }
+            var message = "";
+            foreach (var e in errors)
+            {
+                message += e + "\n";
+            }
+            if (errors.Count > 0)
+            {
+                MessageBox.Show(message);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private void marcasGrid_SelectionChanged(object sender, EventArgs e)
+        {
+            borrarBtn.Enabled = marcasGrid.SelectedRows.Count > 0;
+
         }
     }
 }

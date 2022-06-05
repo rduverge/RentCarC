@@ -24,11 +24,11 @@ namespace RentaCarroFinal.Migrations
 
             modelBuilder.Entity("RentaCarroFinal.Models.Cliente", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
 
                     b.Property<string>("Cedula")
                         .IsRequired()
@@ -48,8 +48,9 @@ namespace RentaCarroFinal.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TipoPersona")
-                        .HasColumnType("int");
+                    b.Property<string>("TipoPersona")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -58,11 +59,11 @@ namespace RentaCarroFinal.Migrations
 
             modelBuilder.Entity("RentaCarroFinal.Models.Empleado", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
 
                     b.Property<string>("Cedula")
                         .IsRequired()
@@ -88,6 +89,67 @@ namespace RentaCarroFinal.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Empleados");
+                });
+
+            modelBuilder.Entity("RentaCarroFinal.Models.Inspeccion", b =>
+                {
+                    b.Property<int?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
+
+                    b.Property<bool>("CheckGomaDerD")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("CheckGomaDerT")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("CheckGomaIzqD")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("CheckGomaIzqT")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("ClienteId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Combustible")
+                        .HasColumnType("float");
+
+                    b.Property<int>("EmpleadoId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Estado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("TieneGato")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("TieneGomaRespuesta")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("TieneRoturaCristal")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("VehiculoId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("tieneRalladuras")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClienteId");
+
+                    b.HasIndex("EmpleadoId");
+
+                    b.HasIndex("VehiculoId");
+
+                    b.ToTable("Inspecciones");
                 });
 
             modelBuilder.Entity("RentaCarroFinal.Models.Marca", b =>
@@ -134,6 +196,45 @@ namespace RentaCarroFinal.Migrations
                     b.HasIndex("MarcaId");
 
                     b.ToTable("Modelos");
+                });
+
+            modelBuilder.Entity("RentaCarroFinal.Models.Renta", b =>
+                {
+                    b.Property<int?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"), 1L, 1);
+
+                    b.Property<int?>("ClienteId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Comentario")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("EmpleadoId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Estado")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("FechaDevolucion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("FechaRenta")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("MontoDia")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClienteId");
+
+                    b.HasIndex("EmpleadoId");
+
+                    b.ToTable("Rentas");
                 });
 
             modelBuilder.Entity("RentaCarroFinal.Models.TipoCombustible", b =>
@@ -212,10 +313,10 @@ namespace RentaCarroFinal.Migrations
                     b.Property<bool>("Estado")
                         .HasColumnType("bit");
 
-                    b.Property<int>("MarcaId")
+                    b.Property<int?>("MarcaId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ModeloId")
+                    b.Property<int?>("ModeloId")
                         .HasColumnType("int");
 
                     b.Property<string>("NoChasis")
@@ -230,7 +331,7 @@ namespace RentaCarroFinal.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TipoCombustibleId")
+                    b.Property<int?>("TipoCombustibleId")
                         .HasColumnType("int");
 
                     b.Property<int>("TipoVehiculoId")
@@ -238,7 +339,38 @@ namespace RentaCarroFinal.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("MarcaId");
+
+                    b.HasIndex("ModeloId");
+
+                    b.HasIndex("TipoCombustibleId");
+
+                    b.HasIndex("TipoVehiculoId");
+
                     b.ToTable("Vehiculos");
+                });
+
+            modelBuilder.Entity("RentaCarroFinal.Models.Inspeccion", b =>
+                {
+                    b.HasOne("RentaCarroFinal.Models.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("ClienteId");
+
+                    b.HasOne("RentaCarroFinal.Models.Empleado", "Empleado")
+                        .WithMany()
+                        .HasForeignKey("EmpleadoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RentaCarroFinal.Models.Vehiculo", "Vehiculo")
+                        .WithMany()
+                        .HasForeignKey("VehiculoId");
+
+                    b.Navigation("Cliente");
+
+                    b.Navigation("Empleado");
+
+                    b.Navigation("Vehiculo");
                 });
 
             modelBuilder.Entity("RentaCarroFinal.Models.Modelo", b =>
@@ -250,6 +382,50 @@ namespace RentaCarroFinal.Migrations
                         .IsRequired();
 
                     b.Navigation("Marca");
+                });
+
+            modelBuilder.Entity("RentaCarroFinal.Models.Renta", b =>
+                {
+                    b.HasOne("RentaCarroFinal.Models.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("ClienteId");
+
+                    b.HasOne("RentaCarroFinal.Models.Empleado", "Empleado")
+                        .WithMany()
+                        .HasForeignKey("EmpleadoId");
+
+                    b.Navigation("Cliente");
+
+                    b.Navigation("Empleado");
+                });
+
+            modelBuilder.Entity("RentaCarroFinal.Models.Vehiculo", b =>
+                {
+                    b.HasOne("RentaCarroFinal.Models.Marca", "Marca")
+                        .WithMany()
+                        .HasForeignKey("MarcaId");
+
+                    b.HasOne("RentaCarroFinal.Models.Modelo", "Modelo")
+                        .WithMany()
+                        .HasForeignKey("ModeloId");
+
+                    b.HasOne("RentaCarroFinal.Models.TipoCombustible", "TipoCombustible")
+                        .WithMany()
+                        .HasForeignKey("TipoCombustibleId");
+
+                    b.HasOne("RentaCarroFinal.Models.TipoVehiculo", "TipoVehiculo")
+                        .WithMany()
+                        .HasForeignKey("TipoVehiculoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Marca");
+
+                    b.Navigation("Modelo");
+
+                    b.Navigation("TipoCombustible");
+
+                    b.Navigation("TipoVehiculo");
                 });
 #pragma warning restore 612, 618
         }

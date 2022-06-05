@@ -6,11 +6,6 @@ using System.Threading.Tasks;
 
 namespace RentaCarroFinal.Models
 {
-    enum TipoPersona
-    {
-        Fisica,
-        Juridica
-    }
     public class Cliente
     {
         public int? Id { get; set; }

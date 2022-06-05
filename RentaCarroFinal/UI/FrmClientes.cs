@@ -16,12 +16,11 @@ namespace RentaCarroFinal.UI
 {
     public partial class FrmClientes : Form
     {
-            public bool Editando;
-            public Cliente cliente = new Cliente();
-            readonly ClienteRepo clienteRepo = new ClienteRepo();
-            List<string> errores = new List<string>();
-             private int clienteId;
-            public FrmTiposCombustibles FrmTiposCombustibles;
+        readonly Cliente cliente = new Cliente();
+        readonly ClienteRepo clienteRepository = new ClienteRepo();
+        List<string> errores = new List<string>();
+
+        public FrmTiposCombustibles FrmTiposCombustibles;
             public FrmMarca FrmMarca;
             public FrmModelo FrmModelo;
 
@@ -295,98 +294,97 @@ namespace RentaCarroFinal.UI
                 FrmModelo.Focus();
             }
         }
-        public void LoadData()
-        {
-            dataGridView1.DataSource = clienteRepo.View();
-            dataGridView1.ClearSelection();
-        }
 
         private Cliente GetCliente()
         {
-            using RentaCarroFinalContext db = new RentaCarroFinalContext();
-            return db.Clientes.Where(x => x.Id == clienteId).FirstOrDefault();
+
+            cliente.Nombre = nombreText.Text.Trim();
+            cliente.Cedula = cedulaText.Text.Replace("-", "").Trim();
+            cliente.NumeroTarjetaCredito = tarjetaText.Text.Trim();
+            cliente.LimiteCredito = Convert.ToDouble(limiteCreditoText.Value);
+
+            cliente.TipoPersona = tipoPersonaCombo.Text;
+            cliente.Estado = estadoCheck.Checked;
+            return cliente;
         }
+        private void Clear()
+        {
+            nombreText.Text = "";
+            cedulaText.Text = "";
+            tarjetaText.Text = "";
+            limiteCreditoText.Value = 0;
+
+            estadoCheck.Checked = false;
+        }
+
+        public void LoadData()
+        {
+            dataGridView1.DataSource = clienteRepository.View();
+
+
+            dataGridView1.ClearSelection();
+        }
+
 
         private void guardarBtn_Click(object sender, EventArgs e)
         {
-            if (Editando)
-            {
-                if (Validar())
-                {
-                    clienteRepo.Update(FillCliente());
-                    Close();
-                }
-            }
-            else
-            {
-                if (Validar())
-                {
-                    clienteRepo.Create(FillCliente());
-                    Close();
-                }
-            }
-
+            cliente.Id = null;
+            clienteRepository.Create(GetCliente());
             LoadData();
-            Editando = false;
-            Text = "Crear Cliente";
-            ShowDialog();
-            LoadData();
+            Clear();
         }
 
-        private void actualizarBtn_Click(object sender, EventArgs e)
+            private void actualizarBtn_Click(object sender, EventArgs e)
         {
-            var c = GetCliente();
-            if (c == null)
-            {
-                return;
-            }
+            clienteRepository.Update(GetCliente());
             LoadData();
-            Editando = true;
-            cliente = c;
-            FillForm();
-            Text = "Editar Cliente";
-            ShowDialog();
-            LoadData();
+            Clear();
         }
 
         private void borrarBtn_Click(object sender, EventArgs e)
         {
             try
             {
-                var t = GetCliente();
-                if (t != null)
+                var m = GetCliente();
+                if (m != null)
                 {
-                    clienteRepo.Delete(t);
+                    clienteRepository.Delete(m);
                     LoadData();
+                    Clear();
                 }
-            }
-
-            catch (Microsoft.EntityFrameworkCore.DbUpdateException ex)
-            {
-                MessageBox.Show("No es posible borrar este cliente");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + ex.StackTrace);
+            
 
-            }
+        }
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            clienteId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+            cliente.Id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+            cliente.Nombre = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
+            cliente.Cedula = dataGridView1.SelectedRows[0].Cells[2].Value.ToString();
+            cliente.NumeroTarjetaCredito = dataGridView1.SelectedRows[0].Cells[3].Value.ToString();
+            cliente.LimiteCredito = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells[4].Value.ToString());
+
+
+
+            // cbbTipoPersona.Text=cliente.TipoPersona;
+
+            cliente.Estado = Convert.ToBoolean(dataGridView1.SelectedRows[0].Cells[6].Value.ToString());
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             borrarBtn.Enabled = dataGridView1.SelectedRows.Count > 0;
-            actualizarBtn.Enabled = dataGridView1.SelectedRows.Count > 0;
         }
         public Cliente FillCliente()
         {
             cliente.Nombre = nombreText.Text.Trim();
             cliente.Cedula = cedulaText.Text.Replace("-", "").Trim();
-            cliente.TarjetaCredito = tarjetaText.Text.Trim();
+            cliente.NumeroTarjetaCredito = tarjetaText.Text.Trim();
             cliente.LimiteCredito = Convert.ToDouble(limiteCreditoText.Value);
             cliente.TipoPersona = tipoPersonaCombo.Text;
             cliente.Estado = estadoCheck.Checked;
@@ -397,7 +395,7 @@ namespace RentaCarroFinal.UI
         {
             nombreText.Text = cliente.Nombre;
             cedulaText.Text = cliente.Cedula;
-            tarjetaText.Text = cliente.TarjetaCredito;
+            tarjetaText.Text = cliente.NumeroTarjetaCredito;
             limiteCreditoText.Value = Convert.ToDecimal(cliente.LimiteCredito);
             tipoPersonaCombo.Text = cliente.TipoPersona;
             estadoCheck.Checked = cliente.Estado;
@@ -529,6 +527,19 @@ namespace RentaCarroFinal.UI
             else
 
                 return false;
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            cliente.Id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+            cliente.Nombre = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
+            cliente.Cedula = dataGridView1.SelectedRows[0].Cells[2].Value.ToString();
+            cliente.NumeroTarjetaCredito = dataGridView1.SelectedRows[0].Cells[3].Value.ToString();
+            cliente.LimiteCredito = Convert.ToDouble(dataGridView1.SelectedRows[0].Cells[4].Value.ToString());
+            // cbbTipoPersona.Text=cliente.TipoPersona;
+
+            cliente.Estado = Convert.ToBoolean(dataGridView1.SelectedRows[0].Cells[6].Value.ToString());
 
         }
     }

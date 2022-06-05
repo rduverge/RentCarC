@@ -17,21 +17,29 @@ namespace RentaCarroFinal.UI
     public partial class FrmVehiculo : Form
     {
 
-            public FrmTiposCombustibles FrmTiposCombustibles;
-            public FrmMarca FrmMarca;
-            public FrmModelo FrmModelo;
+        internal VehiculoRepo vehiculoRepo = new VehiculoRepo();
+        internal MarcaRepo marcaRepo = new MarcaRepo();
+        internal ModeloRepo modeloRepo = new ModeloRepo();
+        internal TipoCombustibleRepo tipoCombustibleRepo = new TipoCombustibleRepo();
+        internal TipoVehiculoRepo tipoVehiculoRepo = new TipoVehiculoRepo();
+        readonly Vehiculo vehiculo = new Vehiculo();
+        readonly VehiculoRepo vehiculoRepository = new VehiculoRepo();
+        List<string> errores = new List<string>();
+        public FrmTiposCombustibles FrmTiposCombustibles;
+        public FrmMarca FrmMarca;
+        public FrmModelo FrmModelo;
 
         //Constructor
         public FrmVehiculo()
-            {
-                InitializeComponent();
-                CollapseMenu();
-                this.Padding = new Padding(borderSize);//Border size
-                this.BackColor = Color.FromArgb(98, 102, 244);//Border color
-            }
+        {
+            InitializeComponent();
+            CollapseMenu();
+            this.Padding = new Padding(borderSize);//Border size
+            this.BackColor = Color.FromArgb(98, 102, 244);//Border color
+        }
 
-            //Fields
-            private int borderSize = 2;
+        //Fields
+        private int borderSize = 2;
         private Size formSize;
 
 
@@ -213,14 +221,14 @@ namespace RentaCarroFinal.UI
 
         }
 
-        private void Open_DropdownMenu (RJDropdownMenu dropdownMenu, object sender)
+        private void Open_DropdownMenu(RJDropdownMenu dropdownMenu, object sender)
         {
             Control control = (Control)sender;
             dropdownMenu.VisibleChanged += new EventHandler((sender2, ev)
               => DropdownMenu_VisibleChanged(sender2, ev, control));
             dropdownMenu.Show(control, control.Width, 0);
         }
-        
+
         private void DropdownMenu_VisibleChanged(object sender, EventArgs e, Control ctrl)
         {
             RJDropdownMenu dropdownMenu2 = (RJDropdownMenu)sender;
@@ -231,7 +239,7 @@ namespace RentaCarroFinal.UI
                 else ctrl.BackColor = Color.FromArgb(98, 102, 244);
             }
         }
-            
+
 
         private void iconButton2_Click(object sender, EventArgs e)
         {
@@ -295,6 +303,19 @@ namespace RentaCarroFinal.UI
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private Cliente GetVehiculo()
+        {
+
+            vehiculo.Nombre = nombreText.Text.Trim();
+            vehiculo.Cedula = cedulaText.Text.Replace("-", "").Trim();
+            vehiculo.NumeroTarjetaCredito = tarjetaText.Text.Trim();
+            vehiculo.LimiteCredito = Convert.ToDouble(limiteCreditoText.Value);
+
+            vehiculo.TipoPersona = tipoPersonaCombo.Text;
+            vehiculo.Estado = estadoCheck.Checked;
+            return vehiculo;
         }
     }
 }

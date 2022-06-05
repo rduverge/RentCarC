@@ -20,7 +20,7 @@ namespace RentaCarroFinal.UI
             public FrmModelo FrmModelo;
             readonly TipoCombustible tipoCombustible = new TipoCombustible();
             readonly TipoCombustibleRepo tipoCombustibleRepo = new TipoCombustibleRepo();
-
+            List<string> errores = new List<string>();
         //Constructor
         public FrmTiposCombustibles()
             {
@@ -277,12 +277,12 @@ namespace RentaCarroFinal.UI
             if (FrmModelo == null || FrmModelo.IsDisposed)
             {
                 FrmModelo = new FrmModelo();
-                //FrmModelo.LoadData();
+                FrmModelo.LoadData();
                 FrmModelo.Show();
             }
             else
             {
-                //FrmModelo.LoadData();
+                FrmModelo.LoadData();
                 FrmModelo.Show();
                 FrmModelo.Focus();
             }
@@ -308,9 +308,13 @@ namespace RentaCarroFinal.UI
 
         private void guardarBtn_Click(object sender, EventArgs e)
         {
-            tipoCombustibleRepo.Create(GetTipoCombustible());
-            LoadData();
-            Clear();
+            tipoCombustible.Id = null;
+            if (Validar())
+            {
+                tipoCombustibleRepo.Create(GetTipoCombustible());
+                LoadData();
+                Clear();
+            }
         }
 
         private void borrarBtn_Click_1(object sender, EventArgs e)
@@ -322,6 +326,7 @@ namespace RentaCarroFinal.UI
                 {
                     tipoCombustibleRepo.Delete(t);
                     LoadData();
+                    Clear();
                 }
             }
             catch (Exception ex)
@@ -333,9 +338,12 @@ namespace RentaCarroFinal.UI
 
         private void actualizarBtn_Click_1(object sender, EventArgs e)
         {
-            tipoCombustibleRepo.Update(GetTipoCombustible());
-            LoadData();
-            Clear();
+            if (Validar())
+            {
+                tipoCombustibleRepo.Update(GetTipoCombustible());
+                LoadData();
+                Clear();
+            }
         }
 
         private void CombustiblesGrid_CellClick_1(object sender, DataGridViewCellEventArgs e)
@@ -345,6 +353,39 @@ namespace RentaCarroFinal.UI
             tipoCombustible.Estado = Convert.ToBoolean(CombustiblesGrid.SelectedRows[0].Cells[2].Value.ToString());
             descripcionText.Text = tipoCombustible.Descripcion;
             estadoCheck.Checked = tipoCombustible.Estado;
+        }
+
+        private void CombustiblesGrid_SelectionChanged_1(object sender, EventArgs e)
+        {
+            borrarBtn.Enabled = CombustiblesGrid.SelectedRows.Count > 0;
+        }
+        public bool Validar()
+        {
+            errores.Clear();
+            if (string.IsNullOrWhiteSpace(descripcionText.Text))
+            {
+                errores.Add("Descripción no puede estar en blanco");
+            }
+            using RentaCarroFinalContext db = new RentaCarroFinalContext();
+            if (db.TiposCombustible.Where(x => x.Descripcion == descripcionText.Text && x.Id != tipoCombustible.Id).Any())
+            {
+                errores.Add("Ya existe un tipo de combustible con esa descripción");
+            }
+
+            if (errores.Count > 0)
+            {
+                var message = "";
+                foreach (var e in errores)
+                {
+                    message += e + "\n";
+                }
+                MessageBox.Show(message);
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }
