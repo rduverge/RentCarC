@@ -392,7 +392,7 @@ namespace RentaCarroFinal.UI
             vehiculo.NoMotor = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
 
             using RentaCarroFinalContext db = new RentaCarroFinalContext();
-            var marca = db.Marcas.Where(y => y.Id == Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[2].Value.ToString())).FirstOrDefault();
+            var marca = db.Marcas.Where(y => y.Id == Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[7].Value.ToString())).FirstOrDefault();
 
 
             if (marca != null)
@@ -406,7 +406,7 @@ namespace RentaCarroFinal.UI
                 vehiculo.Marca = null;
             }
 
-            var modelo = db.Modelos.Where(y => y.Id == Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[2].Value.ToString())).FirstOrDefault();
+            var modelo = db.Modelos.Where(y => y.Id == Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[9].Value.ToString())).FirstOrDefault();
             if (modelo != null)
             {
                 vehiculo.ModeloId = modelo.Id;
@@ -418,7 +418,7 @@ namespace RentaCarroFinal.UI
                 vehiculo.Modelo = null;
             }
 
-            var tipoComb = db.TiposCombustible.Where(y => y.Id == Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[2].Value.ToString())).FirstOrDefault();
+            var tipoComb = db.TiposCombustible.Where(y => y.Id == Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[11].Value.ToString())).FirstOrDefault();
             if (tipoComb != null)
             {
                 vehiculo.TipoCombustibleId = tipoComb.Id;
@@ -430,7 +430,7 @@ namespace RentaCarroFinal.UI
                 vehiculo.TipoCombustible = null;
 
             }
-            var tipoVehic = db.TiposVehiculo.Where(y => y.Id == Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[2].Value.ToString())).FirstOrDefault();
+            var tipoVehic = db.TiposVehiculo.Where(y => y.Id == Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[5].Value.ToString())).FirstOrDefault();
             if (tipoVehic != null)
             {
                 vehiculo.TipoVehiculoId = tipoVehic.Id;
@@ -469,7 +469,7 @@ namespace RentaCarroFinal.UI
                 vehiculo.Marca = null;
             }
 
-            var modelo = db.Modelos.Where(y => y.Id == Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[2].Value.ToString())).FirstOrDefault();
+            var modelo = db.Modelos.Where(y => y.Id == Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[9].Value.ToString())).FirstOrDefault();
             if (modelo != null)
             {
                 vehiculo.ModeloId = modelo.Id;
@@ -481,7 +481,7 @@ namespace RentaCarroFinal.UI
                 vehiculo.Modelo = null;
             }
 
-            var tipoComb = db.TiposCombustible.Where(y => y.Id == Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[2].Value.ToString())).FirstOrDefault();
+            var tipoComb = db.TiposCombustible.Where(y => y.Id == Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[11].Value.ToString())).FirstOrDefault();
             if (tipoComb != null)
             {
                 vehiculo.TipoCombustibleId = tipoComb.Id;
@@ -493,7 +493,7 @@ namespace RentaCarroFinal.UI
                 vehiculo.TipoCombustible = null;
 
             }
-            var tipoVehi = db.TiposVehiculo.Where(y => y.Id == Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[2].Value.ToString())).FirstOrDefault();
+            var tipoVehi = db.TiposVehiculo.Where(y => y.Id == Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[5].Value.ToString())).FirstOrDefault();
             if (tipoVehi != null)
             {
                 vehiculo.TipoVehiculoId = tipoVehi.Id;
